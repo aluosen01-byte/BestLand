@@ -16,6 +16,8 @@ export interface SiteInfo {
   company: string
   /** 企业简称 */
   companyShort: string
+  /** 对接人 */
+  contactName: string
   /** 客服电话（用于拨号） */
   phone: string
   /** 客服电话展示文案 */
@@ -42,15 +44,15 @@ export const SITE: SiteInfo = {
   positioning: '专注纯无机建筑涂料，服务工程与家装全场景',
   company: '东莞市贝歌科技有限公司',
   companyShort: '贝歌科技',
-  // TODO 请替换为真实客服电话
-  phone: '0769-00000000',
-  phoneText: '0769-0000 0000',
-  // TODO 请替换为真实邮箱
-  email: 'service@example.com',
-  // TODO 请替换为真实官网
+  /** 对接人（「咨询与留言」页展示） */
+  contactName: '罗荣忠',
+  phone: '13602629536',
+  phoneText: '136 0262 9536',
+  // 暂无邮箱：留空则全站自动隐藏邮箱相关条目
+  email: '',
+  // 暂无官网：留空即可
   website: '',
-  // TODO 请替换为真实地址
-  address: '广东省东莞市',
+  address: '广东省东莞市大岭山镇莞长路杨屋段731号越秀大厦3楼',
   workTime: '周一至周六 09:00 - 18:00',
   mpName: '贝之然',
   icp: '',

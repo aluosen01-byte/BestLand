@@ -299,6 +299,16 @@
   text-align: right;
 }
 
+/* 电话：可点击，用品牌色 + 下划线暗示可拨号 */
+.contact__value--link {
+  color: #0F6B4F;
+  font-weight: 600;
+}
+
+.contact--first {
+  border-top: none;
+}
+
 .contact__arrow {
   font-size: 32rpx;
   color: #9AA8A2;

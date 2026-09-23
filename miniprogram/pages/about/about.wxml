@@ -100,8 +100,12 @@
   <!-- 联系 -->
   <view class="section section--tight">
     <view class="card">
+      <view class="row">
+        <text class="row__label">业务对接</text>
+        <text class="row__value">{{site.contactName}}</text>
+      </view>
       <view class="row" bindtap="callPhone" hover-class="card-hover">
-        <text class="row__label">客服电话</text>
+        <text class="row__label">联系电话</text>
         <text class="row__value row__value--link">{{site.phoneText}}</text>
       </view>
       <view class="row row--last" wx:if="{{site.email}}">

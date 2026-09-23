@@ -154,10 +154,17 @@
     </view>
 
     <view class="card">
+      <view class="contact contact--first">
+        <text class="contact__label">业务对接</text>
+        <view class="contact__right">
+          <text class="contact__value">{{site.contactName}}</text>
+        </view>
+      </view>
+
       <view class="contact" bindtap="callPhone" hover-class="card-hover">
         <text class="contact__label">客服电话</text>
         <view class="contact__right">
-          <text class="contact__value">{{site.phoneText}}</text>
+          <text class="contact__value contact__value--link">{{site.phoneText}}</text>
           <text class="contact__arrow">›</text>
         </view>
       </view>
