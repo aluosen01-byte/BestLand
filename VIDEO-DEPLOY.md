@@ -1,118 +1,111 @@
 # 视频部署待办（贝之然小程序）
 
-> 结论先说：**压缩后的 13 支视频已经准备好，但你现在的服务器配置微信小程序用不了，
-> 需要你在服务器侧改三件事。** 改完只要改一行代码即可全量生效。
+> **结论：域名和证书都没问题，`/video/` 目录也已经配好 —— 只差把视频传上去。**
 
 ---
 
-## 一、我探测到的现状
+## 一、我实测确认的现状
 
-我实际请求了 `47.107.190.235`，结果如下：
+我用 curl 实际请求了你的服务器，结果如下：
 
-| 探测项 | 实际结果 | 微信小程序要求 | 是否可用 |
-|---|---|---|---|
-| HTTP | `301` 强制跳转到 HTTPS | 必须 HTTPS | ✅ |
-| HTTPS 证书 | **自签名，不受信任**（curl 退出码 60） | 受信任 CA 签发 | ❌ **必须换** |
-| `/video/` 访问 | `302` 跳转到 `/login`（SenluoFlow 登录页） | 资源须匿名可访问 | ❌ **必须放开** |
-| 地址形态 | 纯 IP `47.107.190.235` | **必须是备案域名** | ❌ **必须换域名** |
+| 检查项 | 实测结果 | 判断 |
+|---|---|---|
+| `senluoflow.com` 解析 | A 记录 → `47.107.190.235` ✅ | 指向你的视频服务器，正确 |
+| HTTPS 证书 | curl 退出码 **0**（受信任） | ✅ **证书没问题**，不是自签名 |
+| `https://senluoflow.com/video/` | **403**（nginx 直接应答） | ✅ 已被 nginx 映射为静态目录 |
+| `https://senluoflow.com/video/bzr-01.mp4` | **404** | ❌ 视频文件还没上传 |
+| 微信 downloadFile 合法域名 | 已配置 `senluoflow.com` | ✅ 无需再改 |
 
-服务器是 **nginx 1.24.0 (Ubuntu)**，`/video/` 路径被 SenluoFlow 应用接管并做了登录鉴权。
+### 关键判断依据
 
-### 为什么这三条是硬性要求
+- `/video/` 返回 **403**，而 `/video`、`/videox/` 等返回 **302 跳登录**。
+  这说明 **nginx 专门为 `/video/`（带斜杠）配了静态目录映射**，
+  它绕过了 SenluoFlow 的登录拦截 —— 403 只是「目录存在但不允许列目录」的正常表现。
+- `/video/bzr-01.mp4` 返回 **404**，说明目录里还没有这个文件。
+- 我用正确域名试了全部 13 个文件名，**0/13 存在**。
 
-微信小程序里加载外部资源（`<video>`、`wx.downloadFile`）时：
-
-1. **不接受 IP 地址**，必须是已备案域名；
-2. **必须 HTTPS**，且证书链要能被系统信任（自签名会直接失败）；
-3. 域名必须加入微信公众平台
-   「开发管理 → 开发设置 → 服务器域名 → **downloadFile 合法域名**」。
+**所以之前那句报错提示（域名没配 / 证书不受信任）是误导** —— 真正的原因就是文件没上传。
 
 ---
 
-## 二、需要你在服务器上做的三件事
+## 二、你要做的：上传 13 个 mp4
 
-假设你用 `video.bestlandpaint.com` 这个域名（已解析到该服务器）。
-
-### 1. 申请受信任证书（免费）
-
-```bash
-sudo apt update
-sudo apt install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d video.bestlandpaint.com
-```
-
-certbot 会自动改 nginx 配置并配置续期。
-
-### 2. 让 `/video/` 匿名可访问，绕开 SenluoFlow 登录
-
-关键是：**只放开视频目录，不要把整个站点的鉴权去掉。**
-
-在 nginx 的 server 块里，把 `/video/` 单独用一个 `location` 交给静态文件，
-它就不会再走到 SenluoFlow 的路由：
-
-```nginx
-server {
-    listen 443 ssl http2;
-    server_name video.bestlandpaint.com;
-
-    ssl_certificate     /etc/letsencrypt/live/video.bestlandpaint.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/video.bestlandpaint.com/privkey.pem;
-
-    # 视频目录：直接由 nginx 发静态文件，匿名可读
-    location /video/ {
-        alias /opt/video/;
-        autoindex off;                          # 不列目录
-        add_header Accept-Ranges bytes;         # 支持拖动进度条
-        add_header Access-Control-Allow-Origin *;
-        types { video/mp4 mp4; }
-        default_type video/mp4;
-        expires 7d;
-    }
-}
-```
-
-改完执行 `sudo nginx -t && sudo systemctl reload nginx`。
-
-### 3. 把压缩后的视频传上去
-
-压缩后的文件在项目根目录 `_video_out/`，**文件名必须保持不变**：
+压缩好的文件在项目根目录 `_video_out/`（共 24.7 MB），文件名**必须保持不变**：
 
 ```
-bzr-01.mp4 ... bzr-13.mp4
+bzr-01.mp4  bzr-02.mp4  bzr-03.mp4  bzr-04.mp4  bzr-05.mp4  bzr-06.mp4  bzr-07.mp4
+bzr-08.mp4  bzr-09.mp4  bzr-10.mp4  bzr-11.mp4  bzr-12.mp4  bzr-13.mp4
 ```
-
-我在压缩时特意改成纯 ASCII 文件名，就是为了避免 URL 里出现空格、中文和多余的点
-（原文件名是 `No.01 贝之然纯无机涂料 · 把森林搬进家.mp4` 这种，做 URL 很容易出错）。
-
-上传命令示例（按你的实际账号改）：
 
 ```bash
 scp _video_out/*.mp4 root@47.107.190.235:/opt/video/
 ```
 
----
+然后确认权限（**这一步很重要**）：
 
-## 三、改完后要改的一行代码
+```bash
+ssh root@47.107.190.235
 
-打开 [miniprogram/data/video.js](miniprogram/data/video.js)，第 12 行附近：
+# 目录与文件都要让 nginx 能读
+chmod 755 /opt/video
+chmod 644 /opt/video/*.mp4
 
-```js
-// 改前
-var VIDEO_BASE = 'https://example.com/video/'
+# nginx 通常以 www-data 运行，属主给谁都行但要可读
+chown -R www-data:www-data /opt/video
 
-// 改后
-var VIDEO_BASE = 'https://video.bestlandpaint.com/video/'
+# 确认文件到位
+ls -lh /opt/video
 ```
 
-然后在微信公众平台把 `video.bestlandpaint.com` 加入 **downloadFile 合法域名**。
-
-**这样就可以全量生效了**：视频中心页、首页视频条、各产品详情页的相关视频都会正常播放。
+> ⚠️ 如果 `/opt/video` 是 `root:root` + `700`，nginx 读不到，
+> 就会一直 403 —— 这正是「目录 403、文件 404」之外最容易被忽略的一种情况。
+> 如果上传后仍然 403，先查这里。
 
 ---
 
-## 四、视频与系列的对应关系
+## 三、验证
 
-编号是我按内容归的类，写在 [miniprogram/data/video.js](miniprogram/data/video.js)：
+传完后在浏览器或命令行验证（应该返回 `200` 和 `Content-Type: video/mp4`）：
+
+```bash
+curl -I https://senluoflow.com/video/bzr-01.mp4
+```
+
+期望看到：
+
+```
+HTTP/1.1 200 OK
+Content-Type: video/mp4
+Accept-Ranges: bytes
+```
+
+**代码侧我已经改好了**：[miniprogram/data/video.js](miniprogram/data/video.js) 里的
+`VIDEO_BASE` 已指向 `https://senluoflow.com/video/`，你不需要再动代码。
+
+传完文件后重新编译小程序，视频中心页、首页视频条、各产品详情页的相关视频就会全部正常播放。
+
+---
+
+## 四、如果上传后仍然播不了
+
+按这个顺序排查：
+
+| 现象 | 可能原因 | 处理 |
+|---|---|---|
+| 浏览器 403 | `/opt/video` 权限不对 | 按上面 `chmod 755` + `chown www-data` |
+| 浏览器 404 | 文件名大小写或后缀不符 | 必须完全等于 `bzr-01.mp4` 这样 |
+| 浏览器能播、小程序不能 | 微信后台域名没生效 | 开发者工具「详情 → 域名信息」确认；改完需重新编译 |
+| 小程序报证书错误 | 该域名证书链不全 | 用 `curl -I` 确认退出码为 0；Let's Encrypt 需带 fullchain |
+| 拖动进度条卡住 | 未开启 Range 支持 | nginx 加 `add_header Accept-Ranges bytes;` |
+
+如果播放器报错，小程序里会显示一段可读的提示；你也可以把开发者工具
+Console 里的 `[贝之然] 视频播放失败` 日志发我。
+
+---
+
+## 五、视频与系列的对应关系
+
+编号是按内容归的类，写在 [miniprogram/data/video.js](miniprogram/data/video.js)：
 
 | 编号 | 标题 | 关联系列 |
 |---|---|---|
@@ -131,11 +124,11 @@ var VIDEO_BASE = 'https://video.bestlandpaint.com/video/'
 | bzr-13 | 旧墙改造极致性价比 | 无机底固、界面剂、外墙 |
 
 > 编号与标题的对应关系是从**视频文件名**读出来的（文件名里有内容描述），
-> 视频画面本身我没有看过，所以归类若与实际内容不符，告诉我调整。
+> 视频画面本身我没有看过，归类若与实际内容不符，告诉我调整。
 
 ---
 
-## 五、压缩参数（需要重新生成时用）
+## 六、压缩参数（需要重新生成时用）
 
 原始文件：4K 竖屏 HEVC，单支 126–270 MB，13 支合计 **1750 MB**。
 
@@ -159,11 +152,12 @@ ffmpeg -i input.mp4 \
 封面（`miniprogram/images/video/bzr-NN.jpg`）是从每支视频**第 2 秒**抽帧生成的：
 避开片头黑场，尺寸 540×960，单张 61–104 KB。
 
-## 六、说明
+---
+
+## 七、说明
 
 - 小程序包里**只有封面**（13 张，约 1 MB），不含视频本体 —— 视频走外部托管。
 - `_video_out/` 已在 `.gitignore` 中忽略，不进 git 仓库。
   原始素材仍在 `D:\跨境电商\A贝歌\贝之然涂料视频`。
-- 如果不想用外部服务器，也可以改用微信云开发的存储：把 mp4 传到云存储后
-  把 `VIDEO_BASE` 换成云存储的 https 域名即可，省去域名备案问题。
-  需要的话告诉我，我来接。
+- 备用方案：如果之后不想依赖这台服务器，可以改用微信云开发的云存储，
+  把 mp4 传到云存储后把 `VIDEO_BASE` 换成云存储 https 域名即可。需要的话我来接。

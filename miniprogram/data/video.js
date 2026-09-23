@@ -1,15 +1,14 @@
 // video.js —— 视频数据（短视频 · 竖屏 9:16）
 //
-// 【重要】微信小程序不允许用 IP 地址做资源域名，且必须 HTTPS + 受信任证书。
-// 所以下面的 baseUrl 需要换成你自己的域名，并在微信公众平台把它加入
-// 「开发管理 → 开发设置 → 服务器域名 → downloadFile 合法域名」。
+// 服务器现状（已实测确认）：
+//   senluoflow.com  →  A 记录指向 47.107.190.235，证书受信任 ✅
+//   /video/         →  403（nginx 直接应答，说明已映射为静态目录，只是目录为空）
+//   /video/bzr-01.mp4 → 404（视频还没上传）
 //
-// 当前的 47.107.190.235 存在两个硬性问题（见 README 视频一节）：
-//   1. 是纯 IP，微信不接受；
-//   2. 证书是自签的，微信校验证书链会失败。
-// 换成域名 + Let's Encrypt 证书后，把 baseUrl 改掉即可全量生效。
+// 所以只剩一步：把压缩好的 13 个 mp4 传到服务器 /opt/video/ 即可。
+// 微信公众平台的 downloadFile 合法域名已配置 senluoflow.com，无需再改。
 
-var VIDEO_BASE = 'https://example.com/video/'
+var VIDEO_BASE = 'https://senluoflow.com/video/'
 
 /** 视频清单：id 与压缩后的文件名一一对应 */
 var VIDEOS = [
