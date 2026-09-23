@@ -1,0 +1,388 @@
+/**franchise.wxss 招商加盟**/
+.page {
+  background: #F5F7F6;
+}
+
+/* ============ 首屏 ============ */
+.hero {
+  position: relative;
+  padding: 40rpx 44rpx 48rpx;
+  background: linear-gradient(160deg, #0A4A37 0%, #0F6B4F 55%, #13795A 100%);
+  overflow: hidden;
+}
+
+.hero__glow {
+  position: absolute;
+  right: -140rpx;
+  top: -160rpx;
+  width: 460rpx;
+  height: 460rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 68%);
+}
+
+.hero__title {
+  position: relative;
+  display: block;
+  font-size: 46rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.35;
+  letter-spacing: 1rpx;
+}
+
+.hero__desc {
+  position: relative;
+  display: block;
+  margin-top: 20rpx;
+  font-size: 25rpx;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.75;
+}
+
+.hero__tags {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30rpx;
+}
+
+.hero__tag {
+  font-size: 23rpx;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  height: 50rpx;
+  line-height: 48rpx;
+  padding: 0 24rpx;
+  border-radius: 25rpx;
+  margin: 0 16rpx 0 0;
+}
+
+/* ============ 理由 ============ */
+.reason {
+  display: flex;
+  padding: 28rpx 28rpx;
+  border-bottom: 1rpx solid #E3E9E6;
+}
+
+.reason:last-child {
+  border-bottom: none;
+}
+
+.reason__dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #0F6B4F;
+  margin: 14rpx 20rpx 0 0;
+  flex: none;
+}
+
+.reason__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.reason__title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #16211D;
+}
+
+.reason__desc {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #6B7B75;
+  line-height: 1.7;
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background: #FFFFFF;
+  border: 2rpx dashed #E6F2ED;
+  color: #0F6B4F;
+  font-size: 26rpx;
+}
+
+/* ============ 表格 ============ */
+.tablewrap {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.table {
+  display: inline-block;
+  min-width: 100%;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  overflow: hidden;
+}
+
+.tr {
+  display: flex;
+  border-bottom: 1rpx solid #E3E9E6;
+}
+
+.tr:last-child {
+  border-bottom: none;
+}
+
+.tr--head {
+  background: #F2F8F5;
+}
+
+.th {
+  min-width: 220rpx;
+  flex: 1;
+  padding: 22rpx 16rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #0A4A37;
+  text-align: center;
+  border-right: 1rpx solid #E3E9E6;
+}
+
+.th:last-child {
+  border-right: none;
+}
+
+.th--name {
+  min-width: 180rpx;
+  width: 180rpx;
+  flex: none;
+  text-align: left;
+  padding-left: 24rpx;
+}
+
+.td {
+  min-width: 220rpx;
+  flex: 1;
+  padding: 24rpx 16rpx;
+  font-size: 23rpx;
+  color: #3D4A45;
+  text-align: center;
+  line-height: 1.55;
+  border-right: 1rpx solid #E3E9E6;
+  white-space: normal;
+}
+
+.td:last-child {
+  border-right: none;
+}
+
+.td--name {
+  min-width: 180rpx;
+  width: 180rpx;
+  flex: none;
+  text-align: left;
+  padding-left: 24rpx;
+  font-weight: 600;
+  color: #16211D;
+  background: #FBFDFC;
+}
+
+/* ============ 支持 ============ */
+.sups {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.sup {
+  width: calc(50% - 20rpx);
+  margin: 0 10rpx 20rpx;
+  padding: 26rpx 24rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.sup__title {
+  font-size: 27rpx;
+  font-weight: 700;
+  color: #0F6B4F;
+}
+
+.sup__desc {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #6B7B75;
+  line-height: 1.65;
+}
+
+/* ============ 流程 ============ */
+.steps {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  padding: 34rpx 30rpx 10rpx;
+}
+
+.step {
+  display: flex;
+}
+
+.step__left {
+  width: 70rpx;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step__no {
+  width: 56rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: #E6F2ED;
+  color: #0F6B4F;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.step__line {
+  flex: 1;
+  width: 2rpx;
+  background: #E3E9E6;
+  margin: 8rpx 0 0;
+}
+
+.step__body {
+  flex: 1;
+  padding: 0 0 34rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.step__title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #16211D;
+  line-height: 1.4;
+}
+
+.step__desc {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #6B7B75;
+  line-height: 1.75;
+}
+
+/* ============ FAQ ============ */
+.faq {
+  padding: 30rpx 28rpx;
+  border-bottom: 1rpx solid #E3E9E6;
+}
+
+.faq:last-child {
+  border-bottom: none;
+}
+
+.faq__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.faq__q {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #16211D;
+  line-height: 1.55;
+  padding-right: 20rpx;
+}
+
+.faq__icon {
+  font-size: 36rpx;
+  color: #0F6B4F;
+  line-height: 1.2;
+  flex: none;
+}
+
+.faq__a {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 25rpx;
+  color: #6B7B75;
+  line-height: 1.85;
+}
+
+/* ============ 免责 ============ */
+.disclaimer {
+  margin: 32rpx 32rpx 0;
+  padding: 26rpx 28rpx;
+  border-radius: 12rpx;
+  background: #FDFAF2;
+  border: 1rpx solid #F3E4C4;
+}
+
+.disclaimer__text {
+  font-size: 22rpx;
+  color: #8A6A24;
+  line-height: 1.75;
+}
+
+.bottom-space {
+  height: 190rpx;
+}
+
+/* ============ 底部操作栏 ============ */
+.actionbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background: #FFFFFF;
+  border-top: 1rpx solid #E3E9E6;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.actionbar__inner {
+  display: flex;
+  align-items: center;
+  height: 112rpx;
+  padding: 0 24rpx;
+}
+
+.actionbar__side {
+  height: 84rpx;
+  padding: 0 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.actionbar__side-text {
+  font-size: 24rpx;
+  color: #3D4A45;
+}
+
+.actionbar__main {
+  flex: 1;
+  height: 84rpx;
+  margin-left: 16rpx;
+  border-radius: 42rpx;
+  background: #0F6B4F;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  box-shadow: 0 8rpx 24rpx rgba(15, 107, 79, 0.24);
+}

@@ -136,12 +136,28 @@
     </view>
   </view>
 
-  <!-- 资质入口 -->
+  <!-- 入口 -->
   <view class="section section--tight">
     <view class="card entry" bindtap="goQualification" hover-class="card-hover">
       <view class="entry__text">
         <text class="entry__title">资质与检测报告</text>
         <text class="entry__desc">A1 级不燃 · 有害物质限量 · 环保耐久性能 · ISO 体系认证</text>
+      </view>
+      <text class="entry__arrow">›</text>
+    </view>
+
+    <view class="card entry" bindtap="goFranchise" hover-class="card-hover">
+      <view class="entry__text">
+        <text class="entry__title">招商加盟</text>
+        <text class="entry__desc">县级 / 地级 / 跨境代理权益与门槛 · 海外合作流程</text>
+      </view>
+      <text class="entry__arrow">›</text>
+    </view>
+
+    <view class="card entry" bindtap="goPolicy" hover-class="card-hover">
+      <view class="entry__text">
+        <text class="entry__title">政策与标准依据</text>
+        <text class="entry__desc">A 级不燃强制要求 · 绿色建材量化目标 · 地方补贴政策</text>
       </view>
       <text class="entry__arrow">›</text>
     </view>

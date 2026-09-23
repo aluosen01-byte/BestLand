@@ -1,0 +1,160 @@
+<!--franchise.wxml 招商加盟-->
+<navigation-bar title="招商加盟" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <!-- 首屏 -->
+  <view class="hero">
+    <view class="hero__glow"></view>
+    <text class="hero__title">与贝之然一起做纯无机涂料</text>
+    <text class="hero__desc">
+      县域、地级、跨境三种代理，总部提供技术、资料、培训与售后支持。
+      政策强制 + 绿色建材加分，工程端需求正在持续放大。
+    </text>
+    <view class="hero__tags">
+      <text class="hero__tag" wx:for="{{tiers}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 为什么现在做 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">为什么是现在</view>
+        <view class="section-sub">政策与市场双向驱动</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="reason" wx:for="{{reasons}}" wx:key="title">
+        <view class="reason__dot"></view>
+        <view class="reason__text">
+          <text class="reason__title">{{item.title}}</text>
+          <text class="reason__desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="more" bindtap="goPolicy" hover-class="btn-hover">
+      查看完整政策依据<text class="arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 代理权益对比 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">代理权益</view>
+        <view class="section-sub">三种层级对比</view>
+      </view>
+    </view>
+    <scroll-view class="tablewrap" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="table">
+        <view class="tr tr--head">
+          <view class="th th--name">权益</view>
+          <view class="th" wx:for="{{tiers}}" wx:key="*this">{{item}}</view>
+        </view>
+        <view class="tr" wx:for="{{benefits}}" wx:key="name">
+          <view class="td td--name">{{item.name}}</view>
+          <view class="td" wx:for="{{item.values}}" wx:for-item="v" wx:key="*this">{{v}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 加入门槛 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">加入门槛</view>
+        <view class="section-sub">请以此为准，如有调整以最新政策为准</view>
+      </view>
+    </view>
+    <scroll-view class="tablewrap" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="table">
+        <view class="tr tr--head">
+          <view class="th th--name">要求</view>
+          <view class="th" wx:for="{{tiers}}" wx:key="*this">{{item}}</view>
+        </view>
+        <view class="tr" wx:for="{{thresholds}}" wx:key="name">
+          <view class="td td--name">{{item.name}}</view>
+          <view class="td" wx:for="{{item.values}}" wx:for-item="v" wx:key="*this">{{v}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 总部支持 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">总部支持</view>
+        <view class="section-sub">从资料到驻场，逐级加码</view>
+      </view>
+    </view>
+    <view class="sups">
+      <view class="sup" wx:for="{{support}}" wx:key="title">
+        <text class="sup__title">{{item.title}}</text>
+        <text class="sup__desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 海外合作流程 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">海外合作标准流程</view>
+        <view class="section-sub">跨境代理与合资建厂</view>
+      </view>
+    </view>
+    <view class="steps">
+      <view class="step" wx:for="{{steps}}" wx:key="step">
+        <view class="step__left">
+          <text class="step__no">{{item.step}}</text>
+          <view class="step__line" wx:if="{{index !== steps.length - 1}}"></view>
+        </view>
+        <view class="step__body">
+          <text class="step__title">{{item.title}}</text>
+          <text class="step__desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 常见问题 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">常见问题</view>
+    </view>
+    <view class="card">
+      <view class="faq" wx:for="{{faq}}" wx:key="q" bindtap="toggleFaq" data-index="{{index}}">
+        <view class="faq__head">
+          <text class="faq__q">{{item.q}}</text>
+          <text class="faq__icon">{{item.open ? '−' : '+'}}</text>
+        </view>
+        <text class="faq__a" wx:if="{{item.open}}">{{item.a}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 免责说明 -->
+  <view class="disclaimer">
+    <text class="disclaimer__text">
+      以上权益与门槛整理自贝之然招商政策。实际合作条款以双方签订的
+      《品牌授权及技术服务协议》或《合资协议》为准。
+    </text>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>
+
+<!-- 底部操作栏 -->
+<view class="actionbar">
+  <view class="actionbar__inner">
+    <view class="actionbar__side" bindtap="callPhone" hover-class="btn-hover">
+      <text class="actionbar__side-text">电话</text>
+    </view>
+    <view class="actionbar__side" bindtap="copyPhone" hover-class="btn-hover">
+      <text class="actionbar__side-text">复制号码</text>
+    </view>
+    <view class="actionbar__main" bindtap="apply" hover-class="btn-hover">申请代理</view>
+  </view>
+</view>

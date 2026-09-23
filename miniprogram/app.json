@@ -5,6 +5,8 @@
     "pages/videos/videos",
     "pages/detail/detail",
     "pages/qualification/qualification",
+    "pages/policy/policy",
+    "pages/franchise/franchise",
     "pages/about/about",
     "pages/contact/contact",
     "pages/messages/messages",

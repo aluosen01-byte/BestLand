@@ -190,6 +190,27 @@
     </view>
   </view>
 
+  <!-- ============ 招商加盟 ============ -->
+  <view class="biz">
+    <view class="biz__head">
+      <text class="biz__badge">招商</text>
+      <text class="biz__title">贝之然代理合作</text>
+    </view>
+    <text class="biz__desc">
+      县域、地级、跨境三种代理层级。政策强制人员密集场所使用 A 级不燃材料，
+      绿色建材应用比例目标超 70%，工程端需求持续放大。
+    </text>
+    <view class="biz__points">
+      <text class="biz__point">独家区域保护</text>
+      <text class="biz__point">专家驻场支援</text>
+      <text class="biz__point">合资建厂通道</text>
+    </view>
+    <view class="biz__actions">
+      <view class="biz__btn biz__btn--solid" bindtap="goFranchise" hover-class="btn-hover">查看加盟政策</view>
+      <view class="biz__btn biz__btn--ghost" bindtap="goPolicy" hover-class="btn-hover">政策依据</view>
+    </view>
+  </view>
+
   <!-- ============ 页脚 ============ -->
   <view class="footer">
     <text class="footer__brand">{{site.brand}} · {{site.company}}</text>
@@ -198,6 +219,13 @@
     <view class="footer__links">
       <text class="footer__link" bindtap="goQualification">资质证书</text>
       <text class="footer__dot">·</text>
+      <text class="footer__link" bindtap="goProducts">产品系列</text>
+      <text class="footer__dot">·</text>
+      <text class="footer__link" bindtap="goPolicy">政策依据</text>
+      <text class="footer__dot">·</text>
+      <text class="footer__link" bindtap="goFranchise">招商加盟</text>
+    </view>
+    <view class="footer__links">
       <text class="footer__link" bindtap="goAbout">关于我们</text>
       <text class="footer__dot">·</text>
       <text class="footer__link" bindtap="goAgreement">免责声明</text>

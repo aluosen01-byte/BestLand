@@ -19,6 +19,14 @@
     },
     {
       "action": "allow",
+      "page": "pages/policy/policy"
+    },
+    {
+      "action": "allow",
+      "page": "pages/franchise/franchise"
+    },
+    {
+      "action": "allow",
       "page": "pages/about/about"
     },
     {

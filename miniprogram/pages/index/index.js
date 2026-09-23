@@ -71,6 +71,14 @@ Component({
       wx.reLaunch({ url: '/pages/videos/videos' })
     },
 
+    goPolicy() {
+      wx.navigateTo({ url: '/pages/policy/policy' })
+    },
+
+    goFranchise() {
+      wx.navigateTo({ url: '/pages/franchise/franchise' })
+    },
+
     goAbout() {
       wx.navigateTo({ url: '/pages/about/about' })
     },

@@ -1,0 +1,108 @@
+<!--policy.wxml 政策背书-->
+<navigation-bar title="政策与标准" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <!-- 引言 -->
+  <view class="banner">
+    <text class="banner__title">政策导向</text>
+    <text class="banner__desc">{{intro}}</text>
+  </view>
+
+  <!-- 落地要点 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">对项目意味着什么</view>
+        <view class="section-sub">把政策翻译成可执行的动作</view>
+      </view>
+    </view>
+    <view class="takes">
+      <view class="take" wx:for="{{takeaways}}" wx:key="title">
+        <text class="take__title">{{item.title}}</text>
+        <text class="take__desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 第一组 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">鼓励无机涂料 · 限制高 VOC</view>
+        <view class="section-sub">{{policiesA.length}} 项政策与标准</view>
+      </view>
+    </view>
+    <view class="polies">
+      <view class="poly {{item.highlight ? 'is-hot' : ''}}" wx:for="{{policiesA}}" wx:key="name">
+        <view class="poly__head">
+          <text class="poly__name">{{item.name}}</text>
+          <text class="poly__tag" wx:if="{{item.highlight}}">强制</text>
+        </view>
+        <text class="poly__issuer">{{item.issuer}}</text>
+        <text class="poly__body">{{item.body}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 第二组 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">VOCs 减排政策导向</view>
+        <view class="section-sub">{{policiesB.length}} 项政策与标准</view>
+      </view>
+    </view>
+    <view class="polies">
+      <view class="poly {{item.highlight ? 'is-hot' : ''}}" wx:for="{{policiesB}}" wx:key="name">
+        <view class="poly__head">
+          <text class="poly__name">{{item.name}}</text>
+          <text class="poly__tag" wx:if="{{item.highlight}}">地方补贴</text>
+        </view>
+        <text class="poly__issuer">{{item.issuer}}</text>
+        <text class="poly__body">{{item.body}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 参考文献 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">政策原文出处</view>
+        <view class="section-sub">点击可复制链接</view>
+      </view>
+    </view>
+    <view class="card">
+      <view
+        class="ref"
+        wx:for="{{references}}"
+        wx:key="no"
+        bindtap="copyRef"
+        data-url="{{item.url}}"
+        data-name="{{item.name}}"
+        hover-class="card-hover"
+      >
+        <text class="ref__no">{{item.no}}</text>
+        <view class="ref__body">
+          <text class="ref__name">{{item.name}}</text>
+          <text class="ref__url">{{item.url}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="note">
+      <text class="note__text">
+        以上政策整理自公开信息，链接指向政府网站原文。政策会修订，投标或报建前请以最新发布的正式文本为准。
+      </text>
+    </view>
+  </view>
+
+  <!-- 咨询 -->
+  <view class="cta">
+    <text class="cta__title">需要绿色建材加分或投标资料？</text>
+    <text class="cta__desc">我们可以提供检测报告、A1 级不燃证明与绿色建材相关资料</text>
+    <view class="cta__btn" bindtap="goContact" hover-class="btn-hover">索取投标资料</view>
+    <view class="cta__btn cta__btn--ghost" bindtap="goFranchise" hover-class="btn-hover">了解代理合作</view>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>

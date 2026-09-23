@@ -52,6 +52,14 @@ Component({
       wx.navigateTo({ url: '/pages/qualification/qualification' })
     },
 
+    goFranchise() {
+      wx.navigateTo({ url: '/pages/franchise/franchise' })
+    },
+
+    goPolicy() {
+      wx.navigateTo({ url: '/pages/policy/policy' })
+    },
+
     goContact() {
       wx.reLaunch({ url: '/pages/contact/contact' })
     },
