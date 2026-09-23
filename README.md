@@ -21,7 +21,7 @@
 | 2 | 联系方式 / 公司信息 | ✅ 已按宣传册填好（对接人罗博荣、手机、地址、官网） |
 | 3 | 产品参数与文案 | ✅ 已换成宣传册里的真实数据（不再是占位值） |
 | 4 | 产品型号 | ⏳ **仍为占位编号**，把清单发我即可批量替换（见第三节） |
-| 5 | 视频部署 | ⏳ **只差上传**：域名/证书/目录都已就绪，把 `_video_out/*.mp4` 传到 `/opt/video/` 即可（见第七节） |
+| 5 | 视频部署 | ✅ **已完成**：13 支已上传并验证 200/13，重新编译小程序即可播放 |
 | 6 | 官网 web-view | ⏳ 需在微信后台配 **业务域名** `bestlandpaint.com` 并放置校验文件（见第八节） |
 | 7 | 商标注册证图片 | ⏳ 素材只有 PDF，见 [IMAGE-MAPPING.md](IMAGE-MAPPING.md) 第二节 |
 | 8 | 公开展示的邮箱 | ⏳ 宣传册里是个人 QQ 邮箱，我未放上小程序；有企业邮箱请告知 |
@@ -258,46 +258,46 @@ exports.main = async (event) => {
 > 我早先那版说明里写「必须换域名、必须换证书、必须去掉登录」是**错的** ——
 > 当时我只探测了 IP，没有把 `senluoflow.com` 这个域名一起测。给你造成误导，抱歉。
 
-### 所以只剩一步：把视频传上去
+### ✅ 已完成部署
 
-```bash
-scp _video_out/*.mp4 root@47.107.190.235:/opt/video/
+我通过 SSH 登录服务器排查并完成了上传（详见 [VIDEO-DEPLOY.md](VIDEO-DEPLOY.md)）：
+
+| 验证项 | 结果 |
+|---|---|
+| `/video/bzr-01.mp4` ~ `bzr-13.mp4` | **13/13 返回 200** ✅ |
+| Content-Type | `video/mp4` ✅ |
+| 与本地压缩产物字节对账 | **13/13 一致** ✅ |
+| Range 请求（拖动进度条） | 返回 `206`，`Accept-Ranges: bytes` ✅ |
+| nginx 配置 | `alias /opt/video/` 本来就正确，无需修改 ✅ |
+
+**你只需要在开发者工具里重新编译小程序**，视频就会出现。
+
+### 这次的真正原因（记录一下）
+
+服务器上的文件是**原始中文名**（`No.01 贝之然纯无机涂料 · 把森林搬进家.mp4`），
+而小程序请求的是我在压缩时就改好的 ASCII 名 `bzr-01.mp4`，所以全部 404。
+
+批量改名时踩了一个很隐蔽的坑：那个 `·` 的 UTF-8 字节是 `c2 b7`，即 **U+00B7**，
+在 `en_US.UTF-8` 下 glibc 认为它是**空白字符**，于是 bash **在双引号内部也会做词分割**，
+`mv` 一直报 `target ...: No such file or directory`。
+
+最终用 `pscp` 把压缩好的文件**按目标名上传覆盖**绕开了改名：
+见 [VIDEO-DEPLOY.md](VIDEO-DEPLOY.md) 第二节。
+
+> ⚠️ **以后替换视频，一律用 ASCII 文件名**（如 `bzr-14.mp4`），
+> 不要用带 `·`、空格或中文的名字。
+
+### 服务器磁盘占用（建议清理）
+
+```
+/opt/video        1.8 GB  ← 压缩版(24.7MB) + 原始 4K 中文名文件(1.75GB)
+/opt/video_orig   1.8 GB  ← 原始 4K 的另一份拷贝
 ```
 
-然后确认权限（容易被忽略，但会造成一直 403）：
+4K 原片对小程序没用（而且能匿名下载）。**我没有自动删除** —— 涉及原片，留给你确认。
+清理命令见 [VIDEO-DEPLOY.md](VIDEO-DEPLOY.md) 第四节。
 
-```bash
-ssh root@47.107.190.235
-chmod 755 /opt/video
-chmod 644 /opt/video/*.mp4
-chown -R www-data:www-data /opt/video
-ls -lh /opt/video
-```
-
-文件名**必须**保持：
-
-```
-bzr-01.mp4  bzr-02.mp4  bzr-03.mp4  bzr-04.mp4  bzr-05.mp4  bzr-06.mp4  bzr-07.mp4
-bzr-08.mp4  bzr-09.mp4  bzr-10.mp4  bzr-11.mp4  bzr-12.mp4  bzr-13.mp4
-```
-
-（我在压缩时特意改成纯 ASCII 文件名，避免 URL 里出现空格、中文和多余的点。）
-
-**代码侧已经改好了**：[video.js](miniprogram/data/video.js) 的 `VIDEO_BASE`
-已指向 `https://senluoflow.com/video/`，不需要你再动代码。
-传完文件重新编译小程序即可全量生效。
-
-验证命令：
-
-```bash
-curl -I https://senluoflow.com/video/bzr-01.mp4     # 期望 200 + video/mp4
-```
-
-> 视频编号与系列的对应关系写在 `data/video.js` 里；
-> 「视频」页可以切换播放，各产品详情页底部会自动列出该系列的相关视频。
-
-📄 **完整排查表（403/404/拖动卡住等）与 ffmpeg 压缩参数见
-[VIDEO-DEPLOY.md](VIDEO-DEPLOY.md)。**
+📄 **完整部署记录、排查表与 ffmpeg 压缩参数见 [VIDEO-DEPLOY.md](VIDEO-DEPLOY.md)。**
 
 ---
 
@@ -463,8 +463,8 @@ miniprogram/
 ## 十二、还没做 / 可以继续加的
 
 - **产品型号**：目前是 `家装内墙 JZ-01` 这类占位编号，见第三节。
-- **视频上线**：需先把域名与证书配好（第七节），再把 `video.js` 的 `VIDEO_BASE` 换掉。
 - **官网 web-view**：需在微信后台配业务域名并放校验文件（第八节）。
+- **服务器清理**：`/opt/video` 下的 4K 原片与 `/opt/video_orig` 共约 3.5 GB 可释放（第七节）。
 - **`贝之缘商标注册证`**：这是另一个商标（贝之缘），当前没放进小程序。
 - **纸质证书（5 张微信图片）**：`证书资质纸质版\微信图片_202510221005xx.jpg` 还没用上，
   可以加一个「荣誉资质」区块。
