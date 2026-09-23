@@ -220,7 +220,60 @@ exports.main = async (event) => {
 
 ---
 
-## 八、代码结构
+## 八、Git 版本管理
+
+仓库已经初始化好了，分支 `main`，含一个初始提交。
+
+```
+提交   0eb9a44  初始化贝之然小程序：品牌展示 + 产品目录 + 在线咨询
+跟踪   225 个文件
+分支   main
+```
+
+### 已配置的内容
+
+**`.gitignore`** —— 忽略不该进仓库的东西：
+
+| 忽略项 | 原因 |
+|---|---|
+| `node_modules/`、各类 lock 文件 | 依赖不共享 |
+| `miniprogram_npm/`、`.wechat/`、`.wxcloud/` | 开发者工具的编译缓存 |
+| `project.private.config.json` | 含开发者工具版本、本地编译开关等个人设置 |
+| `.vscode/`、`.idea/`、`*.swp` | 编辑器配置 |
+| `.DS_Store`、`Thumbs.db`、`desktop.ini` | 系统文件 |
+
+> ⚠️ **注意 `miniprogram/` 下的 `.js` / `.wxss` 不能忽略。**
+> 本项目是「免构建」的，这些是真正被加载的源码产物（见第六节）。
+
+**`.gitattributes`** —— 图片标记为二进制，文本统一 LF 行尾，避免 Windows 上换行符被反复改写。
+
+### 常用命令
+
+```bash
+git -C D:\projects\BestLand status              # 看改动
+git -C D:\projects\BestLand add -A              # 暂存全部
+git -C D:\projects\BestLand commit -m "说明"     # 提交
+git -C D:\projects\BestLand log --oneline       # 看历史
+```
+
+### 还没做：关联远程仓库
+
+我没有创建远程仓库，也没有推送——因为需要你自己决定托管在哪、仓库名和可见性是什么。
+想推到 GitHub / Gitee / 内网 GitLab 时：
+
+```bash
+git -C D:\projects\BestLand remote add origin <你的仓库地址>
+git -C D:\projects\BestLand push -u origin main
+```
+
+告诉我地址，我可以帮你把这一步做完。
+
+> 仓库体积约 16 MB，主要是产品图。如果平台对单文件或仓库体积有要求，
+> 可以启用 Git LFS 管理 `miniprogram/images/`，需要的话我来配。
+
+---
+
+## 九、代码结构
 
 ```
 miniprogram/
@@ -240,18 +293,19 @@ miniprogram/
 └── pages/                         9 个页面（见第二节）
 ```
 
-另有一个我建的空文件 `miniprogram/utils/_placeholder.js` / `.ts`，没有引用、可以删除
-（我因为没有命令行而删不掉）。
+另：曾经有个我建的空文件 `miniprogram/utils/_placeholder.ts`，已经删掉了。
 
 ---
 
-## 九、还没做 / 可以继续加的
+## 十、还没做 / 可以继续加的
 
 - **购物车与在线下单**：你选的是「品牌展示 + 产品目录 + 在线咨询」，所以没做交易闭环。
   要做需要接入微信支付，并补充订单后端。
+- **商标注册证图片**：素材里只有 PDF，见 [IMAGE-MAPPING.md](IMAGE-MAPPING.md) 第二节。
 - **纸质证书（5 张微信图片）**：`证书资质纸质版\微信图片_202510221005xx.jpg` 还没用上，
   可以加一个「荣誉资质」区块。
 - **专利与报告 PPT**：`贝之然涂料专利与报告.pptx` 里的内容我看不到，如果里面有专利号，
   发我可以加进资质页。
 - **产品型号与真实技术参数**：见第三节。
 - **`贝之缘商标注册证`**：这是另一个商标（贝之缘），当前没放进小程序，需要的话告诉我。
+- **分包优化**：整包 16.4 MB，接近 20 MB 上限。若后续要加图，建议拆分包。
