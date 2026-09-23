@@ -27,6 +27,10 @@
     },
     {
       "action": "allow",
+      "page": "pages/website/website"
+    },
+    {
+      "action": "allow",
       "page": "pages/about/about"
     },
     {

@@ -212,6 +212,20 @@ Component({
       })
     },
 
+    /** 官网：优先在小程序内用 web-view 打开 */
+    openWebsite() {
+      if (!SITE.website) return
+      wx.navigateTo({
+        url: '/pages/website/website',
+        fail: () => {
+          wx.setClipboardData({
+            data: SITE.website,
+            success: () => wx.showToast({ title: '官网地址已复制', icon: 'none' }),
+          })
+        },
+      })
+    },
+
     copyAddress() {
       wx.setClipboardData({
         data: SITE.address,

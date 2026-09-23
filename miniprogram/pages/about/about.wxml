@@ -174,7 +174,7 @@
         <text class="row__label">联系电话</text>
         <text class="row__value row__value--link">{{site.phoneText}}</text>
       </view>
-      <view class="row" bindtap="copyWebsite" hover-class="card-hover" wx:if="{{site.website}}">
+      <view class="row" bindtap="openWebsite" hover-class="card-hover" wx:if="{{site.website}}">
         <text class="row__label">官方网站</text>
         <text class="row__value row__value--link">{{site.websiteText}}</text>
       </view>

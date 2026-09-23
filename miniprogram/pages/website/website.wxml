@@ -1,0 +1,42 @@
+<!--website.wxml 官方网站（web-view 内嵌）-->
+<navigation-bar title="{{title}}" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<!--
+  web-view 说明：
+  1. 需要把 bestlandpaint.com 加到微信公众平台
+     「开发管理 → 开发设置 → 业务域名」，否则这里会白屏或报错；
+  2. 开发者工具里也要在「详情 → 域名信息」勾选「不校验合法域名」才能预览；
+  3. 业务域名配置需要把微信提供的校验文件放到网站根目录。
+  所以下面准备了失败兜底，用户不会卡在空白页。
+-->
+<web-view
+  wx:if="{{!failed}}"
+  src="{{url}}"
+  bindload="onLoad"
+  binderror="onError"
+></web-view>
+
+<!-- 兜底：web-view 不可用时 -->
+<view class="page" wx:if="{{failed}}">
+  <view class="fallback">
+    <view class="fallback__mark">
+      <text class="fallback__mark-text">贝</text>
+    </view>
+    <text class="fallback__title">暂时无法在小程序内打开官网</text>
+    <text class="fallback__desc">
+      可能是官网域名尚未加入微信公众平台的「业务域名」。你可以复制网址到浏览器打开，
+      或直接联系我们。
+    </text>
+
+    <view class="fallback__url">
+      <text class="fallback__url-text">{{url}}</text>
+    </view>
+
+    <view class="fallback__btn fallback__btn--solid" bindtap="copyUrl" hover-class="btn-hover">
+      复制官网地址
+    </view>
+    <view class="fallback__btn fallback__btn--ghost" bindtap="callPhone" hover-class="btn-hover">
+      打电话给我们
+    </view>
+  </view>
+</view>

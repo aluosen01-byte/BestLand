@@ -79,6 +79,10 @@ Component({
       wx.navigateTo({ url: '/pages/franchise/franchise' })
     },
 
+    goWebsite() {
+      wx.navigateTo({ url: '/pages/website/website' })
+    },
+
     goAbout() {
       wx.navigateTo({ url: '/pages/about/about' })
     },

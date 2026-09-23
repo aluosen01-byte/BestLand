@@ -177,6 +177,14 @@
         </view>
       </view>
 
+      <view class="contact" bindtap="openWebsite" hover-class="card-hover" wx:if="{{site.website}}">
+        <text class="contact__label">官方网站</text>
+        <view class="contact__right">
+          <text class="contact__value contact__value--link">{{site.websiteText}}</text>
+          <text class="contact__arrow">›</text>
+        </view>
+      </view>
+
       <view class="contact" bindtap="copyAddress" hover-class="card-hover">
         <text class="contact__label">公司地址</text>
         <view class="contact__right">

@@ -23,12 +23,17 @@ Component({
   },
 
   methods: {
-    /** 官网是小程序内不能直接跳的站外链接，复制给用户最稳 */
-    copyWebsite() {
+    /** 官网：优先在小程序内用 web-view 打开 */
+    openWebsite() {
       if (!SITE.website) return
-      wx.setClipboardData({
-        data: SITE.website,
-        success: () => wx.showToast({ title: '官网地址已复制', icon: 'none' }),
+      wx.navigateTo({
+        url: '/pages/website/website',
+        fail: () => {
+          wx.setClipboardData({
+            data: SITE.website,
+            success: () => wx.showToast({ title: '官网地址已复制', icon: 'none' }),
+          })
+        },
       })
     },
 

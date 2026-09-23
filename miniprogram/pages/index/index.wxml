@@ -228,6 +228,8 @@
     <view class="footer__links">
       <text class="footer__link" bindtap="goAbout">关于我们</text>
       <text class="footer__dot">·</text>
+      <text class="footer__link" bindtap="goWebsite">官方网站</text>
+      <text class="footer__dot">·</text>
       <text class="footer__link" bindtap="goAgreement">免责声明</text>
     </view>
     <text class="footer__copy">© {{year}} {{site.company}} 版权所有</text>

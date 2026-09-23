@@ -1,0 +1,84 @@
+/**website.wxss 官方网站**/
+.page {
+  background: #F5F7F6;
+}
+
+.fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 140rpx 60rpx 0;
+}
+
+.fallback__mark {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 30rpx;
+  background: linear-gradient(150deg, #0A4A37 0%, #0F6B4F 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 30rpx rgba(15, 107, 79, 0.25);
+}
+
+.fallback__mark-text {
+  font-size: 60rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.fallback__title {
+  margin-top: 44rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #16211D;
+  text-align: center;
+}
+
+.fallback__desc {
+  margin-top: 20rpx;
+  font-size: 25rpx;
+  color: #6B7B75;
+  line-height: 1.85;
+  text-align: center;
+}
+
+.fallback__url {
+  width: 100%;
+  margin-top: 36rpx;
+  padding: 24rpx 28rpx;
+  background: #FFFFFF;
+  border-radius: 12rpx;
+  border: 1rpx solid #E3E9E6;
+}
+
+.fallback__url-text {
+  font-size: 24rpx;
+  color: #0F6B4F;
+  word-break: break-all;
+}
+
+.fallback__btn {
+  width: 100%;
+  height: 92rpx;
+  border-radius: 46rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 24rpx;
+}
+
+.fallback__btn--solid {
+  margin-top: 44rpx;
+  background: #0F6B4F;
+  color: #FFFFFF;
+  box-shadow: 0 10rpx 28rpx rgba(15, 107, 79, 0.24);
+}
+
+.fallback__btn--ghost {
+  background: #FFFFFF;
+  color: #0F6B4F;
+  border: 2rpx solid #0F6B4F;
+}
