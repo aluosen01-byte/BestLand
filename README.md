@@ -256,19 +256,27 @@ git -C D:\projects\BestLand commit -m "说明"     # 提交
 git -C D:\projects\BestLand log --oneline       # 看历史
 ```
 
-### 还没做：关联远程仓库
+### 远程仓库（已关联并推送）
 
-我没有创建远程仓库，也没有推送——因为需要你自己决定托管在哪、仓库名和可见性是什么。
-想推到 GitHub / Gitee / 内网 GitLab 时：
-
-```bash
-git -C D:\projects\BestLand remote add origin <你的仓库地址>
-git -C D:\projects\BestLand push -u origin main
+```
+origin  https://github.com/aluosen01-byte/BestLand.git   （私有）
+分支    main，本地与远程完全一致
 ```
 
-告诉我地址，我可以帮你把这一步做完。
+日常提交流程：
 
-> 仓库体积约 16 MB，主要是产品图。如果平台对单文件或仓库体积有要求，
+```bash
+git -C D:\projects\BestLand status              # 看改动
+git -C D:\projects\BestLand add -A              # 暂存全部
+git -C D:\projects\BestLand commit -m "说明"     # 提交
+git -C D:\projects\BestLand push                # 推到 GitHub
+```
+
+> 本机的 git 凭据由 `credential.helper = manager` 管理，已经能正常推送到该私有仓库。
+> 如果换电脑推送时提示认证失败，注意 GitHub 不接受账号密码，
+> 需要用 **Personal Access Token** 代替密码（或在凭据管理器里登录）。
+
+> 仓库体积约 16 MB，主要是产品图。如果 GitHub 提示单文件或仓库体积问题，
 > 可以启用 Git LFS 管理 `miniprogram/images/`，需要的话我来配。
 
 ---
