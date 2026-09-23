@@ -303,6 +303,9 @@ var VIDEO_BASE = 'https://video.bestlandpaint.com/video/'
 > 视频编号与系列的对应关系写在 `data/video.js` 里；
 > 「视频」页可以切换播放，各产品详情页底部会自动列出该系列的相关视频。
 
+📄 **服务器改造的具体步骤（含 nginx 配置、上传命令、ffmpeg 参数）见
+[VIDEO-DEPLOY.md](VIDEO-DEPLOY.md)。**
+
 ---
 
 ## 八、本次开发遇到的环境限制（需要你知道）
