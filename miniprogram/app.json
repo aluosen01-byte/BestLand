@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/products/products",
+    "pages/videos/videos",
     "pages/detail/detail",
     "pages/qualification/qualification",
     "pages/about/about",

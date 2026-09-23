@@ -1,0 +1,86 @@
+<!--videos.wxml 视频中心-->
+<navigation-bar title="视频中心" back="{{false}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <!-- 头图 -->
+  <view class="hero">
+    <text class="hero__title">贝之然 · 产品短视频</text>
+    <text class="hero__desc">{{videos.length}} 支竖屏短片，30 秒看懂一个系列</text>
+    <view class="hero__tags">
+      <text class="hero__tag">纯无机</text>
+      <text class="hero__tag">A1 级不燃</text>
+      <text class="hero__tag">零 VOC</text>
+    </view>
+  </view>
+
+  <!-- 播放器 -->
+  <view class="player" wx:if="{{current}}">
+    <view class="player__stage">
+      <video
+        id="mainVideo"
+        class="player__video"
+        src="{{current.url}}"
+        poster="{{current.cover}}"
+        object-fit="contain"
+        show-center-play-btn="{{true}}"
+        show-fullscreen-btn="{{true}}"
+        show-play-btn="{{true}}"
+        enable-progress-gesture="{{true}}"
+        autoplay="{{true}}"
+        binderror="onVideoError"
+      ></video>
+    </view>
+    <view class="player__meta">
+      <text class="player__title">{{current.title}}</text>
+      <text class="player__sub">{{current.sub}}</text>
+    </view>
+    <view class="player__hint" wx:if="{{errorMsg}}">
+      <text class="player__hint-text">{{errorMsg}}</text>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view class="section">
+    <view class="section-head">
+      <view>
+        <view class="section-title">全部视频</view>
+        <view class="section-sub">点击卡片即可切换播放</view>
+      </view>
+    </view>
+
+    <view class="grid">
+      <view
+        class="card {{current.id === item.id ? 'is-on' : ''}}"
+        wx:for="{{videos}}"
+        wx:key="id"
+        bindtap="play"
+        data-id="{{item.id}}"
+        hover-class="card-hover"
+      >
+        <view class="card__pic">
+          <mkimg src="{{item.cover}}" mode="aspectFill" ph-text="视频" />
+          <view class="card__play">
+            <view class="card__triangle"></view>
+          </view>
+          <text class="card__time">{{item.seconds}}″</text>
+        </view>
+        <view class="card__body">
+          <text class="card__title">{{item.title}}</text>
+          <text class="card__sub">{{item.sub}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 咨询 -->
+  <view class="cta">
+    <text class="cta__title">想看某个系列的实际效果？</text>
+    <text class="cta__desc">可以联系我们索取完整版视频与工程案例资料</text>
+    <view class="cta__btn" bindtap="goContact" hover-class="btn-hover">联系我们</view>
+  </view>
+
+  <view class="bottom-space"></view>
+  <view class="pad-tabbar"></view>
+</view>
+
+<tab-bar active="videos" />

@@ -1,6 +1,7 @@
 // index.js —— 由 index.ts 编译而来（构建产物）｜首页
 const { SITE, FEATURES, SCENES } = require('../../data/site')
 const { SERIES_LIST, CERTS, BRAND_VALUES, seriesCover } = require('../../data/catalog')
+const { videoList } = require('../../data/video')
 
 Component({
   data: {
@@ -10,6 +11,7 @@ Component({
     values: BRAND_VALUES,
     series: [],
     certs: [],
+    videos: [],
     scrolled: false,
     showNavTitle: false,
     year: SITE.sinceYear,
@@ -26,6 +28,8 @@ Component({
             shortTitle: c.title.replace('检测报告', '').replace('纯无机涂料', '').trim(),
           })
         }),
+        // 首页只放前 6 支，完整列表在「视频」页
+        videos: videoList().slice(0, 6),
       })
     },
   },
@@ -61,6 +65,10 @@ Component({
 
     goQualification() {
       wx.navigateTo({ url: '/pages/qualification/qualification' })
+    },
+
+    goVideos() {
+      wx.reLaunch({ url: '/pages/videos/videos' })
     },
 
     goAbout() {

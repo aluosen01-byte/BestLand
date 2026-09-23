@@ -291,6 +291,70 @@
   line-height: 1.65;
 }
 
+/* ============ 产品短视频 ============ */
+.vscroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.vrow {
+  display: flex;
+  padding-bottom: 8rpx;
+}
+
+.vcard {
+  flex: none;
+  width: 280rpx;
+  margin-right: 24rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  overflow: hidden;
+}
+
+.vcard:last-child {
+  margin-right: 0;
+}
+
+.vcard__pic {
+  position: relative;
+  height: 360rpx;
+  background: #0A1712;
+}
+
+.vcard__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 72rpx;
+  height: 72rpx;
+  margin: -36rpx 0 0 -36rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.42);
+  border: 2rpx solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vcard__triangle {
+  width: 0;
+  height: 0;
+  margin-left: 6rpx;
+  border-left: 18rpx solid #FFFFFF;
+  border-top: 12rpx solid transparent;
+  border-bottom: 12rpx solid transparent;
+}
+
+.vcard__title {
+  display: block;
+  padding: 16rpx 18rpx 22rpx;
+  font-size: 23rpx;
+  color: #3D4A45;
+  line-height: 1.5;
+  white-space: normal;
+}
+
 /* ============ 证书横滑 ============ */
 .cert-scroll {
   width: 100%;

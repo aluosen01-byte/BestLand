@@ -231,6 +231,70 @@
   line-height: 1.85;
 }
 
+/* ============ 相关视频 ============ */
+.vscroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.vrow {
+  display: flex;
+  padding-bottom: 8rpx;
+}
+
+.vcard {
+  flex: none;
+  width: 300rpx;
+  margin-right: 24rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  overflow: hidden;
+}
+
+.vcard:last-child {
+  margin-right: 0;
+}
+
+.vcard__pic {
+  position: relative;
+  height: 400rpx;
+  background: #0A1712;
+}
+
+.vcard__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 76rpx;
+  height: 76rpx;
+  margin: -38rpx 0 0 -38rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.42);
+  border: 2rpx solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vcard__triangle {
+  width: 0;
+  height: 0;
+  margin-left: 6rpx;
+  border-left: 20rpx solid #FFFFFF;
+  border-top: 13rpx solid transparent;
+  border-bottom: 13rpx solid transparent;
+}
+
+.vcard__title {
+  display: block;
+  padding: 16rpx 18rpx 22rpx;
+  font-size: 23rpx;
+  color: #3D4A45;
+  line-height: 1.5;
+  white-space: normal;
+}
+
 /* ============ 咨询引导 ============ */
 .cta {
   margin: 40rpx 32rpx 0;

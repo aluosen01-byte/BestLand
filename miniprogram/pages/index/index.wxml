@@ -102,6 +102,39 @@
     </view>
   </view>
 
+  <!-- ============ 产品短视频 ============ -->
+  <view class="section">
+    <view class="section-head">
+      <view>
+        <view class="section-title">产品短视频</view>
+        <view class="section-sub">30 秒看懂一个系列</view>
+      </view>
+      <view class="section-more" bindtap="goVideos" hover-class="btn-hover">
+        全部<text class="arrow">›</text>
+      </view>
+    </view>
+
+    <scroll-view class="vscroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="vrow">
+        <view
+          class="vcard"
+          wx:for="{{videos}}"
+          wx:key="id"
+          bindtap="goVideos"
+          hover-class="card-hover"
+        >
+          <view class="vcard__pic">
+            <mkimg src="{{item.cover}}" mode="aspectFill" ph-text="视频" />
+            <view class="vcard__play">
+              <view class="vcard__triangle"></view>
+            </view>
+          </view>
+          <text class="vcard__title">{{item.title}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
   <!-- ============ 资质证书 ============ -->
   <view class="section">
     <view class="section-head">

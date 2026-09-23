@@ -25,6 +25,18 @@
     </view>
 
     <view
+      class="tabbar__item {{active === 'videos' ? 'is-on' : ''}}"
+      bindtap="onTap"
+      data-key="videos"
+      data-url="/pages/videos/videos"
+      hover-class="tabbar__item--hover"
+      hover-stay-time="80"
+    >
+      <image class="tabbar__icon" src="{{active === 'videos' ? '/images/tab/video-on.svg' : '/images/tab/video.svg'}}"></image>
+      <text class="tabbar__label">视频</text>
+    </view>
+
+    <view
       class="tabbar__item {{active === 'contact' ? 'is-on' : ''}}"
       bindtap="onTap"
       data-key="contact"

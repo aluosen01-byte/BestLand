@@ -14,7 +14,7 @@ Component({
     addGlobalClass: true,
   },
   properties: {
-    /** 当前激活项：home | products | contact */
+    /** 当前激活项：home | products | videos | contact */
     active: {
       type: String,
       value: 'home',

@@ -99,6 +99,38 @@
     </view>
   </view>
 
+  <!-- ============ 相关视频 ============ -->
+  <view class="section section--tight" wx:if="{{videos.length}}">
+    <view class="section-head">
+      <view>
+        <view class="section-title">相关视频</view>
+        <view class="section-sub">点开看这个系列的实际效果</view>
+      </view>
+      <view class="section-more" bindtap="goVideos" hover-class="btn-hover">全部<text class="arrow">›</text></view>
+    </view>
+
+    <scroll-view class="vscroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="vrow">
+        <view
+          class="vcard"
+          wx:for="{{videos}}"
+          wx:key="id"
+          bindtap="playVideo"
+          data-index="{{index}}"
+          hover-class="card-hover"
+        >
+          <view class="vcard__pic">
+            <mkimg src="{{item.cover}}" mode="aspectFill" ph-text="视频" />
+            <view class="vcard__play">
+              <view class="vcard__triangle"></view>
+            </view>
+          </view>
+          <text class="vcard__title">{{item.title}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
   <!-- ============ 咨询引导 ============ -->
   <view class="cta">
     <text class="cta__title">需要这一系列的详细资料？</text>

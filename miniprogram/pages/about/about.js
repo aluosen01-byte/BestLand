@@ -1,5 +1,5 @@
 // about.js —— 由 about.ts 编译而来（构建产物）｜关于我们
-const { SITE } = require('../../data/site')
+const { SITE, PATENTS, CREDENTIALS, CASES_OUTER, CASES_INNER } = require('../../data/site')
 const { BRAND_STORY, BRAND_VALUES } = require('../../data/catalog')
 
 /** 涂装链路：让「完整产品体系」这件事可视化 */
@@ -15,10 +15,23 @@ Component({
     story: BRAND_STORY,
     values: BRAND_VALUES,
     chain: CHAIN,
+    patents: PATENTS,
+    credentials: CREDENTIALS,
+    casesOuter: CASES_OUTER,
+    casesInner: CASES_INNER,
     year: new Date().getFullYear(),
   },
 
   methods: {
+    /** 官网是小程序内不能直接跳的站外链接，复制给用户最稳 */
+    copyWebsite() {
+      if (!SITE.website) return
+      wx.setClipboardData({
+        data: SITE.website,
+        success: () => wx.showToast({ title: '官网地址已复制', icon: 'none' }),
+      })
+    },
+
     callPhone() {
       wx.makePhoneCall({
         phoneNumber: SITE.phone,

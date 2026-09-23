@@ -7,6 +7,7 @@ const {
   seriesImage,
   CERTS,
 } = require('../../data/catalog')
+const { videosOfSeries, videoUrl } = require('../../data/video')
 
 Component({
   data: {
@@ -14,6 +15,7 @@ Component({
     products: [],
     images: [],
     certs: [],
+    videos: [],
     current: 0,
   },
 
@@ -33,6 +35,9 @@ Component({
         series: series,
         products: productsOfSeries(series.id),
         images: images,
+        videos: videosOfSeries(series.id).map(function (v) {
+          return Object.assign({}, v, { url: videoUrl(v) })
+        }),
         certs: CERTS.map(function (c) {
           return {
             id: c.id,
@@ -63,6 +68,25 @@ Component({
       wx.reLaunch({
         url: '/pages/contact/contact?interest=' + encodeURIComponent((s ? s.name : '') + ' ' + model),
       })
+    },
+
+    /** 播放系列相关视频（调起微信原生全屏播放） */
+    playVideo(e) {
+      const index = Number(e.currentTarget.dataset.index)
+      const list = this.data.videos
+      const v = list[index]
+      if (!v) return
+      wx.previewMedia({
+        sources: list.map(function (x) {
+          return { url: x.url, type: 'video', poster: x.cover }
+        }),
+        current: index,
+        fail: () => wx.showToast({ title: '视频暂时无法播放', icon: 'none' }),
+      })
+    },
+
+    goVideos() {
+      wx.reLaunch({ url: '/pages/videos/videos' })
     },
 
     goContact() {

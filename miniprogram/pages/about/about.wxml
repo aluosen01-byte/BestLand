@@ -86,6 +86,56 @@
     </view>
   </view>
 
+  <!-- 品牌实力数据 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">资质实力</view>
+    </view>
+    <view class="creds">
+      <view class="cred" wx:for="{{credentials}}" wx:key="label">
+        <text class="cred__value">{{item.value}}</text>
+        <text class="cred__label">{{item.label}}</text>
+        <text class="cred__desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发明专利 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">国家发明专利</view>
+        <view class="section-sub">共 {{patents.length}} 项</view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="patent" wx:for="{{patents}}" wx:key="*this">
+        <text class="patent__no">{{index + 1}}</text>
+        <text class="patent__name">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 应用案例 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">应用案例</view>
+        <view class="section-sub">外墙与内墙实际工程项目</view>
+      </view>
+    </view>
+    <view class="cases">
+      <view class="case" wx:for="{{casesOuter}}" wx:key="*this">
+        <text class="case__tag">外墙</text>
+        <text class="case__name">{{item}}</text>
+      </view>
+      <view class="case" wx:for="{{casesInner}}" wx:key="*this">
+        <text class="case__tag case__tag--inner">内墙</text>
+        <text class="case__name">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
   <!-- 资质入口 -->
   <view class="section section--tight">
     <view class="card entry" bindtap="goQualification" hover-class="card-hover">
@@ -102,11 +152,15 @@
     <view class="card">
       <view class="row">
         <text class="row__label">业务对接</text>
-        <text class="row__value">{{site.contactName}}</text>
+        <text class="row__value">{{site.contactName}}（{{site.contactTitle}}）</text>
       </view>
       <view class="row" bindtap="callPhone" hover-class="card-hover">
         <text class="row__label">联系电话</text>
         <text class="row__value row__value--link">{{site.phoneText}}</text>
+      </view>
+      <view class="row" bindtap="copyWebsite" hover-class="card-hover" wx:if="{{site.website}}">
+        <text class="row__label">官方网站</text>
+        <text class="row__value row__value--link">{{site.websiteText}}</text>
       </view>
       <view class="row row--last" wx:if="{{site.email}}">
         <text class="row__label">邮箱</text>

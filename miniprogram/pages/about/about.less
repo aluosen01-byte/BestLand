@@ -155,6 +155,112 @@
   color: @ink-3;
 }
 
+/* ============ 资质实力 ============ */
+.creds {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.cred {
+  width: calc(50% - 20rpx);
+  margin: 0 10rpx 20rpx;
+  padding: 28rpx 24rpx;
+  background: @white;
+  border-radius: @radius;
+  box-shadow: @shadow;
+  display: flex;
+  flex-direction: column;
+}
+
+.cred__value {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: @brand;
+  line-height: 1.1;
+}
+
+.cred__label {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: @ink;
+}
+
+.cred__desc {
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: @ink-4;
+  line-height: 1.55;
+}
+
+/* ============ 发明专利 ============ */
+.patent {
+  display: flex;
+  align-items: flex-start;
+  padding: 26rpx 28rpx;
+  border-bottom: 1rpx solid @line;
+}
+
+.patent:last-child {
+  border-bottom: none;
+}
+
+.patent__no {
+  width: 44rpx;
+  flex: none;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: @brand;
+}
+
+.patent__name {
+  flex: 1;
+  font-size: 26rpx;
+  color: @ink-2;
+  line-height: 1.6;
+}
+
+/* ============ 应用案例 ============ */
+.cases {
+  display: flex;
+  flex-direction: column;
+}
+
+.case {
+  display: flex;
+  align-items: center;
+  background: @white;
+  border-radius: @radius;
+  box-shadow: @shadow;
+  padding: 26rpx 28rpx;
+  margin-bottom: 18rpx;
+}
+
+.case__tag {
+  flex: none;
+  font-size: 20rpx;
+  color: @brand-deep;
+  background: @brand-light;
+  height: 38rpx;
+  line-height: 38rpx;
+  padding: 0 14rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.case__tag--inner {
+  color: #8A4A22;
+  background: @accent-light;
+}
+
+.case__name {
+  flex: 1;
+  font-size: 26rpx;
+  color: @ink;
+  line-height: 1.5;
+}
+
 /* ============ 入口卡 ============ */
 .entry {
   display: flex;
