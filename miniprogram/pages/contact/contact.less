@@ -1,0 +1,354 @@
+/**contact.less 咨询与留言**/
+@import "../../components/tab-bar/tab-bar.less";
+
+.page {
+  background: @bg;
+}
+
+/* ============ 顶部 ============ */
+.hero {
+  padding: 36rpx 44rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__title {
+  font-size: 46rpx;
+  font-weight: 700;
+  color: @ink;
+  letter-spacing: 1rpx;
+}
+
+.hero__desc {
+  margin-top: 14rpx;
+  font-size: 25rpx;
+  color: @ink-3;
+  line-height: 1.7;
+}
+
+.hero__actions {
+  display: flex;
+  margin-top: 40rpx;
+}
+
+.hero__btn {
+  flex: 1;
+  height: 116rpx;
+  border-radius: @radius;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__btn--solid {
+  background: @brand;
+  margin-right: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(15, 107, 79, 0.22);
+}
+
+.hero__btn--ghost {
+  background: @white;
+  border: 2rpx solid @line;
+}
+
+.hero__btn-label {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.hero__btn--solid .hero__btn-label {
+  color: @white;
+}
+
+.hero__btn--ghost .hero__btn-label {
+  color: @ink;
+}
+
+.hero__btn-sub {
+  margin-top: 6rpx;
+  font-size: 20rpx;
+}
+
+.hero__btn--solid .hero__btn-sub {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero__btn--ghost .hero__btn-sub {
+  color: @ink-4;
+}
+
+/* ============ 表单 ============ */
+.form {
+  padding: 8rpx 28rpx;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 0;
+  border-bottom: 1rpx solid @line;
+}
+
+.field--block {
+  display: block;
+}
+
+.field--last {
+  border-bottom: none;
+}
+
+.field__label {
+  width: 190rpx;
+  flex: none;
+  font-size: 27rpx;
+  color: @ink-2;
+}
+
+.req {
+  color: @danger;
+  margin-left: 4rpx;
+}
+
+.field__input {
+  flex: 1;
+  font-size: 27rpx;
+  color: @ink;
+}
+
+.ph {
+  color: @ink-4;
+  font-size: 25rpx;
+}
+
+.field__textarea {
+  width: 100%;
+  min-height: 170rpx;
+  margin-top: 18rpx;
+  padding: 22rpx 24rpx;
+  background: @bg;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: @ink;
+  line-height: 1.7;
+}
+
+.counter {
+  text-align: right;
+  font-size: 21rpx;
+  color: @ink-4;
+  margin-top: 10rpx;
+}
+
+/* 咨询类型 */
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.type {
+  height: 66rpx;
+  line-height: 64rpx;
+  padding: 0 28rpx;
+  border-radius: 33rpx;
+  font-size: 25rpx;
+  color: @ink-2;
+  background: @bg;
+  border: 1rpx solid @line;
+  margin: 0 16rpx 16rpx 0;
+}
+
+.type.is-on {
+  background: @brand-light;
+  border-color: @brand;
+  color: @brand;
+  font-weight: 600;
+}
+
+/* picker */
+.picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  margin-top: 18rpx;
+  padding: 0 26rpx;
+  background: @bg;
+  border-radius: 12rpx;
+}
+
+.picker__text {
+  font-size: 26rpx;
+  color: @ink;
+}
+
+.picker__text.is-ph {
+  color: @ink-4;
+}
+
+.picker__arrow {
+  font-size: 24rpx;
+  color: @ink-4;
+}
+
+/* 提交 */
+.submit {
+  margin-top: 40rpx;
+  height: 96rpx;
+  border-radius: 48rpx;
+  background: @brand;
+  color: @white;
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 28rpx rgba(15, 107, 79, 0.24);
+}
+
+.submit.is-disabled {
+  opacity: 0.6;
+}
+
+/* 同意 */
+.agree {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 26rpx;
+  flex-wrap: wrap;
+}
+
+.agree__box {
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid @ink-4;
+  margin-right: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  color: @white;
+  flex: none;
+}
+
+.agree__box.is-on {
+  background: @brand;
+  border-color: @brand;
+}
+
+.agree__text {
+  font-size: 22rpx;
+  color: @ink-3;
+}
+
+.agree__link {
+  font-size: 22rpx;
+  color: @brand;
+}
+
+/* 本地留存提示 */
+.notice {
+  margin-top: 26rpx;
+  padding: 24rpx 26rpx;
+  background: #FDFAF2;
+  border: 1rpx solid #F3E4C4;
+  border-radius: 12rpx;
+}
+
+.notice__text {
+  font-size: 22rpx;
+  color: #8A6A24;
+  line-height: 1.75;
+}
+
+/* ============ 联系方式 ============ */
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 28rpx;
+  border-bottom: 1rpx solid @line;
+}
+
+.contact--last {
+  border-bottom: none;
+}
+
+.contact__label {
+  font-size: 27rpx;
+  color: @ink-3;
+  flex: none;
+  margin-right: 24rpx;
+}
+
+.contact__right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.contact__value {
+  font-size: 27rpx;
+  color: @ink;
+  font-weight: 500;
+  text-align: right;
+}
+
+.contact__arrow {
+  font-size: 32rpx;
+  color: @ink-4;
+  margin-left: 10rpx;
+}
+
+.card-hover {
+  opacity: 0.9;
+}
+
+/* ============ FAQ ============ */
+.faq {
+  padding: 30rpx 28rpx;
+  border-bottom: 1rpx solid @line;
+}
+
+.faq:last-child {
+  border-bottom: none;
+}
+
+.faq__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.faq__q {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: @ink;
+  line-height: 1.55;
+  padding-right: 20rpx;
+}
+
+.faq__icon {
+  font-size: 36rpx;
+  color: @brand;
+  line-height: 1.2;
+  flex: none;
+}
+
+.faq__a {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 25rpx;
+  color: @ink-3;
+  line-height: 1.85;
+}
+
+.bottom-space {
+  height: 20rpx;
+}

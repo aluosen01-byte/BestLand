@@ -1,0 +1,127 @@
+<!--about.wxml 关于我们-->
+<navigation-bar title="关于我们" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <!-- 品牌头图 -->
+  <view class="cover">
+    <mkimg src="/images/brand/cover.png" mode="aspectFill" ph-text="品牌形象图" />
+    <view class="cover__mask">
+      <text class="cover__brand">{{site.brand}}</text>
+      <text class="cover__slogan">{{site.slogan}}</text>
+    </view>
+  </view>
+
+  <!-- 公司简介 -->
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">公司简介</view>
+    </view>
+    <view class="card prose">
+      <text class="prose__p" wx:for="{{story}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 工商信息 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">企业信息</view>
+    </view>
+    <view class="card">
+      <view class="row">
+        <text class="row__label">企业名称</text>
+        <text class="row__value">{{site.company}}</text>
+      </view>
+      <view class="row">
+        <text class="row__label">旗下品牌</text>
+        <text class="row__value">{{site.brand}}</text>
+      </view>
+      <view class="row">
+        <text class="row__label">主营方向</text>
+        <text class="row__value">纯无机建筑涂料研发、生产与应用</text>
+      </view>
+      <view class="row">
+        <text class="row__label">办公地址</text>
+        <text class="row__value">{{site.address}}</text>
+      </view>
+      <view class="row row--last">
+        <text class="row__label">办公时间</text>
+        <text class="row__value">{{site.workTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我们坚持 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">我们坚持的事</view>
+        <view class="section-sub">无机矿物带来的四个确定性</view>
+      </view>
+    </view>
+    <view class="values">
+      <view class="value" wx:for="{{values}}" wx:key="title">
+        <text class="value__title">{{item.title}}</text>
+        <text class="value__desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 产品体系 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">完整的产品体系</view>
+        <view class="section-sub">从基层到面层，材料来自同一套技术逻辑</view>
+      </view>
+      <view class="section-more" bindtap="goProducts" hover-class="btn-hover">产品中心<text class="arrow">›</text></view>
+    </view>
+    <view class="chain">
+      <view class="chain__step" wx:for="{{chain}}" wx:key="name">
+        <view class="chain__dot"></view>
+        <view class="chain__text">
+          <text class="chain__name">{{item.name}}</text>
+          <text class="chain__desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 资质入口 -->
+  <view class="section section--tight">
+    <view class="card entry" bindtap="goQualification" hover-class="card-hover">
+      <view class="entry__text">
+        <text class="entry__title">资质与检测报告</text>
+        <text class="entry__desc">A1 级不燃 · 有害物质限量 · 环保耐久性能 · ISO 体系认证</text>
+      </view>
+      <text class="entry__arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 联系 -->
+  <view class="section section--tight">
+    <view class="card">
+      <view class="row" bindtap="callPhone" hover-class="card-hover">
+        <text class="row__label">客服电话</text>
+        <text class="row__value row__value--link">{{site.phoneText}}</text>
+      </view>
+      <view class="row row--last" wx:if="{{site.email}}">
+        <text class="row__label">邮箱</text>
+        <text class="row__value">{{site.email}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cta">
+    <text class="cta__title">想进一步了解贝之然？</text>
+    <text class="cta__desc">留下联系方式，我们寄送产品资料与检测报告</text>
+    <view class="cta__btn" bindtap="goContact" hover-class="btn-hover">联系我们</view>
+  </view>
+
+  <view class="footer">
+    <text class="footer__copy">© {{year}} {{site.company}}</text>
+    <text class="footer__line" wx:if="{{site.icp}}">{{site.icp}}</text>
+    <text class="footer__link" bindtap="goAgreement">免责声明与信息使用说明</text>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>

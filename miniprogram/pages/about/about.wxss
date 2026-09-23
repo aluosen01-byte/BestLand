@@ -1,0 +1,259 @@
+/**about.wxss —— 构建产物（由 about.less 编译而来）**/
+.page {
+  background: #F5F7F6;
+}
+
+/* ============ 头图 ============ */
+.cover {
+  position: relative;
+  height: 400rpx;
+  background: linear-gradient(150deg, #0A4A37 0%, #0F6B4F 100%);
+}
+
+.cover__mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40rpx 44rpx;
+  background: linear-gradient(to top, rgba(10, 74, 55, 0.88) 0%, rgba(10, 74, 55, 0) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.cover__brand {
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 8rpx;
+}
+
+.cover__slogan {
+  margin-top: 10rpx;
+  font-size: 25rpx;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* ============ 文章 ============ */
+.prose {
+  padding: 34rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.prose__p {
+  font-size: 27rpx;
+  color: #3D4A45;
+  line-height: 1.9;
+  margin-bottom: 24rpx;
+}
+
+.prose__p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============ 信息行 ============ */
+.row {
+  display: flex;
+  align-items: flex-start;
+  padding: 28rpx 28rpx;
+  border-bottom: 1rpx solid #E3E9E6;
+}
+
+.row--last {
+  border-bottom: none;
+}
+
+.row__label {
+  width: 170rpx;
+  flex: none;
+  font-size: 26rpx;
+  color: #6B7B75;
+}
+
+.row__value {
+  flex: 1;
+  font-size: 26rpx;
+  color: #16211D;
+  line-height: 1.6;
+}
+
+.row__value--link {
+  color: #0F6B4F;
+  font-weight: 600;
+}
+
+.card-hover {
+  opacity: 0.9;
+}
+
+/* ============ 坚持 ============ */
+.values {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.value {
+  width: 50%;
+  padding: 0 10rpx 20rpx;
+}
+
+.value__title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0F6B4F;
+}
+
+.value__desc {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #6B7B75;
+  line-height: 1.65;
+}
+
+/* ============ 产品链路 ============ */
+.chain {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  padding: 34rpx 30rpx 14rpx;
+}
+
+.chain__step {
+  display: flex;
+  padding-bottom: 30rpx;
+}
+
+.chain__dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  border: 4rpx solid #E6F2ED;
+  background: #0F6B4F;
+  margin: 10rpx 24rpx 0 0;
+  flex: none;
+}
+
+.chain__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.chain__name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #16211D;
+}
+
+.chain__desc {
+  margin-top: 6rpx;
+  font-size: 23rpx;
+  color: #6B7B75;
+}
+
+/* ============ 入口卡 ============ */
+.entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 34rpx 30rpx;
+}
+
+.entry__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding-right: 20rpx;
+}
+
+.entry__title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #16211D;
+}
+
+.entry__desc {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #6B7B75;
+  line-height: 1.6;
+}
+
+.entry__arrow {
+  font-size: 40rpx;
+  color: #9AA8A2;
+  flex: none;
+}
+
+/* ============ CTA ============ */
+.cta {
+  margin: 40rpx 32rpx 0;
+  padding: 42rpx 36rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(150deg, #0A4A37 0%, #0F6B4F 100%);
+  box-shadow: 0 12rpx 32rpx rgba(15, 107, 79, 0.22);
+  display: flex;
+  flex-direction: column;
+}
+
+.cta__title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.cta__desc {
+  margin-top: 12rpx;
+  font-size: 23rpx;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cta__btn {
+  margin-top: 32rpx;
+  height: 84rpx;
+  border-radius: 42rpx;
+  background: #FFFFFF;
+  color: #0A4A37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+/* ============ 页脚 ============ */
+.footer {
+  margin-top: 56rpx;
+  padding: 44rpx 40rpx 36rpx;
+  background: #FFFFFF;
+  border-top: 1rpx solid #E3E9E6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__copy {
+  font-size: 22rpx;
+  color: #9AA8A2;
+}
+
+.footer__line {
+  margin-top: 10rpx;
+  font-size: 20rpx;
+  color: #9AA8A2;
+}
+
+.footer__link {
+  margin-top: 18rpx;
+  font-size: 22rpx;
+  color: #0F6B4F;
+}
+
+.bottom-space {
+  height: 40rpx;
+}

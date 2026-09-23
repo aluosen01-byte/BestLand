@@ -1,0 +1,15 @@
+<!--logs.wxml 启动日志（开发者调试用，sitemap 中已禁止收录）-->
+<navigation-bar title="查看启动日志" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <scroll-view class="scrollarea" scroll-y type="list">
+    <view class="log-item" wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
+      <text class="log-item__no">{{index + 1}}</text>
+      <text class="log-item__date">{{log.date}}</text>
+    </view>
+
+    <view class="empty" wx:if="{{!logs.length}}">
+      <text class="empty__text">暂无启动记录</text>
+    </view>
+  </scroll-view>
+</view>

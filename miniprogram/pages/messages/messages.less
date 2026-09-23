@@ -1,0 +1,213 @@
+/**messages.less 我的留言**/
+.page {
+  background: @bg;
+}
+
+/* ============ 计数 ============ */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 32rpx 10rpx;
+}
+
+.head__num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: @brand;
+}
+
+.head__unit {
+  font-size: 24rpx;
+  color: @ink-3;
+  margin-left: 10rpx;
+}
+
+.head__clear {
+  font-size: 24rpx;
+  color: @danger;
+  padding: 10rpx 0;
+}
+
+/* ============ 提示 ============ */
+.banner {
+  margin: 18rpx 32rpx 0;
+  padding: 22rpx 24rpx;
+  border-radius: 12rpx;
+  background: #FDFAF2;
+  border: 1rpx solid #F3E4C4;
+}
+
+.banner__text {
+  font-size: 22rpx;
+  color: #8A6A24;
+  line-height: 1.75;
+}
+
+/* ============ 列表 ============ */
+.list {
+  padding: 24rpx 32rpx 0;
+}
+
+.msg {
+  background: @white;
+  border-radius: @radius-lg;
+  box-shadow: @shadow;
+  padding: 28rpx 28rpx 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.msg__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.msg__who {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.msg__name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: @ink;
+}
+
+.msg__type {
+  margin-left: 16rpx;
+  font-size: 20rpx;
+  color: @brand;
+  background: @brand-light;
+  height: 36rpx;
+  line-height: 36rpx;
+  padding: 0 14rpx;
+  border-radius: 8rpx;
+  flex: none;
+}
+
+.msg__time {
+  font-size: 21rpx;
+  color: @ink-4;
+  flex: none;
+  margin-left: 16rpx;
+}
+
+.msg__rows {
+  margin-top: 22rpx;
+  padding-top: 6rpx;
+  border-top: 1rpx solid @line;
+}
+
+.msg__row {
+  display: flex;
+  padding: 12rpx 0;
+}
+
+.msg__label {
+  width: 92rpx;
+  flex: none;
+  font-size: 24rpx;
+  color: @ink-4;
+}
+
+.msg__value {
+  flex: 1;
+  font-size: 25rpx;
+  color: @ink-2;
+  line-height: 1.6;
+}
+
+.msg__value--link {
+  color: @brand;
+  font-weight: 600;
+}
+
+.msg__body {
+  margin-top: 16rpx;
+  padding: 20rpx 22rpx;
+  background: @bg;
+  border-radius: 12rpx;
+}
+
+.msg__body-text {
+  font-size: 24rpx;
+  color: @ink-2;
+  line-height: 1.8;
+}
+
+.msg__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid @line;
+}
+
+.msg__status {
+  font-size: 21rpx;
+  color: @ink-4;
+}
+
+.msg__status.is-ok {
+  color: @brand;
+}
+
+.msg__actions {
+  display: flex;
+  align-items: center;
+}
+
+.msg__act {
+  font-size: 24rpx;
+  color: @brand;
+  margin-left: 32rpx;
+}
+
+.msg__act--danger {
+  color: @danger;
+}
+
+.card-hover {
+  opacity: 0.9;
+}
+
+/* ============ 空状态 ============ */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 180rpx 70rpx;
+}
+
+.empty__title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: @ink-2;
+}
+
+.empty__desc {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: @ink-4;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.empty__btn {
+  margin-top: 44rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  padding: 0 56rpx;
+  border-radius: 42rpx;
+  background: @brand;
+  color: @white;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.bottom-space {
+  height: 60rpx;
+}

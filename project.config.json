@@ -1,0 +1,50 @@
+{
+  "description": "项目配置文件",
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "setting": {
+    "//useCompilerPlugins": "已关闭 typescript/less 编译插件：本项目直接提供编译好的 .js / .wxss，无需 npm 依赖即可运行。若要改回源码编译，安装 typescript 与 less 后把这里恢复为 [\"typescript\",\"less\"]。",
+    "useCompilerPlugins": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "coverView": false,
+    "postcss": false,
+    "minified": false,
+    "enhance": false,
+    "showShadowRootInWxmlPanel": false,
+    "packNpmRelationList": [],
+    "ignoreUploadUnusedFiles": true,
+    "compileHotReLoad": false,
+    "skylineRenderEnable": true,
+    "es6": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "minifyWXSS": true,
+    "localPlugins": false,
+    "condition": false,
+    "compileWorklet": false,
+    "disableUseStrict": false,
+    "minifyWXML": true,
+    "lessSetting": {
+      "commonUseFilePath": "app.less"
+    }
+  },
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {},
+  "srcMiniprogramRoot": "miniprogram/",
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "libVersion": "2.32.3",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wx3e3cecb062cf0d9d"
+}

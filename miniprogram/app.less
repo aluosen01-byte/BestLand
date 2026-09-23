@@ -1,0 +1,156 @@
+/**app.wxss —— 全局样式**/
+@import "./theme.less";
+
+page {
+  background: @bg;
+  color: @ink;
+  font-size: 28rpx;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+view,
+text,
+image,
+button,
+input,
+textarea {
+  box-sizing: border-box;
+}
+
+/* 页面容器 */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+/* 底部留白（tabBar 页用） */
+.pad-tabbar {
+  height: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+/* ============ 通用排版 ============ */
+.section {
+  padding: 48rpx 32rpx;
+}
+
+.section--tight {
+  padding-top: 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: @ink;
+  letter-spacing: 1rpx;
+}
+
+.section-sub {
+  font-size: 24rpx;
+  color: @ink-3;
+  margin-top: 8rpx;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: @brand;
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.arrow {
+  font-size: 26rpx;
+  margin-left: 4rpx;
+}
+
+.card {
+  background: @white;
+  border-radius: @radius-lg;
+  box-shadow: @shadow;
+  overflow: hidden;
+}
+
+.divider {
+  height: 1rpx;
+  background: @line;
+}
+
+/* ============ 按钮 ============ */
+.btn-primary,
+.btn-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92rpx;
+  border-radius: 46rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: @brand;
+  color: @white;
+}
+
+.btn-primary--block {
+  width: 100%;
+}
+
+.btn-ghost {
+  background: @white;
+  color: @brand;
+  border: 2rpx solid @brand;
+}
+
+.btn-hover {
+  opacity: 0.85;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  line-height: normal;
+}
+
+button::after {
+  border: none;
+}
+
+/* ============ 标签 ============ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 40rpx;
+  padding: 0 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  background: @brand-light;
+  color: @brand;
+  margin: 0 12rpx 12rpx 0;
+}
+
+.tag--accent {
+  background: @accent-light;
+  color: @accent;
+}
+
+.tag--plain {
+  background: @bg;
+  color: @ink-3;
+}

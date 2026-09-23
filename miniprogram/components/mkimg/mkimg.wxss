@@ -1,0 +1,57 @@
+/* mkimg.wxss —— 构建产物（由 mkimg.less 编译而来） */
+.mkimg {
+  position: relative;
+  overflow: hidden;
+  background: #eef3f1;
+  width: 100%;
+  height: 100%;
+}
+
+/* 形状：默认直角，由 shape 决定 */
+.mkimg--rounded {
+  border-radius: 20rpx;
+}
+
+.mkimg--circle {
+  border-radius: 50%;
+}
+
+/* 占位层 */
+.mkimg__ph {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #eef3f1 0%, #e2ebe7 100%);
+}
+
+.mkimg__ph-text {
+  font-size: 24rpx;
+  color: #a9bab4;
+  letter-spacing: 4rpx;
+  padding: 0 16rpx;
+  text-align: center;
+}
+
+/* 真实图片：加载完成后淡入 */
+.mkimg__img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+
+.mkimg__img.is-ready {
+  opacity: 1;
+}
+
+/* 确认失败后保留浅底，不再显示破图 */
+.mkimg.is-failed {
+  background: #f4f7f6;
+}

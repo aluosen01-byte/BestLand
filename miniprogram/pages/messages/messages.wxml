@@ -1,0 +1,75 @@
+<!--messages.wxml 我的留言-->
+<navigation-bar title="我的留言" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <!-- 计数 -->
+  <view class="head" wx:if="{{list.length}}">
+    <view>
+      <text class="head__num">{{list.length}}</text>
+      <text class="head__unit">条留言</text>
+    </view>
+    <text class="head__clear" bindtap="clearAll" hover-class="btn-hover">清空全部</text>
+  </view>
+
+  <!-- 本地存储提示 -->
+  <view class="banner" wx:if="{{list.length && localOnly}}">
+    <text class="banner__text">
+      这些留言保存在你的手机本地。如需确保我们收到，请直接拨打 {{site.phoneText}} 或通过在线留言页提交后截图发送。
+    </text>
+  </view>
+
+  <!-- 列表 -->
+  <view class="list" wx:if="{{list.length}}">
+    <view class="msg" wx:for="{{list}}" wx:key="id">
+      <view class="msg__head">
+        <view class="msg__who">
+          <text class="msg__name">{{item.name}}</text>
+          <text class="msg__type">{{item.type}}</text>
+        </view>
+        <text class="msg__time">{{item.timeText}}</text>
+      </view>
+
+      <view class="msg__rows">
+        <view class="msg__row" bindtap="callItem" data-phone="{{item.phone}}" hover-class="card-hover">
+          <text class="msg__label">手机</text>
+          <text class="msg__value msg__value--link">{{item.phone}}</text>
+        </view>
+        <view class="msg__row" wx:if="{{item.company}}">
+          <text class="msg__label">公司</text>
+          <text class="msg__value">{{item.company}}</text>
+        </view>
+        <view class="msg__row" wx:if="{{item.city}}">
+          <text class="msg__label">城市</text>
+          <text class="msg__value">{{item.city}}</text>
+        </view>
+        <view class="msg__row" wx:if="{{item.interest}}">
+          <text class="msg__label">意向</text>
+          <text class="msg__value">{{item.interest}}</text>
+        </view>
+      </view>
+
+      <view class="msg__body" wx:if="{{item.message}}">
+        <text class="msg__body-text">{{item.message}}</text>
+      </view>
+
+      <view class="msg__foot">
+        <text class="msg__status {{item.synced ? 'is-ok' : ''}}">
+          {{item.synced ? '已同步至云端' : '仅保存在本机'}}
+        </text>
+        <view class="msg__actions">
+          <text class="msg__act" bindtap="copyItem" data-phone="{{item.phone}}" hover-class="btn-hover">复制号码</text>
+          <text class="msg__act msg__act--danger" bindtap="removeItem" data-id="{{item.id}}" hover-class="btn-hover">删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:else>
+    <text class="empty__title">还没有留言记录</text>
+    <text class="empty__desc">在「咨询」页填写需求后，记录会出现在这里，方便你随时查看和管理。</text>
+    <view class="empty__btn" bindtap="goContact" hover-class="btn-hover">去填写需求</view>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>

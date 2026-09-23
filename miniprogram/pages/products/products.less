@@ -1,0 +1,296 @@
+/**products.less 产品中心**/
+@import "../../components/tab-bar/tab-bar.less";
+
+.page {
+  background: @bg;
+}
+
+/* ============ 筛选区 ============ */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: @white;
+  padding: 20rpx 32rpx 4rpx;
+  border-bottom: 1rpx solid @line;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  height: 76rpx;
+  background: @bg;
+  border-radius: 38rpx;
+  padding: 0 26rpx;
+}
+
+.search__icon {
+  font-size: 34rpx;
+  color: @ink-4;
+  margin-right: 12rpx;
+}
+
+.search__input {
+  flex: 1;
+  font-size: 26rpx;
+  color: @ink;
+}
+
+.search__ph {
+  color: @ink-4;
+  font-size: 25rpx;
+}
+
+.search__clear {
+  font-size: 26rpx;
+  color: @ink-4;
+  padding: 0 4rpx;
+}
+
+.chips {
+  width: 100%;
+  white-space: nowrap;
+  margin-top: 20rpx;
+}
+
+.chips__row {
+  display: flex;
+  padding-bottom: 20rpx;
+}
+
+.chip {
+  flex: none;
+  height: 60rpx;
+  line-height: 58rpx;
+  padding: 0 28rpx;
+  border-radius: 30rpx;
+  font-size: 25rpx;
+  color: @ink-2;
+  background: @bg;
+  border: 1rpx solid @line;
+  margin-right: 16rpx;
+}
+
+.chip.is-on {
+  background: @brand;
+  border-color: @brand;
+  color: @white;
+  font-weight: 600;
+}
+
+/* ============ 统计条 ============ */
+.countbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 26rpx 32rpx 6rpx;
+}
+
+.countbar__text {
+  font-size: 24rpx;
+  color: @ink-3;
+}
+
+.countbar__hint {
+  font-size: 22rpx;
+  color: @ink-4;
+}
+
+/* ============ 系列列表 ============ */
+.list {
+  padding: 20rpx 32rpx 0;
+}
+
+.item {
+  display: flex;
+  background: @white;
+  border-radius: @radius-lg;
+  box-shadow: @shadow;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+}
+
+.item__pic {
+  position: relative;
+  width: 240rpx;
+  height: 260rpx;
+  flex: none;
+  background: @brand-soft;
+}
+
+.item__badge {
+  position: absolute;
+  left: 14rpx;
+  top: 14rpx;
+  font-size: 19rpx;
+  font-weight: 700;
+  color: @white;
+  background: @brand;
+  height: 34rpx;
+  line-height: 34rpx;
+  padding: 0 12rpx;
+  border-radius: 8rpx;
+}
+
+.item__badge.is-accent {
+  background: @accent;
+}
+
+.item__body {
+  flex: 1;
+  padding: 24rpx 24rpx 22rpx;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.item__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item__name {
+  font-size: 31rpx;
+  font-weight: 700;
+  color: @ink;
+}
+
+.item__arrow {
+  font-size: 34rpx;
+  color: @ink-4;
+  line-height: 1;
+}
+
+.item__tagline {
+  margin-top: 8rpx;
+  font-size: 23rpx;
+  color: @ink-3;
+}
+
+.item__tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16rpx;
+  max-height: 92rpx;
+  overflow: hidden;
+}
+
+.item__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 14rpx;
+}
+
+.item__count {
+  font-size: 22rpx;
+  color: @ink-4;
+}
+
+.item__pending {
+  font-size: 20rpx;
+  color: @warning;
+  background: #FDF6E7;
+  height: 34rpx;
+  line-height: 34rpx;
+  padding: 0 12rpx;
+  border-radius: 8rpx;
+}
+
+.card-hover {
+  opacity: 0.88;
+}
+
+/* ============ 空状态 ============ */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 140rpx 60rpx;
+}
+
+.empty__title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: @ink-2;
+}
+
+.empty__desc {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: @ink-4;
+  text-align: center;
+}
+
+.empty__btn {
+  margin-top: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 48rpx;
+  border-radius: 40rpx;
+  background: @brand;
+  color: @white;
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+/* ============ 咨询引导 ============ */
+.help {
+  margin: 24rpx 32rpx 0;
+  padding: 40rpx 36rpx;
+  border-radius: @radius-lg;
+  background: @white;
+  border: 2rpx dashed @brand-light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help__title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: @ink;
+}
+
+.help__desc {
+  margin-top: 12rpx;
+  font-size: 23rpx;
+  color: @ink-3;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.help__btn {
+  margin-top: 32rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  padding: 0 64rpx;
+  border-radius: 42rpx;
+  background: @brand;
+  color: @white;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+/* ============ 悬浮留言 ============ */
+.fab {
+  position: fixed;
+  right: 28rpx;
+  bottom: calc(140rpx + env(safe-area-inset-bottom));
+  z-index: 30;
+  height: 72rpx;
+  padding: 0 30rpx;
+  border-radius: 36rpx;
+  background: rgba(15, 107, 79, 0.94);
+  box-shadow: 0 8rpx 24rpx rgba(15, 107, 79, 0.3);
+  display: flex;
+  align-items: center;
+}
+
+.fab__text {
+  font-size: 24rpx;
+  color: @white;
+  font-weight: 600;
+}

@@ -1,0 +1,31 @@
+<!--agreement.wxml 免责声明与信息使用说明-->
+<navigation-bar title="免责声明" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <view class="head">
+    <text class="head__title">免责声明与信息使用说明</text>
+    <text class="head__meta">适用主体：{{site.company}} · 品牌：{{site.brand}}</text>
+    <text class="head__meta">更新日期：{{updated}}</text>
+  </view>
+
+  <view class="body">
+    <view class="clause" wx:for="{{clauses}}" wx:key="no">
+      <view class="clause__head">
+        <text class="clause__no">{{item.no}}</text>
+        <text class="clause__title">{{item.title}}</text>
+      </view>
+      <text class="clause__p" wx:for="{{item.paras}}" wx:for-item="p" wx:key="*this">{{p}}</text>
+    </view>
+  </view>
+
+  <view class="foot">
+    <text class="foot__text">
+      如对本声明有任何疑问，可通过以下方式联系我们：
+    </text>
+    <text class="foot__contact">{{site.company}}</text>
+    <text class="foot__contact" bindtap="callPhone">电话：{{site.phoneText}}</text>
+    <text class="foot__contact" wx:if="{{site.email}}">邮箱：{{site.email}}</text>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>

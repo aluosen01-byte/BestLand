@@ -1,0 +1,144 @@
+<!--detail.wxml 系列详情-->
+<navigation-bar title="{{series.name}}" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page" wx:if="{{series}}">
+  <!-- ============ 图片区 ============ -->
+  <view class="gallery">
+    <swiper
+      class="gallery__swiper"
+      circular
+      autoplay="{{false}}"
+      current="{{current}}"
+      bindchange="onSwiperChange"
+    >
+      <swiper-item wx:for="{{images}}" wx:key="*this">
+        <view class="gallery__item" bindtap="preview" data-src="{{item}}">
+          <mkimg src="{{item}}" mode="aspectFit" ph-text="{{index === 0 ? series.name : '产品图 ' + index}}" />
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="gallery__dots">
+      <view
+        class="gallery__dot {{current === index ? 'is-on' : ''}}"
+        wx:for="{{images}}"
+        wx:key="*this"
+      ></view>
+    </view>
+
+    <text class="gallery__counter">{{current + 1}} / {{images.length}}</text>
+  </view>
+
+  <!-- ============ 标题 ============ -->
+  <view class="intro">
+    <view class="intro__head">
+      <text class="intro__name">{{series.name}}</text>
+      <text class="intro__badge {{series.accent === 'accent' ? 'is-accent' : ''}}">{{series.code}}</text>
+    </view>
+    <text class="intro__tagline">{{series.tagline}}</text>
+
+    <view class="intro__tags">
+      <text class="tag {{series.accent === 'accent' ? 'tag--accent' : ''}}" wx:for="{{series.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+    </view>
+  </view>
+
+  <!-- ============ 技术参数 ============ -->
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">技术参数</view>
+    </view>
+    <view class="specs">
+      <view class="spec" wx:for="{{series.specs}}" wx:key="label">
+        <text class="spec__label">{{item.label}}</text>
+        <text class="spec__value">{{item.value}}</text>
+      </view>
+    </view>
+    <text class="note">以上为系列通用示意参数，实际指标以各型号产品说明与第三方检测报告为准。</text>
+  </view>
+
+  <!-- ============ 型号列表 ============ -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <view class="section-title">可选型号</view>
+        <view class="section-sub" wx:if="{{!series.hasRealModels}}">型号信息正在补充中</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="model" wx:for="{{products}}" wx:key="id">
+        <view class="model__left">
+          <text class="model__name">{{item.model}}</text>
+          <text class="model__spec">{{item.spec}}</text>
+        </view>
+        <view class="model__ask" bindtap="askModel" data-model="{{item.model}}" hover-class="btn-hover">咨询</view>
+      </view>
+      <view class="model__tip" wx:if="{{!series.hasRealModels}}">
+        当前为占位型号，请以实际产品清单为准；可点击「咨询」直接询问具体型号与规格。
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 适用场景 ============ -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">适用场景</view>
+    </view>
+    <view class="scenes">
+      <text class="scene" wx:for="{{series.scenes}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- ============ 系列说明 ============ -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">系列说明</view>
+    </view>
+    <view class="desc">
+      <text class="desc__text">{{series.desc}}</text>
+    </view>
+  </view>
+
+  <!-- ============ 咨询引导 ============ -->
+  <view class="cta">
+    <text class="cta__title">需要这一系列的详细资料？</text>
+    <text class="cta__desc">可索取产品说明书、检测报告与工程报价</text>
+    <view class="cta__btn" bindtap="goContact" hover-class="btn-hover">获取资料与报价</view>
+  </view>
+
+  <!-- ============ 相关资质 ============ -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">相关资质</view>
+      <view class="section-more" bindtap="goQualification" hover-class="btn-hover">全部<text class="arrow">›</text></view>
+    </view>
+    <view class="certs">
+      <view class="cert" wx:for="{{certs}}" wx:key="id" bindtap="goQualification" hover-class="card-hover">
+        <text class="cert__title">{{item.shortTitle}}</text>
+        <text class="cert__issuer">{{item.issuer}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>
+
+<!-- 数据异常 -->
+<view class="missing" wx:else>
+  <text class="missing__title">没有找到该系列</text>
+  <text class="missing__desc">它可能已经更名或下架</text>
+  <view class="missing__btn" bindtap="goProducts" hover-class="btn-hover">返回产品中心</view>
+</view>
+
+<!-- ============ 底部操作栏 ============ -->
+<view class="actionbar" wx:if="{{series}}">
+  <view class="actionbar__inner">
+    <view class="actionbar__side" bindtap="callPhone" hover-class="btn-hover">
+      <text class="actionbar__side-text">电话</text>
+    </view>
+    <view class="actionbar__side" bindtap="goQualification" hover-class="btn-hover">
+      <text class="actionbar__side-text">资质</text>
+    </view>
+    <view class="actionbar__main" bindtap="goContact" hover-class="btn-hover">立即咨询</view>
+  </view>
+</view>

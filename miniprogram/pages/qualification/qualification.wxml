@@ -1,0 +1,92 @@
+<!--qualification.wxml 资质证书-->
+<navigation-bar title="资质与检测" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <!-- 概览 -->
+  <view class="banner">
+    <text class="banner__title">资质与检测报告</text>
+    <text class="banner__desc">
+      贝之然纯无机涂料的燃烧性能、有害物质限量与环保耐久性能，均由第三方机构检测并出具报告。
+    </text>
+    <view class="banner__stats">
+      <view class="stat">
+        <text class="stat__num">{{total}}</text>
+        <text class="stat__label">份资质文件</text>
+      </view>
+      <view class="stat__sep"></view>
+      <view class="stat">
+        <text class="stat__num">{{reportCount}}</text>
+        <text class="stat__label">份检测报告</text>
+      </view>
+      <view class="stat__sep"></view>
+      <view class="stat">
+        <text class="stat__num">{{certCount}}</text>
+        <text class="stat__label">项认证与商标</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类 -->
+  <view class="tabs">
+    <view
+      class="tab {{active === item.key ? 'is-on' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="key"
+      bindtap="onTab"
+      data-key="{{item.key}}"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 列表 -->
+  <view class="list">
+    <view class="cert" wx:for="{{list}}" wx:key="id">
+      <view class="cert__pic" bindtap="preview" data-id="{{item.id}}" hover-class="card-hover">
+        <mkimg src="{{item.thumb}}" mode="aspectFit" ph-text="证书" longpress="{{true}}" />
+        <text class="cert__pages" wx:if="{{item.images.length > 1}}">{{item.images.length}} 页</text>
+      </view>
+
+      <view class="cert__body">
+        <text class="cert__title">{{item.title}}</text>
+
+        <view class="cert__meta" wx:if="{{item.code}}">
+          <text class="cert__meta-label">编号</text>
+          <text class="cert__meta-value">{{item.code}}</text>
+        </view>
+        <view class="cert__meta">
+          <text class="cert__meta-label">机构</text>
+          <text class="cert__meta-value">{{item.issuer}}</text>
+        </view>
+
+        <view class="cert__conclusion">
+          <text class="cert__conclusion-text">{{item.conclusion}}</text>
+        </view>
+
+        <view class="cert__actions">
+          <view wx:if="{{item.hasImages !== false}}" class="cert__btn" bindtap="preview" data-id="{{item.id}}" hover-class="btn-hover">查看原件</view>
+          <view class="cert__btn cert__btn--ghost" bindtap="ask" data-title="{{item.title}}" hover-class="btn-hover">索取副本</view>
+        </view>
+
+        <view class="cert__nopic" wx:if="{{item.hasImages === false}}">
+          <text class="cert__nopic-text">该证书仅有 PDF 原件，如需查看请点击「索取副本」联系我们</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 说明 -->
+  <view class="tips">
+    <text class="tips__title">关于这些文件</text>
+    <text class="tips__line">· 点击图片可查看原件，长按可保存到相册。</text>
+    <text class="tips__line">· 工程投标如需加盖公章的复印件或原件，请联系我们安排寄送。</text>
+    <text class="tips__line">· 检测报告具有有效期，实际提供时以最新版本为准。</text>
+  </view>
+
+  <!-- 咨询 -->
+  <view class="cta">
+    <text class="cta__title">需要完整的资质文件包？</text>
+    <text class="cta__desc">留下邮箱或联系方式，我们把 PDF 原件发给你</text>
+    <view class="cta__btn" bindtap="goContact" hover-class="btn-hover">索取资质文件</view>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>

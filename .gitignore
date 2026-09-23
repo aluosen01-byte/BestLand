@@ -1,0 +1,36 @@
+# ---------- 依赖 ----------
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# ---------- 微信开发者工具生成物 ----------
+# 编译缓存 / 构建产物目录
+miniprogram_npm/
+.wechat/
+.wxcloud/
+# 注意：本项目是「免构建」的，miniprogram/ 下的 .js/.wxss 是必要的源码产物，不要忽略！
+
+# ---------- 本地个人配置 ----------
+# 含开发者工具版本、本地编译开关等个人设置，不适合共享
+project.private.config.json
+project.config.json.bak
+
+# ---------- 编辑器 ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---------- 系统文件 ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- 日志与临时文件 ----------
+*.log
+npm-debug.log*
+.tmp/
+*.tmp
+*.bak

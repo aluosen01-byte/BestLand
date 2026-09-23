@@ -1,0 +1,39 @@
+<view class="tabbar">
+  <view class="tabbar__inner">
+    <view
+      class="tabbar__item {{active === 'home' ? 'is-on' : ''}}"
+      bindtap="onTap"
+      data-key="home"
+      data-url="/pages/index/index"
+      hover-class="tabbar__item--hover"
+      hover-stay-time="80"
+    >
+      <image class="tabbar__icon" src="{{active === 'home' ? '/images/tab/home-on.svg' : '/images/tab/home.svg'}}"></image>
+      <text class="tabbar__label">首页</text>
+    </view>
+
+    <view
+      class="tabbar__item {{active === 'products' ? 'is-on' : ''}}"
+      bindtap="onTap"
+      data-key="products"
+      data-url="/pages/products/products"
+      hover-class="tabbar__item--hover"
+      hover-stay-time="80"
+    >
+      <image class="tabbar__icon" src="{{active === 'products' ? '/images/tab/product-on.svg' : '/images/tab/product.svg'}}"></image>
+      <text class="tabbar__label">产品</text>
+    </view>
+
+    <view
+      class="tabbar__item {{active === 'contact' ? 'is-on' : ''}}"
+      bindtap="onTap"
+      data-key="contact"
+      data-url="/pages/contact/contact"
+      hover-class="tabbar__item--hover"
+      hover-stay-time="80"
+    >
+      <image class="tabbar__icon" src="{{active === 'contact' ? '/images/tab/contact-on.svg' : '/images/tab/contact.svg'}}"></image>
+      <text class="tabbar__label">咨询</text>
+    </view>
+  </view>
+</view>

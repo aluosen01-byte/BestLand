@@ -1,0 +1,213 @@
+/**messages.wxss —— 构建产物（由 messages.less 编译而来）**/
+.page {
+  background: #F5F7F6;
+}
+
+/* ============ 计数 ============ */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 32rpx 10rpx;
+}
+
+.head__num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #0F6B4F;
+}
+
+.head__unit {
+  font-size: 24rpx;
+  color: #6B7B75;
+  margin-left: 10rpx;
+}
+
+.head__clear {
+  font-size: 24rpx;
+  color: #C0453B;
+  padding: 10rpx 0;
+}
+
+/* ============ 提示 ============ */
+.banner {
+  margin: 18rpx 32rpx 0;
+  padding: 22rpx 24rpx;
+  border-radius: 12rpx;
+  background: #FDFAF2;
+  border: 1rpx solid #F3E4C4;
+}
+
+.banner__text {
+  font-size: 22rpx;
+  color: #8A6A24;
+  line-height: 1.75;
+}
+
+/* ============ 列表 ============ */
+.list {
+  padding: 24rpx 32rpx 0;
+}
+
+.msg {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  padding: 28rpx 28rpx 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.msg__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.msg__who {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.msg__name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #16211D;
+}
+
+.msg__type {
+  margin-left: 16rpx;
+  font-size: 20rpx;
+  color: #0F6B4F;
+  background: #E6F2ED;
+  height: 36rpx;
+  line-height: 36rpx;
+  padding: 0 14rpx;
+  border-radius: 8rpx;
+  flex: none;
+}
+
+.msg__time {
+  font-size: 21rpx;
+  color: #9AA8A2;
+  flex: none;
+  margin-left: 16rpx;
+}
+
+.msg__rows {
+  margin-top: 22rpx;
+  padding-top: 6rpx;
+  border-top: 1rpx solid #E3E9E6;
+}
+
+.msg__row {
+  display: flex;
+  padding: 12rpx 0;
+}
+
+.msg__label {
+  width: 92rpx;
+  flex: none;
+  font-size: 24rpx;
+  color: #9AA8A2;
+}
+
+.msg__value {
+  flex: 1;
+  font-size: 25rpx;
+  color: #3D4A45;
+  line-height: 1.6;
+}
+
+.msg__value--link {
+  color: #0F6B4F;
+  font-weight: 600;
+}
+
+.msg__body {
+  margin-top: 16rpx;
+  padding: 20rpx 22rpx;
+  background: #F5F7F6;
+  border-radius: 12rpx;
+}
+
+.msg__body-text {
+  font-size: 24rpx;
+  color: #3D4A45;
+  line-height: 1.8;
+}
+
+.msg__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #E3E9E6;
+}
+
+.msg__status {
+  font-size: 21rpx;
+  color: #9AA8A2;
+}
+
+.msg__status.is-ok {
+  color: #0F6B4F;
+}
+
+.msg__actions {
+  display: flex;
+  align-items: center;
+}
+
+.msg__act {
+  font-size: 24rpx;
+  color: #0F6B4F;
+  margin-left: 32rpx;
+}
+
+.msg__act--danger {
+  color: #C0453B;
+}
+
+.card-hover {
+  opacity: 0.9;
+}
+
+/* ============ 空状态 ============ */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 180rpx 70rpx;
+}
+
+.empty__title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #3D4A45;
+}
+
+.empty__desc {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #9AA8A2;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.empty__btn {
+  margin-top: 44rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  padding: 0 56rpx;
+  border-radius: 42rpx;
+  background: #0F6B4F;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.bottom-space {
+  height: 60rpx;
+}

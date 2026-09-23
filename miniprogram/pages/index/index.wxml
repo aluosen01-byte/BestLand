@@ -1,0 +1,178 @@
+<!--index.wxml 首页-->
+<navigation-bar
+  title="{{showNavTitle ? site.brand : ''}}"
+  back="{{false}}"
+  color="{{scrolled ? '#16211D' : '#FFFFFF'}}"
+  background="{{scrolled ? '#FFFFFF' : 'transparent'}}"
+></navigation-bar>
+
+<view class="page">
+  <!-- ============ 品牌首屏 ============ -->
+  <view class="hero">
+    <view class="hero__glow"></view>
+
+    <view class="hero__brand">
+      <view class="hero__mark">
+        <text class="hero__mark-text">贝</text>
+      </view>
+      <view class="hero__brand-text">
+        <text class="hero__brand-name">{{site.brand}}</text>
+        <text class="hero__brand-tag">BEI ZHI RAN</text>
+      </view>
+    </view>
+
+    <text class="hero__title">{{site.slogan}}</text>
+    <text class="hero__desc">{{site.positioning}}</text>
+
+    <view class="hero__tags">
+      <text class="hero__tag">纯无机</text>
+      <text class="hero__tag">A1 级不燃</text>
+      <text class="hero__tag">第三方检测</text>
+    </view>
+
+    <view class="hero__actions">
+      <view class="hero__btn hero__btn--solid" bindtap="goProducts" hover-class="btn-hover">浏览产品</view>
+      <view class="hero__btn hero__btn--ghost" bindtap="goContact" hover-class="btn-hover">获取报价</view>
+    </view>
+  </view>
+
+  <!-- ============ 核心卖点 ============ -->
+  <view class="section section--tight">
+    <view class="features">
+      <view class="feature" wx:for="{{features}}" wx:key="no">
+        <text class="feature__no">{{item.no}}</text>
+        <text class="feature__title">{{item.title}}</text>
+        <text class="feature__desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 产品系列 ============ -->
+  <view class="section">
+    <view class="section-head">
+      <view>
+        <view class="section-title">产品系列</view>
+        <view class="section-sub">{{series.length}} 大系列 · 覆盖涂装全链路</view>
+      </view>
+      <view class="section-more" bindtap="goProducts" hover-class="btn-hover">
+        全部<text class="arrow">›</text>
+      </view>
+    </view>
+
+    <scroll-view class="series-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="series-row">
+        <view
+          class="series-card"
+          wx:for="{{series}}"
+          wx:key="id"
+          bindtap="goDetail"
+          data-id="{{item.id}}"
+          hover-class="card-hover"
+        >
+          <view class="series-card__pic">
+            <mkimg src="{{item.cover}}" mode="aspectFit" ph-text="{{item.name}}" />
+            <text class="series-card__badge {{item.accent === 'accent' ? 'is-accent' : ''}}">{{item.code}}</text>
+          </view>
+          <view class="series-card__body">
+            <text class="series-card__name">{{item.name}}</text>
+            <text class="series-card__tag">{{item.tagline}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- ============ 品牌实力 ============ -->
+  <view class="section">
+    <view class="section-head">
+      <view>
+        <view class="section-title">为什么是贝之然</view>
+        <view class="section-sub">无机矿物带来的四个确定性</view>
+      </view>
+    </view>
+
+    <view class="values">
+      <view class="value" wx:for="{{values}}" wx:key="title">
+        <view class="value__dot"></view>
+        <view class="value__text">
+          <text class="value__title">{{item.title}}</text>
+          <text class="value__desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ============ 资质证书 ============ -->
+  <view class="section">
+    <view class="section-head">
+      <view>
+        <view class="section-title">资质与检测</view>
+        <view class="section-sub">A1 级不燃 · 有害物质限量 · 环保耐久</view>
+      </view>
+      <view class="section-more" bindtap="goQualification" hover-class="btn-hover">
+        全部<text class="arrow">›</text>
+      </view>
+    </view>
+
+    <scroll-view class="cert-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="cert-row">
+        <view
+          class="cert-card"
+          wx:for="{{certs}}"
+          wx:key="id"
+          bindtap="goQualification"
+          hover-class="card-hover"
+        >
+          <view class="cert-card__pic">
+            <mkimg src="{{item.thumb}}" mode="aspectFit" ph-text="证书" />
+          </view>
+          <text class="cert-card__title">{{item.shortTitle}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- ============ 服务场景 ============ -->
+  <view class="section">
+    <view class="section-head">
+      <view>
+        <view class="section-title">服务场景</view>
+        <view class="section-sub">工程与家装，同一套技术逻辑</view>
+      </view>
+    </view>
+    <view class="scenes">
+      <text class="scene" wx:for="{{scenes}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- ============ 联系我们 ============ -->
+  <view class="cta">
+    <view class="cta__body">
+      <text class="cta__title">需要选型建议或工程报价？</text>
+      <text class="cta__desc">留下需求，{{site.companyShort}}的技术顾问会尽快与你联系</text>
+    </view>
+    <view class="cta__actions">
+      <view class="cta__btn cta__btn--solid" bindtap="goContact" hover-class="btn-hover">在线留言</view>
+      <view class="cta__btn cta__btn--ghost" bindtap="callPhone" hover-class="btn-hover">电话咨询</view>
+    </view>
+  </view>
+
+  <!-- ============ 页脚 ============ -->
+  <view class="footer">
+    <text class="footer__brand">{{site.brand}} · {{site.company}}</text>
+    <text class="footer__line">{{site.address}}</text>
+    <text class="footer__line">{{site.phoneText}} · {{site.workTime}}</text>
+    <view class="footer__links">
+      <text class="footer__link" bindtap="goQualification">资质证书</text>
+      <text class="footer__dot">·</text>
+      <text class="footer__link" bindtap="goAbout">关于我们</text>
+      <text class="footer__dot">·</text>
+      <text class="footer__link" bindtap="goAgreement">免责声明</text>
+    </view>
+    <text class="footer__copy">© {{year}} {{site.company}} 版权所有</text>
+  </view>
+
+  <view class="pad-tabbar"></view>
+</view>
+
+<tab-bar active="home" />

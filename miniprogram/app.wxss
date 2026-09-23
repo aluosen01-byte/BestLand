@@ -1,0 +1,154 @@
+/**app.wxss —— 全局样式（由 app.less + theme.less 编译而来，构建产物）**/
+page {
+  background: #F5F7F6;
+  color: #16211D;
+  font-size: 28rpx;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+view,
+text,
+image,
+button,
+input,
+textarea {
+  box-sizing: border-box;
+}
+
+/* 页面容器 */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+/* 底部留白（tabBar 页用） */
+.pad-tabbar {
+  height: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+/* ============ 通用排版 ============ */
+.section {
+  padding: 48rpx 32rpx;
+}
+
+.section--tight {
+  padding-top: 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #16211D;
+  letter-spacing: 1rpx;
+}
+
+.section-sub {
+  font-size: 24rpx;
+  color: #6B7B75;
+  margin-top: 8rpx;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: #0F6B4F;
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.arrow {
+  font-size: 26rpx;
+  margin-left: 4rpx;
+}
+
+.card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  overflow: hidden;
+}
+
+.divider {
+  height: 1rpx;
+  background: #E3E9E6;
+}
+
+/* ============ 按钮 ============ */
+.btn-primary,
+.btn-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92rpx;
+  border-radius: 46rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: #0F6B4F;
+  color: #FFFFFF;
+}
+
+.btn-primary--block {
+  width: 100%;
+}
+
+.btn-ghost {
+  background: #FFFFFF;
+  color: #0F6B4F;
+  border: 2rpx solid #0F6B4F;
+}
+
+.btn-hover {
+  opacity: 0.85;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  line-height: normal;
+}
+
+button::after {
+  border: none;
+}
+
+/* ============ 标签 ============ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 40rpx;
+  padding: 0 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  background: #E6F2ED;
+  color: #0F6B4F;
+  margin: 0 12rpx 12rpx 0;
+}
+
+.tag--accent {
+  background: #FBF1EA;
+  color: #C2703E;
+}
+
+.tag--plain {
+  background: #F5F7F6;
+  color: #6B7B75;
+}

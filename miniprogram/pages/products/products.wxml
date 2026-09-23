@@ -1,0 +1,96 @@
+<!--products.wxml 产品中心-->
+<navigation-bar title="产品中心" back="{{false}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <!-- 吸顶筛选区 -->
+  <view class="toolbar">
+    <view class="search">
+      <text class="search__icon">⌕</text>
+      <input
+        class="search__input"
+        value="{{keyword}}"
+        placeholder="搜索系列、场景或卖点，如 防水 / 学校"
+        placeholder-class="search__ph"
+        confirm-type="search"
+        bindinput="onSearch"
+      />
+      <text wx:if="{{keyword}}" class="search__clear" bindtap="clearSearch">✕</text>
+    </view>
+
+    <scroll-view class="chips" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="chips__row">
+        <view
+          class="chip {{activeGroup === item.key ? 'is-on' : ''}}"
+          wx:for="{{groups}}"
+          wx:key="key"
+          bindtap="onGroup"
+          data-key="{{item.key}}"
+          hover-class="btn-hover"
+        >{{item.label}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 结果统计 -->
+  <view class="countbar" wx:if="{{list.length}}">
+    <text class="countbar__text">共 {{list.length}} 个系列</text>
+    <text class="countbar__hint">点击查看系列详情</text>
+  </view>
+
+  <!-- 系列列表 -->
+  <view class="list">
+    <view
+      class="item"
+      wx:for="{{list}}"
+      wx:key="id"
+      bindtap="goDetail"
+      data-id="{{item.id}}"
+      hover-class="card-hover"
+    >
+      <view class="item__pic">
+        <mkimg src="{{item.cover}}" mode="aspectFit" ph-text="{{item.name}}" />
+        <text class="item__badge {{item.accent === 'accent' ? 'is-accent' : ''}}">{{item.code}}</text>
+      </view>
+
+      <view class="item__body">
+        <view class="item__head">
+          <text class="item__name">{{item.name}}</text>
+          <text class="item__arrow">›</text>
+        </view>
+        <text class="item__tagline">{{item.tagline}}</text>
+
+        <view class="item__tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+        </view>
+
+        <view class="item__foot">
+          <text class="item__count">{{item.productCount}} 个型号</text>
+          <text class="item__pending" wx:if="{{!item.hasRealModels}}">型号待补充</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{!list.length}}">
+    <text class="empty__title">没有找到相关系列</text>
+    <text class="empty__desc">试试「防水」「地坪」「学校」等关键词</text>
+    <view class="empty__btn" bindtap="resetAll" hover-class="btn-hover">查看全部产品</view>
+  </view>
+
+  <!-- 咨询入口 -->
+  <view class="help" wx:if="{{list.length}}">
+    <text class="help__title">不确定该选哪个系列？</text>
+    <text class="help__desc">把施工场景、基层情况与面积告诉我们，技术顾问会给出选型建议</text>
+    <view class="help__btn" bindtap="goContact" hover-class="btn-hover">免费咨询选型</view>
+  </view>
+
+  <view class="pad-tabbar"></view>
+</view>
+
+<!-- 悬浮留言入口 -->
+<view class="fab" bindtap="goMessages" hover-class="btn-hover">
+  <text class="fab__text">我的留言</text>
+</view>
+
+<tab-bar active="products" />
