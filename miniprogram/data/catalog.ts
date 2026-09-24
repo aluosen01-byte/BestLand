@@ -3,17 +3,21 @@
  *
  * ⚠️ 本文件不参与编译，实际生效的是同目录的 catalog.js。改动请改 catalog.js。
  *
- * 【图片现状】素材已实际导入，路径以 catalog.js 为准：
- *   images/products/<系列id>/1..8.jpg   产品图（已压缩为 JPEG）
- *   images/products/<系列id>/cover.jpg  系列封面
- *   images/certs/a1-*.jpg hb-*.jpg yx-*.jpg iso-*.jpg   检测报告与认证
- *   images/brand/cover.jpg              品牌头图
- * 商标注册证（tm-2.jpg / tm-35.jpg）暂时缺图，页面会显示占位块。
+ * 【图片现状】图片全部托管在服务器，不放进小程序包。
+ * 原因：主包上限 2MB，125 张图共 17.15MB 塞不进去。
+ *   IMG_BASE = https://senluoflow.com/video/
+ *   <IMG_BASE>product/<系列id>/1..8.jpg   产品图 + cover.jpg 系列封面
+ *   <IMG_BASE>cert/a1-*.jpg hb-*.jpg yx-*.jpg iso-*.jpg   检测报告与认证
+ *   <IMG_BASE>cover/brand-cover.jpg       品牌头图
+ * 商标注册证（tm-2 / tm-35）素材只有 PDF，images 留空、不请求。
  *
  * 【重要】产品型号（如“贝之然无机内墙漆 18kg”）我无法从图片中读取，
  * 因此每个系列先给出「系列名 + 编号」的占位条目。请把 model 字段
  * 替换为真实型号，并把 hasRealModels 改为 true；或把清单发给我批量写入。
  */
+
+/** 图片服务器根地址（换服务器只改这里） */
+const IMG_BASE = 'https://senluoflow.com/video/'
 
 /** 产品系列 */
 export interface Series {
@@ -74,6 +78,8 @@ export interface Cert {
   images: string[]
   /** 缩略图 */
   thumb: string
+  /** 是否有可展示的图片（false 时页面不提供「查看原件」） */
+  hasImages?: boolean
   /** 分类 */
   category: '检测报告' | '体系认证' | '知识产权'
 }
@@ -339,7 +345,7 @@ export const PRODUCTS: Product[] = buildProducts()
 /* 资质证书                                                            */
 /* ------------------------------------------------------------------ */
 
-const CERT_DIR = '/images/certs/'
+const CERT_DIR = `${IMG_BASE}cert/`
 
 export const CERTS: Cert[] = [
   {
@@ -399,8 +405,10 @@ export const CERTS: Cert[] = [
     issuer: '国家知识产权局',
     code: '67583611',
     conclusion: '第 2 类：颜料、清漆、漆等',
-    images: [`${CERT_DIR}tm-2.png`],
-    thumb: `${CERT_DIR}tm-2.png`,
+    // 素材只有 PDF，images 留空避免请求 404
+    hasImages: false,
+    images: [],
+    thumb: '',
     category: '知识产权',
   },
   {
@@ -409,8 +417,9 @@ export const CERTS: Cert[] = [
     issuer: '国家知识产权局',
     code: '67586855',
     conclusion: '第 35 类：广告、商业经营等',
-    images: [`${CERT_DIR}tm-35.png`],
-    thumb: `${CERT_DIR}tm-35.png`,
+    hasImages: false,
+    images: [],
+    thumb: '',
     category: '知识产权',
   },
 ]
@@ -462,12 +471,12 @@ export function productsOfSeries(seriesId: string): Product[] {
 
 /** 系列封面图 */
 export function seriesCover(seriesId: string): string {
-  return `/images/products/${seriesId}/cover.jpg`
+  return `${IMG_BASE}product/${seriesId}/cover.jpg`
 }
 
 /** 系列第 n 张产品图（n 从 1 开始） */
 export function seriesImage(seriesId: string, n: number): string {
-  return `/images/products/${seriesId}/${n}.jpg`
+  return `${IMG_BASE}product/${seriesId}/${n}.jpg`
 }
 
 /** 系列的全部图片路径（封面 + 产品图） */

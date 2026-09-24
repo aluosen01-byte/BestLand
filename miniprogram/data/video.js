@@ -1,14 +1,14 @@
 // video.js —— 视频数据（短视频 · 竖屏 9:16）
 //
-// 服务器现状（已实测确认）：
-//   senluoflow.com  →  A 记录指向 47.107.190.235，证书受信任 ✅
-//   /video/         →  403（nginx 直接应答，说明已映射为静态目录，只是目录为空）
-//   /video/bzr-01.mp4 → 404（视频还没上传）
+// 视频与封面都在同一台服务器上（nginx 的 location ^~ /video/ 指向 /opt/video/）：
+//   /video/bzr-NN.mp4        视频本体
+//   /video/cover/bzr-NN.jpg  视频封面
 //
-// 所以只剩一步：把压缩好的 13 个 mp4 传到服务器 /opt/video/ 即可。
-// 微信公众平台的 downloadFile 合法域名已配置 senluoflow.com，无需再改。
+// 域名 senluoflow.com 已加入微信公众平台的 downloadFile 合法域名。
+// 换服务器只需改下面这一行。
 
 var VIDEO_BASE = 'https://senluoflow.com/video/'
+var COVER_BASE = VIDEO_BASE + 'cover/'
 
 /** 视频清单：id 与压缩后的文件名一一对应 */
 var VIDEOS = [
@@ -18,7 +18,7 @@ var VIDEOS = [
     title: '把森林搬进家',
     sub: '品牌形象 · 纯无机涂料',
     series: [],
-    cover: '/images/video/bzr-01.jpg',
+    cover: COVER_BASE + 'bzr-01.jpg',
     seconds: 30,
   },
   {
@@ -27,7 +27,7 @@ var VIDEOS = [
     title: '硬核陶瓷甲',
     sub: '陶瓷级硬度 · 耐擦洗',
     series: ['neiqiang-jiazhuang', 'neiqiang-zhengfu'],
-    cover: '/images/video/bzr-02.jpg',
+    cover: COVER_BASE + 'bzr-02.jpg',
     seconds: 30,
   },
   {
@@ -36,7 +36,7 @@ var VIDEOS = [
     title: '刷新即享安心家',
     sub: '随刷随住 · 零污染',
     series: ['neiqiang-jiazhuang'],
-    cover: '/images/video/bzr-03.jpg',
+    cover: COVER_BASE + 'bzr-03.jpg',
     seconds: 30,
   },
   {
@@ -45,7 +45,7 @@ var VIDEOS = [
     title: '0 甲醛儿童房宝贝房专用',
     sub: '儿童房系列 · 食品级',
     series: ['ertongfang'],
-    cover: '/images/video/bzr-04.jpg',
+    cover: COVER_BASE + 'bzr-04.jpg',
     seconds: 30,
   },
   {
@@ -54,7 +54,7 @@ var VIDEOS = [
     title: '腻子膏修复底固专家',
     sub: '无机底固系列',
     series: ['wuji-digux', 'jiemianji'],
-    cover: '/images/video/bzr-05.jpg',
+    cover: COVER_BASE + 'bzr-05.jpg',
     seconds: 30,
   },
   {
@@ -63,7 +63,7 @@ var VIDEOS = [
     title: '抗污罩面隐形防弹衣',
     sub: '抗污罩面系列',
     series: ['kangwu-zhaomian'],
-    cover: '/images/video/bzr-06.jpg',
+    cover: COVER_BASE + 'bzr-06.jpg',
     seconds: 30,
   },
   {
@@ -72,7 +72,7 @@ var VIDEOS = [
     title: '仿石漆外墙神器',
     sub: '外墙系列 · 仿石漆',
     series: ['waqiang'],
-    cover: '/images/video/bzr-07.jpg',
+    cover: COVER_BASE + 'bzr-07.jpg',
     seconds: 30,
   },
   {
@@ -81,7 +81,7 @@ var VIDEOS = [
     title: '天冬聚脲地坪耐划甲',
     sub: '地坪漆系列',
     series: ['dipingqi'],
-    cover: '/images/video/bzr-08.jpg',
+    cover: COVER_BASE + 'bzr-08.jpg',
     seconds: 30,
   },
   {
@@ -90,7 +90,7 @@ var VIDEOS = [
     title: '天冬聚脲防水隐形盾',
     sub: '防水涂料系列',
     series: ['fangshui'],
-    cover: '/images/video/bzr-09.jpg',
+    cover: COVER_BASE + 'bzr-09.jpg',
     seconds: 30,
   },
   {
@@ -99,7 +99,7 @@ var VIDEOS = [
     title: '给家一口会呼吸的墙',
     sub: '家装内墙系列 · 负氧离子',
     series: ['neiqiang-jiazhuang'],
-    cover: '/images/video/bzr-10.jpg',
+    cover: COVER_BASE + 'bzr-10.jpg',
     seconds: 30,
   },
   {
@@ -108,7 +108,7 @@ var VIDEOS = [
     title: '仿石漆石材质感历久弥新',
     sub: '外墙系列 · 石材质感',
     series: ['waqiang'],
-    cover: '/images/video/bzr-11.jpg',
+    cover: COVER_BASE + 'bzr-11.jpg',
     seconds: 30,
   },
   {
@@ -117,7 +117,7 @@ var VIDEOS = [
     title: '真石漆一刷成石 30 年不褪色',
     sub: '真石漆',
     series: ['waqiang'],
-    cover: '/images/video/bzr-12.jpg',
+    cover: COVER_BASE + 'bzr-12.jpg',
     seconds: 30,
   },
   {
@@ -126,7 +126,7 @@ var VIDEOS = [
     title: '旧墙改造极致性价比',
     sub: '旧墙翻新 · 综合成本省 30%',
     series: ['wuji-digux', 'jiemianji', 'waqiang'],
-    cover: '/images/video/bzr-13.jpg',
+    cover: COVER_BASE + 'bzr-13.jpg',
     seconds: 30,
   },
 ]

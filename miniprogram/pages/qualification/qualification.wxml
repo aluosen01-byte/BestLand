@@ -40,7 +40,7 @@
   <!-- 列表 -->
   <view class="list">
     <view class="cert" wx:for="{{list}}" wx:key="id">
-      <view class="cert__pic" bindtap="preview" data-id="{{item.id}}" hover-class="card-hover">
+      <view class="cert__pic" wx:if="{{item.hasImages !== false}}" bindtap="preview" data-id="{{item.id}}" hover-class="card-hover">
         <mkimg src="{{item.thumb}}" mode="aspectFit" ph-text="证书" longpress="{{true}}" />
         <text class="cert__pages" wx:if="{{item.images.length > 1}}">{{item.images.length}} 页</text>
       </view>

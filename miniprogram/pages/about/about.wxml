@@ -4,7 +4,7 @@
 <view class="page">
   <!-- 品牌头图 -->
   <view class="cover">
-    <mkimg src="/images/brand/cover.png" mode="aspectFill" ph-text="品牌形象图" />
+    <mkimg src="{{site.brandCover}}" mode="aspectFill" ph-text="品牌形象图" />
     <view class="cover__mask">
       <text class="cover__brand">{{site.brand}}</text>
       <text class="cover__slogan">{{site.slogan}}</text>

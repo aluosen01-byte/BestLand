@@ -1,21 +1,27 @@
-// catalog.js —— 由 catalog.ts 编译而来（构建产物）
+// catalog.js —— 产品/证书/品牌数据
 //
 // 参数与文案来自《贝之然中英宣传册 v36》，均已核对；不再是我先前编的占位数据。
 //
-// 【目录结构约定】
-//   images/products/<系列id>/1..N.jpg  产品图
-//   images/products/<系列id>/cover.jpg 系列封面
-//   images/certs/*.jpg                 资质证书
-//   images/brand/cover.jpg             品牌图
+// 【重要】图片走外部服务器（senluoflow.com），不放在小程序包里。
+//
+// 原因：微信小程序主包上限 2MB，而本项目 125 张图共 17.15MB，塞不进去。
+// 压缩到 2MB 以内会让证书小字完全不可读，因此改为服务器托管。
+// 服务器目录（nginx 的 location ^~ /video/ 指向 /opt/video/）：
+//   /video/product/<系列id>/*.jpg   产品图 + 系列封面
+//   /video/cert/*.jpg               资质证书
+//   /video/cover/*.jpg              视频封面 + 品牌头图
+//
+// 换服务器只需改下面这一个常量。
+var IMG_BASE = 'https://senluoflow.com/video/'
 
 /** 系列封面图 */
 function seriesCover(seriesId) {
-  return '/images/products/' + seriesId + '/cover.jpg'
+  return IMG_BASE + 'product/' + seriesId + '/cover.jpg'
 }
 
 /** 系列第 n 张产品图（n 从 1 开始） */
 function seriesImage(seriesId, n) {
-  return '/images/products/' + seriesId + '/' + n + '.jpg'
+  return IMG_BASE + 'product/' + seriesId + '/' + n + '.jpg'
 }
 
 var SERIES_LIST = [
@@ -280,7 +286,7 @@ var PRODUCTS = buildProducts()
 
 /* ---------------- 资质证书 ---------------- */
 
-var CERT_DIR = '/images/certs/'
+var CERT_DIR = IMG_BASE + 'cert/'
 
 var CERTS = [
   {
@@ -340,10 +346,10 @@ var CERTS = [
     issuer: '国家知识产权局',
     code: '67583611',
     conclusion: '第 2 类：颜料、清漆、漆等',
-    // 素材里只有 PDF，没有可展示的图片；hasImages=false 时页面不提供「查看原件」
+    // 素材里只有 PDF，没有可展示的图片；留空避免请求 404
     hasImages: false,
-    images: [CERT_DIR + 'tm-2.jpg'],
-    thumb: CERT_DIR + 'tm-2.jpg',
+    images: [],
+    thumb: '',
     category: '知识产权',
   },
   {
@@ -352,10 +358,10 @@ var CERTS = [
     issuer: '国家知识产权局',
     code: '67586855',
     conclusion: '第 35 类：广告、商业经营等',
-    // 素材里只有 PDF，没有可展示的图片
+    // 素材里只有 PDF，没有可展示的图片；留空避免请求 404
     hasImages: false,
-    images: [CERT_DIR + 'tm-35.jpg'],
-    thumb: CERT_DIR + 'tm-35.jpg',
+    images: [],
+    thumb: '',
     category: '知识产权',
   },
 ]

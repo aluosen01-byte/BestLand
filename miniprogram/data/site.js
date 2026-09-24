@@ -29,6 +29,8 @@ var SITE = {
   mpName: '贝之然',
   icp: '',
   sinceYear: new Date().getFullYear(),
+  /** 品牌头图（关于我们页顶部，走服务器托管） */
+  brandCover: 'https://senluoflow.com/video/cover/brand-cover.jpg',
   /** 品牌使命 */
   mission: '让建筑回归自然，做建筑与环境共生的缔造者',
   /** 品牌价值观 */
