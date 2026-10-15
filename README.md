@@ -27,6 +27,7 @@
 | 8 | 公开展示的邮箱 | ⏳ 宣传册里是个人 QQ 邮箱，我未放上小程序；有企业邮箱请告知 |
 | 9 | 转发 / 分享 | ✅ **已修复**：13 个页面全部补上分享回调（见第十节） |
 | 10 | 图片体积超限 | ✅ **已修复**：125 张图迁到服务器，主包 315KB（见第八节） |
+| 11 | 上传微信平台 | ✅ **已上传**：版本 `1.0.0`，包体 **193.7 KB**（见第十三节） |
 
 然后：用微信开发者工具打开 `D:\projects\BestLand`，**直接编译**即可看到效果（无需构建 npm）。
 
@@ -582,7 +583,77 @@ git -C D:\projects\BestLand push                # 推到 GitHub
 
 ---
 
-## 十三、代码结构
+## 十三、用 CLI 自动上传到微信平台
+
+**已成功上传过一次**（AppID `wx3e3cecb062cf0d9d`，版本 `1.0.0`，包体 **193.7 KB**）。
+
+以后发版不需要手动点「上传」，一条命令即可：
+
+```bash
+"D:\微信web开发者工具\cli.bat" upload \
+  --project D:\projects\BestLand \
+  --version 1.0.0 \
+  --desc "版本说明" \
+  --port 9420
+```
+
+### 前置条件（本机已配好）
+
+| 项 | 状态 |
+|---|---|
+| 工具登录 | ✅ 已登录（`cli islogin` 返回 `{"login":true}`） |
+| 服务端口 | ✅ 已开启（`enableServicePort: true`） |
+| CLI 端口文件 | `.ide` = `9420` |
+
+### 踩过的坑：CLI 的「鸡生蛋」问题
+
+第一次调用 CLI 一直报：
+
+```
+IDE service port disabled ... set Service Port On
+```
+
+排查 `cli.js` 源码后发现它的判断逻辑是：
+
+```js
+// 简化后的逻辑
+writeFileSync(userDirPath + '/.cli', cliPort)      // 先写 .cli
+const status = readFileSync(userDirPath + '/.ide-status')  // 再读 .ide-status
+if (status.trim() !== 'On') { exit(端口未开启) }     // 不等于 On 就直接退出
+// —— 只有越过这里，才会带 --enable-service-port 去拉起 IDE
+```
+
+**死锁点**：`.ide-status` 是 **IDE 自己开启服务端口后才会写**的文件，
+而 CLI 在拉起 IDE **之前**就要读它。工具没在运行时该文件不存在 → CLI 永远卡住。
+
+另外 `userDirPath` 在 Windows 上是：
+
+```
+C:\Users\<用户>\AppData\Local\微信开发者工具\User Data\<installPath的MD5>\Default
+```
+
+解法：手动在该目录创建 `.ide-status`，内容为 ASCII `On`（CLI 用 `trim() === 'On'` 严格比较）。
+
+```powershell
+$d = "$env:USERPROFILE\AppData\Local\微信开发者工具\User Data\270d7310f77e162f7f0cb30ab692180c\Default"
+[System.IO.File]::WriteAllText("$d\.ide-status", 'On', [System.Text.ASCIIEncoding]::new())
+```
+
+> ⚠️ **工具重启后可能又需要重建这个文件。** 若 CLI 再次报「服务端口已关闭」，
+> 先检查 `.ide-status` 是否存在且内容为 `On`。
+>
+> 更正规的做法是在工具里点：**设置 → 安全设置 → 服务端口**（会提示重启工具）。
+
+### 上传前检查清单
+
+1. **git 已提交**（CLI 上传的是工作区当前文件，不是 git 提交）
+2. **开发者工具已登录**，且账号对 AppID 有开发权限
+3. **图片/视频域名已配**：`senluoflow.com` 需在 downloadFile 合法域名里
+4. 上传后在 **微信公众平台 → 版本管理** 里能看到该版本，可提交审核 / 设为体验版
+
+---
+
+## 十四、代码结构
 
 ```
 miniprogram/
@@ -608,7 +679,7 @@ miniprogram/
 
 ---
 
-## 十四、还没做 / 可以继续加的
+## 十五、还没做 / 可以继续加的
 
 - **产品型号**：目前是 `家装内墙 JZ-01` 这类占位编号，见第三节。
 - **官网 web-view**：需在微信后台配业务域名并放校验文件（第八节）。
