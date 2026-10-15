@@ -1,6 +1,7 @@
 // franchise.js 招商加盟
 const { SITE } = require('../../data/site')
 const { TIERS, BENEFITS, THRESHOLDS, SUPPORT, OVERSEAS_STEPS, FAQ } = require('../../data/franchise')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 /** 为什么现在做（把政策与产品优势翻译成加盟理由） */
 const REASONS = [
@@ -41,6 +42,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('franchise', { title: '贝之然招商加盟 · 县级/地级/跨境代理' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('franchise', { title: '贝之然招商加盟 · 县级/地级/跨境代理' })
+    },
+
     toggleFaq(e) {
       const index = Number(e.currentTarget.dataset.index)
       const faq = this.data.faq.map(function (f, i) {

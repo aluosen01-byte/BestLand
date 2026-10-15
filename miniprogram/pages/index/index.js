@@ -2,6 +2,7 @@
 const { SITE, FEATURES, SCENES } = require('../../data/site')
 const { SERIES_LIST, CERTS, BRAND_VALUES, seriesCover } = require('../../data/catalog')
 const { videoList } = require('../../data/video')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 Component({
   data: {
@@ -43,6 +44,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('index', { title: '贝之然纯无机涂料 · 纯无机 · A1 级不燃 · 与楼房同寿命' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('index', { title: '贝之然纯无机涂料 · 纯无机 · A1 级不燃 · 与楼房同寿命' })
+    },
+
     /** 页面滚动：自定义导航栏由透明渐变为白底 */
     onPageScroll(e) {
       var scrolled = e.scrollTop > 120

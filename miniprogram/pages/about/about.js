@@ -1,6 +1,7 @@
 // about.js —— 由 about.ts 编译而来（构建产物）｜关于我们
 const { SITE, PATENTS, CREDENTIALS, CASES_OUTER, CASES_INNER } = require('../../data/site')
 const { BRAND_STORY, BRAND_VALUES } = require('../../data/catalog')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 /** 涂装链路：让「完整产品体系」这件事可视化 */
 const CHAIN = [
@@ -23,6 +24,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('about', { title: '关于贝之然 · 纯无机建筑涂料' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('about', { title: '关于贝之然 · 纯无机建筑涂料' })
+    },
+
     /** 官网：优先在小程序内用 web-view 打开 */
     openWebsite() {
       if (!SITE.website) return

@@ -1,5 +1,6 @@
 // website.js 官方网站（web-view 内嵌）
 const { SITE } = require('../../data/site')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 Component({
   data: {
@@ -9,6 +10,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('website', { title: '贝之然官方网站 bestlandpaint.com' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('website', { title: '贝之然官方网站 bestlandpaint.com' })
+    },
+
     onLoad() {
       // web-view 加载成功；如果之前标过失败，这里复位
       if (this.data.failed) this.setData({ failed: false })

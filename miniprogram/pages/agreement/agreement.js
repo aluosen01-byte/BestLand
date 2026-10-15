@@ -1,5 +1,6 @@
 // agreement.js —— 由 agreement.ts 编译而来（构建产物）｜免责声明
 const { SITE } = require('../../data/site')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 const CLAUSES = [
   {
@@ -60,6 +61,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('agreement', { title: '贝之然 · 免责声明与信息使用说明' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('agreement', { title: '贝之然 · 免责声明与信息使用说明' })
+    },
+
     callPhone() {
       wx.makePhoneCall({
         phoneNumber: SITE.phone,

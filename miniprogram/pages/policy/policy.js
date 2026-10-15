@@ -1,5 +1,6 @@
 // policy.js 政策背书
 const { INTRO, POLICIES_A, POLICIES_B, REFERENCES, TAKEAWAYS } = require('../../data/policy')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 Component({
   data: {
@@ -11,6 +12,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('policy', { title: '政策要求 A 级不燃 · 无机涂料的强制性依据' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('policy', { title: '政策要求 A 级不燃 · 无机涂料的强制性依据' })
+    },
+
     /** 小程序内不能直接打开站外网页，复制链接是最稳的做法 */
     copyRef(e) {
       const url = e.currentTarget.dataset.url

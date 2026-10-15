@@ -8,6 +8,7 @@ const {
   CERTS,
 } = require('../../data/catalog')
 const { videosOfSeries, videoUrl } = require('../../data/video')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 Component({
   data: {
@@ -20,6 +21,23 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      var s = this.data.series
+      return shareApp('detail', {
+        title: s ? ('贝之然 · ' + s.name + ' · ' + s.tagline) : '贝之然纯无机涂料 · 系列详情与技术参数',
+        path: s ? ('/pages/detail/detail?id=' + s.id) : '/pages/detail/detail',
+      })
+    },
+
+    onShareTimeline() {
+      var s = this.data.series
+      return shareTimeline('detail', {
+        title: s ? ('贝之然 · ' + s.name) : '贝之然纯无机涂料 · 系列详情与技术参数',
+        query: s ? ('id=' + s.id) : '',
+      })
+    },
+
     onLoad(query) {
       const id = (query && query.id) || ''
       const series = getSeries(id)

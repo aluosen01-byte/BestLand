@@ -1,5 +1,6 @@
 // videos.js 视频中心
 const { videoList } = require('../../data/video')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 Component({
   data: {
@@ -16,6 +17,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('videos', { title: '贝之然产品短视频 · 30 秒看懂一个系列' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('videos', { title: '贝之然产品短视频 · 30 秒看懂一个系列' })
+    },
+
     play(e) {
       const id = e.currentTarget.dataset.id
       if (this.data.current && this.data.current.id === id) return

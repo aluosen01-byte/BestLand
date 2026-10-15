@@ -1,5 +1,6 @@
 // products.js —— 由 products.ts 编译而来（构建产物）｜产品中心
 const { SERIES_LIST, productsOfSeries, seriesCover } = require('../../data/catalog')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 const GROUPS = [
   { key: 'all', label: '全部', ids: [] },
@@ -45,6 +46,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('products', { title: '贝之然产品系列 · 11 大系列覆盖涂装全链路' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('products', { title: '贝之然产品系列 · 11 大系列覆盖涂装全链路' })
+    },
+
     apply() {
       const activeGroup = this.data.activeGroup
       const kw = this.data.keyword.trim().toLowerCase()

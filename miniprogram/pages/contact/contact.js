@@ -9,6 +9,7 @@ const {
   markSynced,
 } = require('../../utils/inquiry')
 const { isPhone, trim } = require('../../utils/util')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 /** 感兴趣的产品选项：第一项为未选择 */
 const INTEREST_NONE = '暂不指定 / 需要推荐'
@@ -65,6 +66,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('contact', { title: '联系贝之然 · 获取选型建议与工程报价' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('contact', { title: '联系贝之然 · 获取选型建议与工程报价' })
+    },
+
     onLoad(query) {
       // 从产品页跳转过来时，预填「感兴趣的产品」
       const interest = query && query.interest ? decodeURIComponent(query.interest) : ''

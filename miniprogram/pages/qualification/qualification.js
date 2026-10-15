@@ -1,5 +1,6 @@
 // qualification.js —— 由 qualification.ts 编译而来（构建产物）｜资质证书
 const { CERTS } = require('../../data/catalog')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 const TABS = [
   { key: 'all', label: '全部', category: '' },
@@ -31,6 +32,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('qualification', { title: '贝之然资质与检测 · A1 级不燃 · VOC 未检出' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('qualification', { title: '贝之然资质与检测 · A1 级不燃 · VOC 未检出' })
+    },
+
     onTab(e) {
       const key = e.currentTarget.dataset.key
       const tab = TABS.filter(function (t) {

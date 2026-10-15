@@ -3,6 +3,7 @@ const { SITE } = require('../../data/site')
 const { APP_CONFIG } = require('../../config')
 const { listInquiries, removeInquiry, clearInquiries } = require('../../utils/inquiry')
 const { fromNow } = require('../../utils/util')
+const { shareApp, shareTimeline } = require('../../utils/share')
 
 function decorate(list) {
   return list.map(function (i) {
@@ -24,6 +25,15 @@ Component({
   },
 
   methods: {
+    /* ===== 转发 / 朋友圈：必须定义才能让右上角菜单出现「转发」 ===== */
+    onShareAppMessage() {
+      return shareApp('messages', { title: '贝之然 · 我的留言' })
+    },
+
+    onShareTimeline() {
+      return shareTimeline('messages', { title: '贝之然 · 我的留言' })
+    },
+
     refresh() {
       this.setData({ list: decorate(listInquiries()) })
     },
