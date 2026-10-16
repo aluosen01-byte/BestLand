@@ -31,7 +31,7 @@ Component({
       return shareTimeline('videos', { title: '贝之然产品短视频 · 30 秒看懂一个系列' })
     },
 
-    /** 点封面：选中该条，供下方「复制链接」使用 */
+    /** 点封面：选中该条 */
     select(e) {
       const id = e.currentTarget.dataset.id
       if (this.data.current && this.data.current.id === id) return
@@ -40,6 +40,31 @@ Component({
       })[0]
       if (!target) return
       this.setData({ current: target })
+    },
+
+    /** 点卡片：直接进入内嵌播放页（不需要复制链接） */
+    playItem(e) {
+      const index = Number(e.currentTarget.dataset.index)
+      const v = this.data.videos[index]
+      if (!v) return
+      this.setData({ current: v })
+      this.openPlayer(v)
+    },
+
+    /** 播放当前选中项 */
+    playCurrent() {
+      const cur = this.data.current
+      if (!cur) return
+      this.openPlayer(cur)
+    },
+
+    openPlayer(v) {
+      if (!v || !v.file) return
+      wx.navigateTo({
+        url:
+          '/pages/player/player?file=' + encodeURIComponent(v.file) +
+          '&title=' + encodeURIComponent(v.title || ''),
+      })
     },
 
     /** 复制当前选中视频的地址 */

@@ -15,6 +15,14 @@
     },
     {
       "action": "allow",
+      "page": "pages/videos/videos"
+    },
+    {
+      "action": "disallow",
+      "page": "pages/player/player"
+    },
+    {
+      "action": "allow",
       "page": "pages/qualification/qualification"
     },
     {

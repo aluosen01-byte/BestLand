@@ -1,0 +1,66 @@
+/**player.wxss 视频播放页**/
+.page {
+  background: #0A1712;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage {
+  flex: 1;
+  width: 100%;
+  min-height: 70vh;
+}
+
+.tip {
+  margin: 24rpx 32rpx 0;
+  padding: 24rpx 26rpx;
+  border-radius: 12rpx;
+  background: #FDFAF2;
+  border: 1rpx solid #F3E4C4;
+  display: flex;
+  flex-direction: column;
+}
+
+.tip__title {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #8A6A24;
+}
+
+.tip__text {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #8A6A24;
+  line-height: 1.75;
+}
+
+.bar {
+  display: flex;
+  padding: 24rpx 32rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: #0A1712;
+}
+
+.bar__btn {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.bar__btn--solid {
+  background: #0F6B4F;
+  color: #FFFFFF;
+  margin-left: 18rpx;
+}
+
+.bar__btn--ghost {
+  background: transparent;
+  border: 2rpx solid rgba(255, 255, 255, 0.5);
+  color: #FFFFFF;
+}

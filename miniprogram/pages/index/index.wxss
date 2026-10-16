@@ -318,7 +318,7 @@
 
 .vcard__pic {
   position: relative;
-  height: 360rpx;
+  height: 460rpx;
   background: #0A1712;
 }
 

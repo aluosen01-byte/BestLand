@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/products/products",
     "pages/videos/videos",
+    "pages/player/player",
     "pages/detail/detail",
     "pages/qualification/qualification",
     "pages/policy/policy",

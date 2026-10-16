@@ -13,7 +13,7 @@
     </view>
     <view class="hero__note">
       <text class="hero__note-text">
-        视频为外链播放：点「复制链接」后粘贴到浏览器即可观看。
+        点视频卡片即可直接播放；也可长按复制链接到浏览器观看。
       </text>
     </view>
   </view>
@@ -21,7 +21,7 @@
   <!-- 当前选中 -->
   <view class="player" wx:if="{{current}}">
     <view class="player__stage">
-      <mkimg src="{{current.cover}}" mode="aspectFill" ph-text="视频封面" />
+      <mkimg src="{{current.cover}}" mode="aspectFit" ph-text="视频封面" />
     </view>
     <view class="player__meta">
       <text class="player__title">{{current.title}}</text>
@@ -30,8 +30,13 @@
     <view class="player__url">
       <text class="player__url-text">{{current.url}}</text>
     </view>
-    <view class="player__btn" bindtap="copyCurrent" hover-class="btn-hover">
-      复制链接，去浏览器播放
+    <view class="player__actions">
+      <view class="player__btn" bindtap="playCurrent" hover-class="btn-hover">
+        点击播放视频
+      </view>
+      <view class="player__btn player__btn--ghost" bindtap="copyCurrent" hover-class="btn-hover">
+        复制链接
+      </view>
     </view>
   </view>
 
@@ -40,7 +45,7 @@
     <view class="section-head">
       <view>
         <view class="section-title">全部视频</view>
-        <view class="section-sub">点封面选中；长按直接复制该条链接</view>
+        <view class="section-sub">点封面直接播放；长按复制链接</view>
       </view>
     </view>
 
@@ -49,14 +54,14 @@
         class="card {{current.id === item.id ? 'is-on' : ''}}"
         wx:for="{{videos}}"
         wx:key="id"
-        bindtap="select"
-        data-id="{{item.id}}"
+        bindtap="playItem"
+        data-index="{{index}}"
         bindlongpress="copyItem"
         data-url="{{item.url}}"
         hover-class="card-hover"
       >
         <view class="card__pic">
-          <mkimg src="{{item.cover}}" mode="aspectFill" ph-text="视频" />
+          <mkimg src="{{item.cover}}" mode="aspectFit" ph-text="视频" />
           <view class="card__play">
             <view class="card__triangle"></view>
           </view>
