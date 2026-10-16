@@ -282,31 +282,49 @@ location /                              { proxy_pass http://127.0.0.1:5000; }  #
 微信的校验程序请求 `MP_verify_xxx.txt` 时，请求落到 `location /` 被转给 Flask，
 Flask 要求登录 → 返回登录页 → 微信拿不到文件内容 → **验证必然失败**。
 
-**修复办法**：加一条精确匹配规则，把校验文件走静态文件返回。
-把下面这段加到 **80 和 443 两个 server 块**里（要放在 `location /` 之前）：
+**修复办法**：加一条规则，让根目录下的校验 txt 走静态文件返回，不要落到 `location /`。
+已加到 **80 和 443 两个 server 块**里（放在 `location /` 之前）：
 
 ```nginx
-# 微信业务域名校验文件：必须能匿名直接取到
-location ~ ^/MP_verify_[A-Za-z0-9]+\.txt$ {
+# 域名校验文件（微信等平台的 .txt 校验），必须匿名可直取，
+# 不能落到下面 location / 的 proxy_pass（会被应用跳登录页）
+location ~ ^/[A-Za-z0-9_.-]+\.txt$ {
     root /var/www/html;
     default_type text/plain;
     add_header Cache-Control "no-store";
 }
 ```
 
-然后把微信给的那个 `MP_verify_xxxxxxxx.txt` 放到 `/var/www/html/`，权限 `644`。
+> ⚠️ **规则要写宽，别只匹配 `MP_verify_` 前缀。**
+> 微信不同入口的校验文件名格式不一样：
+> 业务域名常见是 `MP_verify_xxxxxxxx.txt`，也有**随机 10 位名**的
+> （本项目遇到的就是 `wQBu284eoN.txt`，内容为 32 位验证串）。
+> 我第一版只匹配 `MP_verify_` 前缀，结果对这个文件不生效。
 
-验证（**必须 HTTP 和 HTTPS 都通**，因为微信两种协议都会试）：
+### 本次实际做的操作（已完成）
 
-```bash
-curl -s -o /dev/null -w '%{http_code}\n' -H 'Host: senluoflow.com' http://47.107.190.235/MP_verify_xxxxxxxx.txt
-curl -s -o /dev/null -w '%{http_code}\n' -k -H 'Host: senluoflow.com' https://47.107.190.235/MP_verify_xxxxxxxx.txt
-# 两个都要 200，且内容与微信给的文件完全一致（不能是登录页 HTML）
-```
+| 步骤 | 内容 |
+|---|---|
+| 1 | 把校验文件放到 `/var/www/html/wQBu284eoN.txt`（32 字节，无结尾换行，权限 644） |
+| 2 | nginx 加宽匹配的 txt 静态规则（80 + 443 两个 server 块） |
+| 3 | 备份原配置到 `/etc/nginx/sites-available/senluoflow.bak.<时间戳>`，可回滚 |
+| 4 | `nginx -t` 通过 → `systemctl reload nginx` |
 
-⚠️ 当前 80 端口是 `return 301` 全量跳 HTTPS，所以 HTTP 那条也会失败。
-微信文档要求校验文件在**指定目录下可访问**，建议把上面那条 location
-也加到 80 的 server 块里，让它优先于 `location /` 的 301。
+**验证结果（全部通过）**：
+
+| 地址 | 结果 |
+|---|---|
+| `http://senluoflow.com/wQBu284eoN.txt` | ✅ 200 `text/plain`，内容一致 |
+| `https://senluoflow.com/wQBu284eoN.txt` | ✅ 200 `text/plain`，内容一致 |
+| `http://www.senluoflow.com/wQBu284eoN.txt` | ✅ 200，内容一致 |
+| `https://www.senluoflow.com/wQBu284eoN.txt` | ✅ 200，内容一致 |
+| 是否跳登录页 | ✅ 不再跳转（302 已消失） |
+| 原有视频/图片是否受影响 | ✅ 不受影响（mp4 / play.html / jpg 均 200） |
+
+> 排障时踩了一个自己造的坑：备份配置时用 `cp -a` 复制了**符号链接**，
+> 结果在 `sites-enabled/` 里多出一个指向同一配置的软链，
+> nginx 把同一 server 块加载两次并报 `conflicting server name ... ignored`。
+> 已删除该软链（真实备份在 `sites-available/` 里）。
 
 ### 各页面交互
 
