@@ -258,6 +258,56 @@ exports.main = async (event) => {
 **没有配上会怎样**：播放页会白屏，随后显示兜底提示，并提供「复制链接」按钮。
 所以即使用户没配好业务域名，功能也不会完全不可用 —— 只是需要复制到浏览器看。
 
+#### ⚠️ 「域名验证失败」的真正原因（已实测定位）
+
+报「域名验证失败，确认校验文件已放置」时，**不是文件放没放的问题，是路径被应用接管了**。
+
+我实测：把一个探针文件放到网站根目录 `/var/www/html/`，再通过公网取，结果是
+
+```
+https://senluoflow.com/MP_probe_test.txt
+  → 302 跳到 /login?next=/MP_probe_test.txt
+  → 最终 200，但返回的是 5371 字节的登录页 HTML
+```
+
+**根本没有任何路径能从网站根目录返回文件。** 当前 nginx 只有 3 个静态映射：
+
+```nginx
+location ^~ /video/                     { alias /opt/video/; }              # 视频+图片
+location ^~ /LingXiangLuoJi/photo/      { alias /opt/LingXiangLuoJi/photo/web/; }
+location ^~ /.well-known/acme-challenge/{ root /var/www/certbot; }
+location /                              { proxy_pass http://127.0.0.1:5000; }  # 其余全给 Flask
+```
+
+微信的校验程序请求 `MP_verify_xxx.txt` 时，请求落到 `location /` 被转给 Flask，
+Flask 要求登录 → 返回登录页 → 微信拿不到文件内容 → **验证必然失败**。
+
+**修复办法**：加一条精确匹配规则，把校验文件走静态文件返回。
+把下面这段加到 **80 和 443 两个 server 块**里（要放在 `location /` 之前）：
+
+```nginx
+# 微信业务域名校验文件：必须能匿名直接取到
+location ~ ^/MP_verify_[A-Za-z0-9]+\.txt$ {
+    root /var/www/html;
+    default_type text/plain;
+    add_header Cache-Control "no-store";
+}
+```
+
+然后把微信给的那个 `MP_verify_xxxxxxxx.txt` 放到 `/var/www/html/`，权限 `644`。
+
+验证（**必须 HTTP 和 HTTPS 都通**，因为微信两种协议都会试）：
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' -H 'Host: senluoflow.com' http://47.107.190.235/MP_verify_xxxxxxxx.txt
+curl -s -o /dev/null -w '%{http_code}\n' -k -H 'Host: senluoflow.com' https://47.107.190.235/MP_verify_xxxxxxxx.txt
+# 两个都要 200，且内容与微信给的文件完全一致（不能是登录页 HTML）
+```
+
+⚠️ 当前 80 端口是 `return 301` 全量跳 HTTPS，所以 HTTP 那条也会失败。
+微信文档要求校验文件在**指定目录下可访问**，建议把上面那条 location
+也加到 80 的 server 块里，让它优先于 `location /` 的 301。
+
 ### 各页面交互
 
 | 位置 | 交互 |
