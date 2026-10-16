@@ -1,10 +1,16 @@
-// video.js —— 视频数据（短视频 · 竖屏 9:16）
+// video.js —— 视频数据（短视频 · 竖屏 9:16 · 外链播放）
 //
-// 视频与封面都在同一台服务器上（nginx 的 location ^~ /video/ 指向 /opt/video/）：
-//   /video/bzr-NN.mp4        视频本体
+// 【重要】视频不通过小程序播放，改为外链播放。
+//
+// 原因：小程序内嵌入 <video> 播放视频，微信审核会要求提供
+// 《信息网络传播视听节目许可证》等资质，本项目不具备，导致审核不通过。
+// 因此改为：小程序内只展示封面与标题，用户点按钮把地址复制到剪贴板，
+// 再粘贴到浏览器观看。**页面里不再出现 <video> 组件，也不再调用 previewMedia。**
+//
+// 视频与封面托管在同一台服务器（nginx 的 location ^~ /video/ 指向 /opt/video/）：
+//   /video/bzr-NN.mp4        视频本体（外链播放用）
 //   /video/cover/bzr-NN.jpg  视频封面
 //
-// 域名 senluoflow.com 已加入微信公众平台的 downloadFile 合法域名。
 // 换服务器只需改下面这一行。
 
 var VIDEO_BASE = 'https://senluoflow.com/video/'

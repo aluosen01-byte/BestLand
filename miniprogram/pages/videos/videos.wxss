@@ -42,7 +42,22 @@
   margin: 0 16rpx 0 0;
 }
 
-/* ============ 播放器 ============ */
+/* ============ 头图外链提示 ============ */
+.hero__note {
+  margin-top: 24rpx;
+  padding: 20rpx 24rpx;
+  border-radius: 12rpx;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1rpx solid rgba(255, 255, 255, 0.22);
+}
+
+.hero__note-text {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.7;
+}
+
+/* ============ 当前选中（外链播放）============ */
 .player {
   margin: 0 32rpx;
   background: #FFFFFF;
@@ -52,18 +67,14 @@
 }
 
 .player__stage {
+  position: relative;
   width: 100%;
-  height: 900rpx;
+  height: 760rpx;
   background: #0A1712;
 }
 
-.player__video {
-  width: 100%;
-  height: 100%;
-}
-
 .player__meta {
-  padding: 26rpx 28rpx 30rpx;
+  padding: 26rpx 28rpx 20rpx;
   display: flex;
   flex-direction: column;
 }
@@ -80,18 +91,34 @@
   color: #6B7B75;
 }
 
-.player__hint {
-  margin: 0 28rpx 28rpx;
-  padding: 20rpx 22rpx;
+/* 外链地址展示：让用户知道链接长什么样 */
+.player__url {
+  margin: 0 28rpx;
+  padding: 18rpx 22rpx;
   border-radius: 12rpx;
-  background: #FDFAF2;
-  border: 1rpx solid #F3E4C4;
+  background: #F5F7F6;
+  border: 1rpx solid #E3E9E6;
 }
 
-.player__hint-text {
-  font-size: 22rpx;
-  color: #8A6A24;
-  line-height: 1.7;
+.player__url-text {
+  font-size: 21rpx;
+  color: #0F6B4F;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.player__btn {
+  margin: 24rpx 28rpx 30rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  background: #0F6B4F;
+  color: #FFFFFF;
+  font-size: 29rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(15, 107, 79, 0.22);
 }
 
 /* ============ 视频网格 ============ */

@@ -11,31 +11,27 @@
       <text class="hero__tag">A1 级不燃</text>
       <text class="hero__tag">零 VOC</text>
     </view>
+    <view class="hero__note">
+      <text class="hero__note-text">
+        视频为外链播放：点「复制链接」后粘贴到浏览器即可观看。
+      </text>
+    </view>
   </view>
 
-  <!-- 播放器 -->
+  <!-- 当前选中 -->
   <view class="player" wx:if="{{current}}">
     <view class="player__stage">
-      <video
-        id="mainVideo"
-        class="player__video"
-        src="{{current.url}}"
-        poster="{{current.cover}}"
-        object-fit="contain"
-        show-center-play-btn="{{true}}"
-        show-fullscreen-btn="{{true}}"
-        show-play-btn="{{true}}"
-        enable-progress-gesture="{{true}}"
-        autoplay="{{true}}"
-        binderror="onVideoError"
-      ></video>
+      <mkimg src="{{current.cover}}" mode="aspectFill" ph-text="视频封面" />
     </view>
     <view class="player__meta">
       <text class="player__title">{{current.title}}</text>
       <text class="player__sub">{{current.sub}}</text>
     </view>
-    <view class="player__hint" wx:if="{{errorMsg}}">
-      <text class="player__hint-text">{{errorMsg}}</text>
+    <view class="player__url">
+      <text class="player__url-text">{{current.url}}</text>
+    </view>
+    <view class="player__btn" bindtap="copyCurrent" hover-class="btn-hover">
+      复制链接，去浏览器播放
     </view>
   </view>
 
@@ -44,7 +40,7 @@
     <view class="section-head">
       <view>
         <view class="section-title">全部视频</view>
-        <view class="section-sub">点击卡片即可切换播放</view>
+        <view class="section-sub">点封面选中；长按直接复制该条链接</view>
       </view>
     </view>
 
@@ -53,8 +49,10 @@
         class="card {{current.id === item.id ? 'is-on' : ''}}"
         wx:for="{{videos}}"
         wx:key="id"
-        bindtap="play"
+        bindtap="select"
         data-id="{{item.id}}"
+        bindlongpress="copyItem"
+        data-url="{{item.url}}"
         hover-class="card-hover"
       >
         <view class="card__pic">

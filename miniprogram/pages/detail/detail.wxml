@@ -104,7 +104,7 @@
     <view class="section-head">
       <view>
         <view class="section-title">相关视频</view>
-        <view class="section-sub">点开看这个系列的实际效果</view>
+        <view class="section-sub">点封面复制视频链接，去浏览器观看</view>
       </view>
       <view class="section-more" bindtap="goVideos" hover-class="btn-hover">全部<text class="arrow">›</text></view>
     </view>
@@ -121,8 +121,8 @@
         >
           <view class="vcard__pic">
             <mkimg src="{{item.cover}}" mode="aspectFill" ph-text="视频" />
-            <view class="vcard__play">
-              <view class="vcard__triangle"></view>
+            <view class="vcard__copy">
+              <text class="vcard__copy-text">复制链接</text>
             </view>
           </view>
           <text class="vcard__title">{{item.title}}</text>

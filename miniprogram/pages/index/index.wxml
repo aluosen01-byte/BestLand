@@ -107,7 +107,7 @@
     <view class="section-head">
       <view>
         <view class="section-title">产品短视频</view>
-        <view class="section-sub">30 秒看懂一个系列</view>
+        <view class="section-sub">30 秒看懂一个系列 · 外链播放</view>
       </view>
       <view class="section-more" bindtap="goVideos" hover-class="btn-hover">
         全部<text class="arrow">›</text>

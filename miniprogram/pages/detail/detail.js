@@ -88,18 +88,26 @@ Component({
       })
     },
 
-    /** 播放系列相关视频（调起微信原生全屏播放） */
+    /**
+     * 系列相关视频：不在小程序内播放，改为复制外链。
+     * 原因见 data/video.js 顶部说明（审核需要视听节目许可证）。
+     */
     playVideo(e) {
       const index = Number(e.currentTarget.dataset.index)
-      const list = this.data.videos
-      const v = list[index]
-      if (!v) return
-      wx.previewMedia({
-        sources: list.map(function (x) {
-          return { url: x.url, type: 'video', poster: x.cover }
-        }),
-        current: index,
-        fail: () => wx.showToast({ title: '视频暂时无法播放', icon: 'none' }),
+      const v = this.data.videos[index]
+      if (!v || !v.url) return
+      wx.setClipboardData({
+        data: v.url,
+        success: () => {
+          wx.showToast({
+            title: '视频链接已复制，去浏览器粘贴打开',
+            icon: 'none',
+            duration: 2600,
+          })
+        },
+        fail: () => {
+          wx.showModal({ title: '视频地址', content: v.url, showCancel: false, confirmText: '知道了' })
+        },
       })
     },
 
