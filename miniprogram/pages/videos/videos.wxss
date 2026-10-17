@@ -110,7 +110,7 @@
 
 .player__actions {
   display: flex;
-  margin: 24rpx 28rpx 30rpx;
+  margin: 24rpx 28rpx 0;
 }
 
 .player__btn {
@@ -127,15 +127,16 @@
   box-shadow: 0 8rpx 24rpx rgba(15, 107, 79, 0.22);
 }
 
-.player__btn--ghost {
-  flex: none;
-  width: 220rpx;
-  margin-left: 18rpx;
-  background: #FFFFFF;
-  border: 2rpx solid #0F6B4F;
-  color: #0F6B4F;
-  font-size: 27rpx;
-  box-shadow: none;
+/* 复制后的操作提示 */
+.player__hint {
+  margin: 18rpx 28rpx 30rpx;
+  text-align: center;
+}
+
+.player__hint-text {
+  font-size: 21rpx;
+  color: #8A9691;
+  line-height: 1.6;
 }
 
 /* ============ 视频网格 ============ */
@@ -169,29 +170,24 @@
   background: #0A1712;
 }
 
-/* 播放三角 */
-.card__play {
+/* 复制徽标：明确表达「点了是复制」，不暗示可播放 */
+.card__copy {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 76rpx;
-  height: 76rpx;
-  margin: -38rpx 0 0 -38rpx;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.42);
-  border: 2rpx solid rgba(255, 255, 255, 0.8);
+  left: 16rpx;
+  top: 16rpx;
+  height: 48rpx;
+  padding: 0 20rpx;
+  border-radius: 24rpx;
+  background: rgba(15, 107, 79, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.card__triangle {
-  width: 0;
-  height: 0;
-  margin-left: 6rpx;
-  border-left: 20rpx solid #FFFFFF;
-  border-top: 13rpx solid transparent;
-  border-bottom: 13rpx solid transparent;
+.card__copy-text {
+  font-size: 21rpx;
+  color: #FFFFFF;
+  font-weight: 600;
 }
 
 .card__time {

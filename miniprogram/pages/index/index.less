@@ -322,28 +322,24 @@
   background: #0A1712;
 }
 
-.vcard__play {
+/* 复制徽标：明确表达「点了是复制」，不暗示可播放 */
+.vcard__copy {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 72rpx;
-  height: 72rpx;
-  margin: -36rpx 0 0 -36rpx;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.42);
-  border: 2rpx solid rgba(255, 255, 255, 0.8);
+  left: 14rpx;
+  top: 14rpx;
+  height: 44rpx;
+  padding: 0 18rpx;
+  border-radius: 22rpx;
+  background: rgba(15, 107, 79, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.vcard__triangle {
-  width: 0;
-  height: 0;
-  margin-left: 6rpx;
-  border-left: 18rpx solid @white;
-  border-top: 12rpx solid transparent;
-  border-bottom: 12rpx solid transparent;
+.vcard__copy-text {
+  font-size: 20rpx;
+  color: @white;
+  font-weight: 600;
 }
 
 .vcard__title {

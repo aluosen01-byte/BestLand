@@ -89,6 +89,29 @@ Component({
       wx.navigateTo({ url: '/pages/franchise/franchise' })
     },
 
+    /**
+     * 首页视频卡片：只复制链接，不做任何播放。
+     * 详见 data/video.js 顶部说明（审核要求视听节目许可证）。
+     */
+    copyVideo(e) {
+      const index = Number(e.currentTarget.dataset.index)
+      const v = this.data.videos[index]
+      if (!v || !v.url) return
+      wx.setClipboardData({
+        data: v.url,
+        success: () => {
+          wx.showToast({
+            title: '视频链接已复制，粘贴到浏览器观看',
+            icon: 'none',
+            duration: 2600,
+          })
+        },
+        fail: () => {
+          wx.showModal({ title: '视频地址', content: v.url, showCancel: false, confirmText: '知道了' })
+        },
+      })
+    },
+
     goWebsite() {
       wx.navigateTo({ url: '/pages/website/website' })
     },

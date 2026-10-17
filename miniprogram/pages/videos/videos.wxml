@@ -13,7 +13,7 @@
     </view>
     <view class="hero__note">
       <text class="hero__note-text">
-        点视频卡片即可直接播放；也可长按复制链接到浏览器观看。
+        小程序内不播放视频。点任意卡片即可复制该视频链接，粘贴到浏览器观看。
       </text>
     </view>
   </view>
@@ -31,12 +31,12 @@
       <text class="player__url-text">{{current.url}}</text>
     </view>
     <view class="player__actions">
-      <view class="player__btn" bindtap="playCurrent" hover-class="btn-hover">
-        点击播放视频
+      <view class="player__btn" bindtap="copyCurrent" hover-class="btn-hover">
+        复制视频链接
       </view>
-      <view class="player__btn player__btn--ghost" bindtap="copyCurrent" hover-class="btn-hover">
-        复制链接
-      </view>
+    </view>
+    <view class="player__hint">
+      <text class="player__hint-text">复制后打开手机浏览器，粘贴到地址栏即可观看</text>
     </view>
   </view>
 
@@ -45,7 +45,7 @@
     <view class="section-head">
       <view>
         <view class="section-title">全部视频</view>
-        <view class="section-sub">点封面直接播放；长按复制链接</view>
+        <view class="section-sub">点卡片复制链接</view>
       </view>
     </view>
 
@@ -54,16 +54,15 @@
         class="card {{current.id === item.id ? 'is-on' : ''}}"
         wx:for="{{videos}}"
         wx:key="id"
-        bindtap="playItem"
+        bindtap="copyItem"
         data-index="{{index}}"
-        bindlongpress="copyItem"
-        data-url="{{item.url}}"
+        data-id="{{item.id}}"
         hover-class="card-hover"
       >
         <view class="card__pic">
           <mkimg src="{{item.cover}}" mode="aspectFit" ph-text="视频" />
-          <view class="card__play">
-            <view class="card__triangle"></view>
+          <view class="card__copy">
+            <text class="card__copy-text">复制链接</text>
           </view>
           <text class="card__time">{{item.seconds}}″</text>
         </view>

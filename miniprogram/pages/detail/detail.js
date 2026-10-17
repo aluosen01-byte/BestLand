@@ -89,18 +89,26 @@ Component({
     },
 
     /**
-     * 系列相关视频：点一下直接进入内嵌播放页（web-view 网页播放器）。
-     * 不用小程序 <video> 的原因见 data/video.js 顶部说明
-     * （站内 <video> 播放会被要求提供视听节目许可证）。
+     * 系列相关视频：只复制视频链接，不做任何播放。
+     * 只要有「点击即可播放」的路径（<video> 组件或 web-view 内嵌播放器），
+     * 微信审核都会要求《信息网络传播视听节目许可证》，详见 data/video.js。
      */
     playVideo(e) {
       const index = Number(e.currentTarget.dataset.index)
       const v = this.data.videos[index]
-      if (!v || !v.file) return
-      wx.navigateTo({
-        url:
-          '/pages/player/player?file=' + encodeURIComponent(v.file) +
-          '&title=' + encodeURIComponent(v.title || ''),
+      if (!v || !v.url) return
+      wx.setClipboardData({
+        data: v.url,
+        success: () => {
+          wx.showToast({
+            title: '视频链接已复制，粘贴到浏览器观看',
+            icon: 'none',
+            duration: 2600,
+          })
+        },
+        fail: () => {
+          wx.showModal({ title: '视频地址', content: v.url, showCancel: false, confirmText: '知道了' })
+        },
       })
     },
 
