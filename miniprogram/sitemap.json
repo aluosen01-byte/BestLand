@@ -15,10 +15,6 @@
     },
     {
       "action": "allow",
-      "page": "pages/videos/videos"
-    },
-    {
-      "action": "allow",
       "page": "pages/qualification/qualification"
     },
     {
@@ -28,10 +24,6 @@
     {
       "action": "allow",
       "page": "pages/franchise/franchise"
-    },
-    {
-      "action": "allow",
-      "page": "pages/website/website"
     },
     {
       "action": "allow",

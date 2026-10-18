@@ -17,15 +17,13 @@ var SHARE_TIMELINE = 'https://senluoflow.com/video/cover/brand-cover.jpg'
 
 /** 各页面默认分享图 */
 var IMG = {
-  index: 'https://senluoflow.com/video/cover/bzr-01.jpg',
+  index: SHARE_BRAND,
   products: 'https://senluoflow.com/video/product/neiqiang-jiazhuang/cover.jpg',
-  videos: 'https://senluoflow.com/video/cover/bzr-02.jpg',
   qualification: 'https://senluoflow.com/video/cert/a1-1.jpg',
   franchise: SHARE_BRAND,
   policy: SHARE_BRAND,
   about: SHARE_BRAND,
   contact: SHARE_BRAND,
-  website: SHARE_BRAND,
   agreement: SHARE_BRAND,
   detail: SHARE_BRAND,
 }

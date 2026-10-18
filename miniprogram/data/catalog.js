@@ -9,7 +9,7 @@
 // 服务器目录（nginx 的 location ^~ /video/ 指向 /opt/video/）：
 //   /video/product/<系列id>/*.jpg   产品图 + 系列封面
 //   /video/cert/*.jpg               资质证书
-//   /video/cover/*.jpg              视频封面 + 品牌头图
+//   /video/cover/*.jpg              品牌头图（转发分享用）
 //
 // 换服务器只需改下面这一个常量。
 var IMG_BASE = 'https://senluoflow.com/video/'

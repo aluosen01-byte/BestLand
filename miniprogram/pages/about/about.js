@@ -33,20 +33,6 @@ Component({
       return shareTimeline('about', { title: '关于贝之然 · 纯无机建筑涂料' })
     },
 
-    /** 官网：优先在小程序内用 web-view 打开 */
-    openWebsite() {
-      if (!SITE.website) return
-      wx.navigateTo({
-        url: '/pages/website/website',
-        fail: () => {
-          wx.setClipboardData({
-            data: SITE.website,
-            success: () => wx.showToast({ title: '官网地址已复制', icon: 'none' }),
-          })
-        },
-      })
-    },
-
     callPhone() {
       wx.makePhoneCall({
         phoneNumber: SITE.phone,

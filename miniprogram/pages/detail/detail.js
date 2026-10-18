@@ -1,4 +1,4 @@
-// detail.js —— 由 detail.ts 编译而来（构建产物）｜系列详情
+// detail.js —— 系列详情
 const { SITE } = require('../../data/site')
 const {
   getSeries,
@@ -7,7 +7,6 @@ const {
   seriesImage,
   CERTS,
 } = require('../../data/catalog')
-const { videosOfSeries, videoUrl } = require('../../data/video')
 const { shareApp, shareTimeline } = require('../../utils/share')
 
 Component({
@@ -16,7 +15,6 @@ Component({
     products: [],
     images: [],
     certs: [],
-    videos: [],
     current: 0,
   },
 
@@ -53,9 +51,6 @@ Component({
         series: series,
         products: productsOfSeries(series.id),
         images: images,
-        videos: videosOfSeries(series.id).map(function (v) {
-          return Object.assign({}, v, { url: videoUrl(v) })
-        }),
         certs: CERTS.map(function (c) {
           return {
             id: c.id,
@@ -86,34 +81,6 @@ Component({
       wx.reLaunch({
         url: '/pages/contact/contact?interest=' + encodeURIComponent((s ? s.name : '') + ' ' + model),
       })
-    },
-
-    /**
-     * 系列相关视频：只复制视频链接，不做任何播放。
-     * 只要有「点击即可播放」的路径（<video> 组件或 web-view 内嵌播放器），
-     * 微信审核都会要求《信息网络传播视听节目许可证》，详见 data/video.js。
-     */
-    playVideo(e) {
-      const index = Number(e.currentTarget.dataset.index)
-      const v = this.data.videos[index]
-      if (!v || !v.url) return
-      wx.setClipboardData({
-        data: v.url,
-        success: () => {
-          wx.showToast({
-            title: '视频链接已复制，粘贴到浏览器观看',
-            icon: 'none',
-            duration: 2600,
-          })
-        },
-        fail: () => {
-          wx.showModal({ title: '视频地址', content: v.url, showCancel: false, confirmText: '知道了' })
-        },
-      })
-    },
-
-    goVideos() {
-      wx.reLaunch({ url: '/pages/videos/videos' })
     },
 
     goContact() {

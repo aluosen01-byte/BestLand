@@ -231,66 +231,6 @@
   line-height: 1.85;
 }
 
-/* ============ 相关视频 ============ */
-.vscroll {
-  width: 100%;
-  white-space: nowrap;
-}
-
-.vrow {
-  display: flex;
-  padding-bottom: 8rpx;
-}
-
-.vcard {
-  flex: none;
-  width: 300rpx;
-  margin-right: 24rpx;
-  background: #FFFFFF;
-  border-radius: 16rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
-  overflow: hidden;
-}
-
-.vcard:last-child {
-  margin-right: 0;
-}
-
-.vcard__pic {
-  position: relative;
-  height: 660rpx;
-  background: #0A1712;
-}
-
-/* 外链徽标：替代原来的播放三角，避免误导为可站内播放 */
-.vcard__copy {
-  position: absolute;
-  left: 16rpx;
-  bottom: 16rpx;
-  height: 48rpx;
-  padding: 0 20rpx;
-  border-radius: 24rpx;
-  background: rgba(15, 107, 79, 0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.vcard__copy-text {
-  font-size: 21rpx;
-  color: #FFFFFF;
-  font-weight: 600;
-}
-
-.vcard__title {
-  display: block;
-  padding: 16rpx 18rpx 22rpx;
-  font-size: 23rpx;
-  color: #3D4A45;
-  line-height: 1.5;
-  white-space: normal;
-}
-
 /* ============ 咨询引导 ============ */
 .cta {
   margin: 40rpx 32rpx 0;

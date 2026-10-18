@@ -2,12 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/products/products",
-    "pages/videos/videos",
     "pages/detail/detail",
     "pages/qualification/qualification",
     "pages/policy/policy",
     "pages/franchise/franchise",
-    "pages/website/website",
     "pages/about/about",
     "pages/contact/contact",
     "pages/messages/messages",

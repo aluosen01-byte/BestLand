@@ -1,7 +1,10 @@
-// index.js —— 由 index.ts 编译而来（构建产物）｜首页
+// index.js —— 首页
+//
+// 说明：本小程序定位为「品牌与产品资料库 + 在线咨询」，所有核心内容
+// 都在小程序内完成浏览（产品目录、技术参数、资质原件、政策依据、招商政策），
+// 不依赖跳转外部渠道，避免被判为「纯导流小程序」。
 const { SITE, FEATURES, SCENES } = require('../../data/site')
 const { SERIES_LIST, CERTS, BRAND_VALUES, seriesCover } = require('../../data/catalog')
-const { videoList } = require('../../data/video')
 const { shareApp, shareTimeline } = require('../../utils/share')
 
 Component({
@@ -12,7 +15,6 @@ Component({
     values: BRAND_VALUES,
     series: [],
     certs: [],
-    videos: [],
     scrolled: false,
     showNavTitle: false,
     year: SITE.sinceYear,
@@ -29,8 +31,6 @@ Component({
             shortTitle: c.title.replace('检测报告', '').replace('纯无机涂料', '').trim(),
           })
         }),
-        // 首页只放前 6 支，完整列表在「视频」页
-        videos: videoList().slice(0, 6),
       })
     },
   },
@@ -77,43 +77,12 @@ Component({
       wx.navigateTo({ url: '/pages/qualification/qualification' })
     },
 
-    goVideos() {
-      wx.reLaunch({ url: '/pages/videos/videos' })
-    },
-
     goPolicy() {
       wx.navigateTo({ url: '/pages/policy/policy' })
     },
 
     goFranchise() {
       wx.navigateTo({ url: '/pages/franchise/franchise' })
-    },
-
-    /**
-     * 首页视频卡片：只复制链接，不做任何播放。
-     * 详见 data/video.js 顶部说明（审核要求视听节目许可证）。
-     */
-    copyVideo(e) {
-      const index = Number(e.currentTarget.dataset.index)
-      const v = this.data.videos[index]
-      if (!v || !v.url) return
-      wx.setClipboardData({
-        data: v.url,
-        success: () => {
-          wx.showToast({
-            title: '视频链接已复制，粘贴到浏览器观看',
-            icon: 'none',
-            duration: 2600,
-          })
-        },
-        fail: () => {
-          wx.showModal({ title: '视频地址', content: v.url, showCancel: false, confirmText: '知道了' })
-        },
-      })
-    },
-
-    goWebsite() {
-      wx.navigateTo({ url: '/pages/website/website' })
     },
 
     goAbout() {
