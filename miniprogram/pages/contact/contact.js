@@ -5,6 +5,7 @@ const { APP_CONFIG } = require('../../config')
 const {
   INQUIRY_TYPES,
   saveInquiry,
+  postInquiry,
   reportToCloud,
   markSynced,
 } = require('../../utils/inquiry')
@@ -165,9 +166,14 @@ Component({
         message: trim(this.data.form.message),
       })
 
-      // 配置了云环境则尝试上报（失败也不影响本地留存）
+      // 先上报到企业服务器（方案 A）。失败不影响本地留存，之后可重试。
       let synced = false
-      if (APP_CONFIG.cloudEnv) {
+      if (APP_CONFIG.inquiryApi) {
+        synced = await postInquiry(saved, APP_CONFIG.inquiryApi)
+        if (synced) markSynced(saved.id)
+      }
+      // 兼容可选的云开发上报
+      if (!synced && APP_CONFIG.cloudEnv) {
         synced = await reportToCloud(saved, APP_CONFIG.cloudEnv)
         if (synced) markSynced(saved.id)
       }
@@ -175,18 +181,16 @@ Component({
       this.setData({ submitting: false })
 
       wx.showModal({
-        title: '留言已提交',
+        title: synced ? '提交成功' : '已保存到本机',
         content: synced
           ? '我们已收到你的需求，会尽快安排对应顾问与你联系。'
-          : '当前未接入云端接收，留言已保存在你的手机里。建议直接拨打 ' +
-            SITE.phoneText +
-            ' 联系我们，沟通更快。',
-        confirmText: '查看留言',
-        cancelText: '继续浏览',
+          : '当前网络不通，留言已保存在本机。可稍后在「我的留言」里点「重新提交」，网络恢复后会自动送达。',
+        showCancel: !synced,
+        confirmText: synced ? '知道了' : '去我的留言',
+        cancelText: '继续填写',
         success: function (res) {
-          if (res.confirm) {
-            wx.navigateTo({ url: '/pages/messages/messages' })
-          }
+          if (synced) return
+          if (res.confirm) wx.navigateTo({ url: '/pages/messages/messages' })
         },
       })
 

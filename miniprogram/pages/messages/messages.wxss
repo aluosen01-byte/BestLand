@@ -44,6 +44,21 @@
   line-height: 1.75;
 }
 
+.banner__btn {
+  margin-top: 16rpx;
+  align-self: flex-start;
+  height: 60rpx;
+  padding: 0 30rpx;
+  border-radius: 30rpx;
+  background: #8A6A24;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ============ 列表 ============ */
 .list {
   padding: 24rpx 32rpx 0;

@@ -25,12 +25,13 @@
 | 6 | 官网 web-view | ❌ **已移除**：属引流，官网地址改为纯文本展示 |
 | 7 | 商标注册证图片 | ⏳ 素材只有 PDF，见 [IMAGE-MAPPING.md](IMAGE-MAPPING.md) 第二节 |
 | 8 | 公开展示的邮箱 | ⏳ 宣传册里是个人 QQ 邮箱，我未放上小程序；有企业邮箱请告知 |
-| 9 | 转发 / 分享 | ✅ **已修复**：各页面均已补上分享回调（见第十节） |
-| 10 | 图片体积超限 | ✅ **已修复**：125 张图迁到服务器，主包 318.8KB（见第八节） |
-| 11 | 上传微信平台 | ✅ **已上传**：`1.0.0` ~ `1.0.3`（见第十三节） |
+| 9 | 转发 / 分享 | ✅ **已修复**：各页面均已补上分享回调（见第十一节） |
+| 10 | 图片体积超限 | ✅ **已修复**：125 张图迁到服务器，主包 217.7KB（见第八节） |
+| 11 | 上传微信平台 | ✅ **已上传**：`1.0.0` ~ `1.1.1`（见第十四节） |
 | 12 | 纯导流审核问题 | ✅ **已整改**：移除视频与所有外部跳转（见第七节） |
-| 13 | 核心功能闭环 | ✅ **已完善**：新增「用量计算器」，站内完成选型→算量→咨询（见第九节） |
-| 14 | 业务域名配置 | ✅ `senluoflow.com` 已验证通过（目前小程序已无 web-view，可留可撤） |
+| 13 | 核心功能闭环 | ✅ **已完善**：用量计算器 + 留言真实送达企业服务器（见第九、十节） |
+| 14 | 业务域名配置 | ✅ `senluoflow.com` 已验证通过（现已无 web-view，可留可撤） |
+| 15 | request 合法域名 | ⏳ **待配** `https://senluoflow.com`，否则真机无法提交留言（见第十节） |
 
 然后：用微信开发者工具打开 `D:\projects\BestLand`，**直接编译**即可看到效果（无需构建 npm）。
 
@@ -423,7 +424,130 @@ var COVER_BASE = VIDEO_BASE + 'cover/'
 这是为了合规，也避免客户拿着估算值来争论。
 
 ---
-## 十、转发与分享（已修复「不可转发」）
+## 十、在线留言接收接口（方案 A，已上线）
+
+### 为什么必须做
+
+留言以前只存用户手机，提示「未接入云端接收，建议直接拨打电话」——
+审核会认定「服务需跳转其他渠道才能体验」，属强制引流。
+现在留言**真正送达企业服务器**，闭环完整。
+
+### 架构
+
+```
+小程序「咨询与留言」
+   └─ wx.request POST https://senluoflow.com/mp/inquiry
+        └─ nginx  location = /mp/inquiry  →  127.0.0.1:5099
+             └─ mp-inquiry.service（Python 标准库，无第三方依赖）
+                  └─ 追加写入 /opt/mp-inquiry/inquiries.jsonl
+```
+
+### 服务器部署（已完成）
+
+| 项目 | 内容 |
+|---|---|
+| 目录 | `/opt/mp-inquiry/`（owner `www-data`，权限 750） |
+| 程序 | `server.py`（约 7.5 KB，Python 3.12 标准库） |
+| 数据 | `inquiries.jsonl`，每行一条 JSON，追加写，超 5 MB 自动轮转 |
+| 服务 | `systemctl status mp-inquiry`（已 enable 开机自启） |
+| 端口 | `127.0.0.1:5099`（只监听回环，公网必须经 nginx） |
+| nginx | 443 块新增 `location = /mp/inquiry`，备份在 `sites-available/senluoflow.bak.*` |
+| 说明 | `/opt/mp-inquiry/README.txt` |
+
+### 接口约定
+
+```
+POST https://senluoflow.com/mp/inquiry
+Content-Type: application/json
+{ "id","name","phone","company","city","type","interest","message" }
+
+200 {"ok":true}                     成功
+400 {"ok":false,"error":"..."}      校验失败（缺姓名/手机号不合法/非 JSON）
+413                                 body 超 8k（nginx 拦）
+429 {"ok":false,"error":"too many requests"}   限流
+405                                  GET 不支持
+```
+
+### 安全措施
+
+- 只监听 `127.0.0.1`，公网必须经 nginx
+- 请求体上限 4 KB（nginx 层 8 KB）
+- 每 IP 每分钟最多 6 次
+- 只保存白名单字段并各自限长，`message` 最长 2000 字
+- **不提供任何读取接口** —— 留言含手机号，绝不能公开
+- systemd `ProtectSystem=strict` + `ReadWritePaths=/opt/mp-inquiry`，只能写这一个目录
+
+### 小程序端改动
+
+| 文件 | 改动 |
+|---|---|
+| `config.js` | 新增 `inquiryApi: 'https://senluoflow.com/mp/inquiry'` |
+| `utils/inquiry.js` | 新增 `postInquiry()`（wx.request）、`pendingInquiries()`、`retryPending()` |
+| `pages/contact/contact.js` | 提交后上报；成功提示「提交成功」，失败提示「已保存到本机」并引导去「我的留言」重试 |
+| `pages/messages/messages.js/.wxml` | 显示「已送达 / 待送达」，有待送达时出现「重新提交」，**进页面自动补发** |
+
+> 失败文案已彻底去掉「建议拨打电话」，不再构成引流。
+> 网络恢复后，用户只要进入「我的留言」页就会自动补发，不会丢单。
+
+### 实测结果
+
+| 用例 | 结果 |
+|---|---|
+| UTF-8 中文提交 | ✅ 200，落盘中文正确 |
+| ASCII 提交 | ✅ 200 |
+| 非法手机号 | ✅ 400 `invalid phone` |
+| 缺姓名 | ✅ 400 `name required` |
+| 非 JSON | ✅ 400 `invalid json` |
+| GET 读取 | ✅ 405（不提供读取） |
+| 超大 body | ✅ 413 |
+| 限流（连发 10 次） | ✅ 第 3 次起 429 |
+| 小程序提交成功 | ✅ POST 正确地址，标记 `synced=true`，提示「提交成功」 |
+| 小程序提交失败 | ✅ 保持 `synced=false`，文案不引导打电话 |
+| 进入「我的留言」 | ✅ 自动补发成功，状态变「已送达」 |
+
+### 查看留言
+
+```bash
+# 最近 10 条
+tail -n 10 /opt/mp-inquiry/inquiries.jsonl
+
+# 格式化（需 jq）
+tail -n 20 /opt/mp-inquiry/inquiries.jsonl \
+  | jq -r '"\(.receivedAt|todate)  \(.name)  \(.phone)  \(.company // "-")"'
+
+# 导出 CSV 用 Excel 打开
+jq -r '[.receivedAt|todate,.name,.phone,.company//"",.city//"",.type//"",.interest//"",(.message//""|gsub("\n";" "))]|@csv' \
+  /opt/mp-inquiry/inquiries.jsonl > /tmp/inquiries.csv
+```
+
+### ⚠️ 还需要你在微信后台做一件事
+
+把 **`https://senluoflow.com` 加入「request 合法域名」**
+（开发管理 → 开发设置 → 服务器域名 → request 合法域名）。
+
+> 这是**第三个**独立列表了，别和新混：
+> | 用途 | 域名列表 | 状态 |
+> |---|---|---|
+> | 图片加载 | downloadFile 合法域名 | ✅ 已配 |
+> | 网页内嵌 | 业务域名 | ✅ 已配（现已无 web-view，可撤） |
+> | 留言提交 | **request 合法域名** | ⏳ **待配** |
+
+**没配的后果**：真机提交会失败（本地可通），留言落在「待送达」并可重试。
+开发者工具里勾了「不校验合法域名」时不受影响。
+
+### 可选：新留言自动通知
+
+把企业微信/钉钉机器人 webhook 写进 `/opt/mp-inquiry/notify.json`：
+
+```json
+{ "webhook": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxx" }
+```
+
+支持企业微信机器人、钉钉机器人、Server酱、PushPlus。
+文件不存在则不通知；通知失败不影响留言保存；改完无需重启。
+
+---
+## 十一、转发与分享（已修复「不可转发」）
 
 ### 问题原因
 
@@ -498,7 +622,7 @@ shareTimeline('index', { title: '...' }) // 朋友圈：只能带 query，不能
 
 ---
 
-## 十一、本次开发遇到的环境限制（需要你知道）
+## 十二、本次开发遇到的环境限制（需要你知道）
 
 在你当前这台机器上，我遇到了两个硬限制，影响了交付方式：
 
@@ -526,7 +650,7 @@ shareTimeline('index', { title: '...' }) // 朋友圈：只能带 query，不能
 
 ---
 
-## 十二、Git 版本管理
+## 十三、Git 版本管理
 
 仓库已经初始化好了，分支 `main`，含一个初始提交。
 
@@ -587,7 +711,7 @@ git -C D:\projects\BestLand push                # 推到 GitHub
 
 ---
 
-## 十三、用 CLI 自动上传到微信平台
+## 十四、用 CLI 自动上传到微信平台
 
 **已成功上传过一次**（AppID `wx3e3cecb062cf0d9d`，版本 `1.0.0`，包体 **193.7 KB**）。
 
@@ -657,7 +781,7 @@ $d = "$env:USERPROFILE\AppData\Local\微信开发者工具\User Data\270d7310f77
 
 ---
 
-## 十四、代码结构
+## 十五、代码结构
 
 ```
 miniprogram/
@@ -683,7 +807,7 @@ miniprogram/
 
 ---
 
-## 十五、还没做 / 可以继续加的
+## 十六、还没做 / 可以继续加的
 
 - **产品型号**：目前是 `家装内墙 JZ-01` 这类占位编号，见第三节。
 - **官网 web-view**：需在微信后台配业务域名并放校验文件（第八节）。

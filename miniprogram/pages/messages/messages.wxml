@@ -11,11 +11,15 @@
     <text class="head__clear" bindtap="clearAll" hover-class="btn-hover">清空全部</text>
   </view>
 
-  <!-- 本地存储提示 -->
-  <view class="banner" wx:if="{{list.length && localOnly}}">
+  <!-- 待送达提示：只有真正没送到才出现 -->
+  <view class="banner" wx:if="{{pendingCount > 0}}">
     <text class="banner__text">
-      这些留言保存在你的手机本地。如需确保我们收到，请直接拨打 {{site.phoneText}} 或通过在线留言页提交后截图发送。
+      有 {{pendingCount}} 条留言因网络原因暂未送达企业后台，已保存在本机。
+      可点「重新提交」补发，网络恢复后进入本页也会自动补发。
     </text>
+    <view class="banner__btn" bindtap="retryAll" hover-class="btn-hover">
+      {{retrying ? '正在提交…' : '重新提交'}}
+    </view>
   </view>
 
   <!-- 列表 -->
@@ -53,9 +57,7 @@
       </view>
 
       <view class="msg__foot">
-        <text class="msg__status {{item.synced ? 'is-ok' : ''}}">
-          {{item.synced ? '已同步至云端' : '仅保存在本机'}}
-        </text>
+        <text class="msg__status {{item.synced ? 'is-ok' : ''}}">{{item.statusText}}</text>
         <view class="msg__actions">
           <text class="msg__act" bindtap="copyItem" data-phone="{{item.phone}}" hover-class="btn-hover">复制号码</text>
           <text class="msg__act msg__act--danger" bindtap="removeItem" data-id="{{item.id}}" hover-class="btn-hover">删除</text>

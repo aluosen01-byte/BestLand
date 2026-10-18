@@ -52,8 +52,78 @@ function markSynced(id) {
 }
 
 /**
- * 上报到微信云开发（可选）。返回 true 表示上报成功。
- * 启用步骤见 README「接入云开发」。
+ * 上报到自有服务器接口（方案 A，当前使用）。
+ * 返回 true 表示服务端已确认收到。
+ *
+ * 接口：POST https://senluoflow.com/mp/inquiry
+ * 服务端把留言写入 /opt/mp-inquiry/inquiries.jsonl，企业可直接查看。
+ * 不提供读取接口，避免留言中的手机号被公开抓取。
+ */
+function postInquiry(item, apiUrl) {
+  return new Promise(function (resolve) {
+    if (!apiUrl || !wx.request) {
+      resolve(false)
+      return
+    }
+    wx.request({
+      url: apiUrl,
+      method: 'POST',
+      timeout: 8000,
+      header: { 'content-type': 'application/json' },
+      data: {
+        id: item.id,
+        name: item.name,
+        phone: item.phone,
+        company: item.company,
+        city: item.city,
+        type: item.type,
+        interest: item.interest,
+        message: item.message,
+      },
+      success: function (res) {
+        resolve(!!res && res.statusCode >= 200 && res.statusCode < 300)
+      },
+      fail: function () {
+        resolve(false)
+      },
+    })
+  })
+}
+
+/** 还没成功上报的留言 */
+function pendingInquiries() {
+  return listInquiries().filter(function (i) {
+    return !i.synced
+  })
+}
+
+/**
+ * 重试上报所有未同步留言（进「我的留言」页时自动触发）。
+ * 返回成功条数。
+ */
+function retryPending(apiUrl) {
+  var pending = pendingInquiries()
+  if (!pending.length) return Promise.resolve(0)
+  var done = 0
+  return pending
+    .reduce(function (chain, item) {
+      return chain.then(function () {
+        return postInquiry(item, apiUrl).then(function (ok) {
+          if (ok) {
+            markSynced(item.id)
+            done++
+          }
+        })
+      })
+    }, Promise.resolve())
+    .then(function () {
+      return done
+    })
+}
+
+/**
+ * 上报到微信云开发（可选，仅在配置了 cloudEnv 时使用）。
+ * 注意：需要在云开发里自行部署名为 submitInquiry 的云函数。
  */
 function reportToCloud(item, cloudEnv) {
   return new Promise(function (resolve) {
@@ -85,5 +155,8 @@ module.exports = {
   removeInquiry,
   clearInquiries,
   markSynced,
+  postInquiry,
+  pendingInquiries,
+  retryPending,
   reportToCloud,
 }

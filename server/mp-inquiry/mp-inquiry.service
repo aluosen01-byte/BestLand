@@ -1,0 +1,22 @@
+[Unit]
+Description=BestLand mini program inquiry receiver
+Documentation=file:///opt/mp-inquiry/README.txt
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/mp-inquiry
+ExecStart=/usr/bin/python3 /opt/mp-inquiry/server.py
+Restart=always
+RestartSec=3
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/mp-inquiry
+# 只允许写 /opt/mp-inquiry，其余文件系统只读
+
+[Install]
+WantedBy=multi-user.target

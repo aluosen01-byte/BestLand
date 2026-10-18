@@ -2,10 +2,14 @@
 var APP_CONFIG = {
   /**
    * 微信云开发环境 id。
-   * 留空 = 不启用云开发，留言只保存在用户本机（见 utils/inquiry.js）。
-   * 填入后即可把留言上报到云数据库，例如 'beige-prod-1a2b3c'。
+   * 留空 = 不启用云开发（本项目改用自有服务器接口接收留言，见下方 inquiryApi）
    */
   cloudEnv: '',
+  /**
+   * 留言接收接口。提交后会 POST 到这里，企业后台即可收到。
+   * 留空 = 只保存在用户本机（不推荐，会被审核判为无闭环）
+   */
+  inquiryApi: 'https://senluoflow.com/mp/inquiry',
   /** 是否需要用户授权后才可提交留言 */
   requireLogin: false,
   /** 首页轮播自动播放间隔（毫秒），0 表示不自动播放 */
