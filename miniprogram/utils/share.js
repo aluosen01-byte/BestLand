@@ -19,6 +19,7 @@ var SHARE_TIMELINE = 'https://senluoflow.com/video/cover/brand-cover.jpg'
 var IMG = {
   index: SHARE_BRAND,
   products: 'https://senluoflow.com/video/product/neiqiang-jiazhuang/cover.jpg',
+  calculator: SHARE_BRAND,
   qualification: 'https://senluoflow.com/video/cert/a1-1.jpg',
   franchise: SHARE_BRAND,
   policy: SHARE_BRAND,

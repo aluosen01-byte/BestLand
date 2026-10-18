@@ -11,6 +11,10 @@
     },
     {
       "action": "allow",
+      "page": "pages/calculator/calculator"
+    },
+    {
+      "action": "allow",
       "page": "pages/detail/detail"
     },
     {

@@ -76,7 +76,11 @@ Component({
     },
 
     onLoad(query) {
-      // 从产品页跳转过来时，预填「感兴趣的产品」
+      // 从用量计算页带过来的完整估算明细，直接填进需求说明
+      const msg = query && query.msg ? decodeURIComponent(query.msg) : ''
+      if (msg) this.setData({ 'form.message': msg })
+
+      // 从产品页 / 计算页跳转过来时，预填「感兴趣的产品」
       const interest = query && query.interest ? decodeURIComponent(query.interest) : ''
       if (!interest) return
 
@@ -87,7 +91,7 @@ Component({
       })
       if (matched >= 0) {
         this.setData({ interestIndex: matched })
-      } else {
+      } else if (!msg) {
         this.setData({ 'form.message': '我想咨询：' + interest + '\n' })
       }
     },

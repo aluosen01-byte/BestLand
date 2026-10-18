@@ -98,6 +98,10 @@ Component({
       wx.navigateTo({ url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id })
     },
 
+    goCalculator() {
+      wx.navigateTo({ url: '/pages/calculator/calculator' })
+    },
+
     goContact() {
       wx.reLaunch({ url: '/pages/contact/contact' })
     },

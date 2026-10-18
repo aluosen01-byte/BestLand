@@ -1,0 +1,150 @@
+<!--calculator.wxml 选型与用量计算-->
+<navigation-bar title="用量计算" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+
+<view class="page">
+  <view class="intro">
+    <text class="intro__title">算一算，你需要多少桶</text>
+    <text class="intro__desc">
+      选施工场景、填涂装面积，按产品理论涂布率估算用漆量与建议桶数。
+      结果可直接带入咨询，方便我们给你精确报价。
+    </text>
+  </view>
+
+  <!-- 场景 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">1. 选择施工场景</view>
+    </view>
+    <view class="scenes">
+      <view
+        class="scene {{scenario === item.key ? 'is-on' : ''}}"
+        wx:for="{{scenarios}}"
+        wx:key="key"
+        bindtap="pickScenario"
+        data-key="{{item.key}}"
+        hover-class="btn-hover"
+      >
+        <text class="scene__name">{{item.name}}</text>
+        <text class="scene__desc">{{item.desc}}</text>
+      </view>
+    </view>
+    <view class="scene-note" wx:if="{{current}}">
+      <text class="scene-note__text">{{current.note}}</text>
+    </view>
+  </view>
+
+  <!-- 面积 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">2. 涂装面积</view>
+    </view>
+    <view class="card">
+      <view class="field">
+        <text class="field__label">墙面面积</text>
+        <input
+          class="field__input"
+          type="digit"
+          value="{{area}}"
+          bindinput="onArea"
+          placeholder="填数字，例如 300"
+          placeholder-class="ph"
+        />
+        <text class="field__unit">㎡</text>
+      </view>
+      <view class="field field--last" wx:if="{{current.allowTopcoat}}">
+        <text class="field__label">加抗污罩面</text>
+        <view class="field__switch" bindtap="toggleTopcoat">
+          <view class="switch {{useTopcoat ? 'is-on' : ''}}">
+            <view class="switch__dot"></view>
+          </view>
+          <text class="field__switch-text">{{useTopcoat ? '需要' : '不需要'}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="hint">
+      <text class="hint__text">
+        面积怎么算：房间周长 × 层高 − 门窗面积。例：30㎡ 房间、层高 2.8m，约 84㎡。
+      </text>
+    </view>
+  </view>
+
+  <!-- 计算 -->
+  <view class="actions">
+    <view class="btn-calc" bindtap="calculate" hover-class="btn-hover">立即计算</view>
+  </view>
+
+  <!-- 结果 -->
+  <view class="section section--tight" wx:if="{{result}}">
+    <view class="section-head">
+      <view>
+        <view class="section-title">3. 估算结果</view>
+        <view class="section-sub">{{result.area}} ㎡ · {{result.scenarioName}}</view>
+      </view>
+    </view>
+
+    <view class="result">
+      <view class="result__row" wx:for="{{result.items}}" wx:key="label">
+        <view class="result__left">
+          <text class="result__label">{{item.label}}</text>
+          <text class="result__name">{{item.name}}</text>
+          <text class="result__detail">{{item.detail}}</text>
+        </view>
+        <view class="result__right">
+          <text class="result__buckets">{{item.buckets}}</text>
+          <text class="result__unit">桶</text>
+        </view>
+      </view>
+
+      <view class="result__total">
+        <text class="result__total-label">合计建议采购</text>
+        <view class="result__total-right">
+          <text class="result__total-num">{{result.totalBuckets}}</text>
+          <text class="result__total-unit">桶</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="disclaimer">
+      <text class="disclaimer__text">
+        以上为按理论涂布率估算的参考值。实际用量受基层吸水率、施工方式、
+        损耗与涂层厚度影响，通常会有 ±10% 浮动。最终以现场勘察与工程量确认为准。
+      </text>
+    </view>
+
+    <view class="btn-ask" bindtap="ask" hover-class="btn-hover">
+      按此方案咨询精确报价
+    </view>
+  </view>
+
+  <!-- 说明 -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view class="section-title">其他配套</view>
+    </view>
+    <view class="card">
+      <view class="row" bindtap="goSeries" data-id="wuji-digux" hover-class="card-hover">
+        <view class="row__text">
+          <text class="row__name">无机底固</text>
+          <text class="row__desc">基层加固，替代传统腻子粉</text>
+        </view>
+        <text class="row__arrow">›</text>
+      </view>
+      <view class="row" bindtap="goSeries" data-id="jiemianji" hover-class="card-hover">
+        <view class="row__text">
+          <text class="row__name">界面剂</text>
+          <text class="row__desc">旧墙翻新必备，增强粘结防空鼓</text>
+        </view>
+        <text class="row__arrow">›</text>
+      </view>
+      <view class="row row--last" bindtap="goSeries" data-id="qiangmianji" hover-class="card-hover">
+        <view class="row__text">
+          <text class="row__name">墙面剂</text>
+          <text class="row__desc">找平批刮，给面漆一个平整底子</text>
+        </view>
+        <text class="row__arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>

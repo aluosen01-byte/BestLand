@@ -47,6 +47,18 @@
     </view>
   </view>
 
+  <!-- ============ 用量计算入口 ============ -->
+  <view class="calc" bindtap="goCalculator" hover-class="card-hover">
+    <view class="calc__left">
+      <text class="calc__badge">工具</text>
+      <text class="calc__title">涂料用量计算器</text>
+      <text class="calc__desc">填面积即估算用漆量与建议桶数，可直接带入咨询报价</text>
+    </view>
+    <view class="calc__right">
+      <text class="calc__arrow">›</text>
+    </view>
+  </view>
+
   <!-- ============ 产品系列 ============ -->
   <view class="section">
     <view class="section-head">

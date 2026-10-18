@@ -106,6 +106,12 @@
     <view class="cta__btn" bindtap="goContact" hover-class="btn-hover">获取资料与报价</view>
   </view>
 
+  <!-- 用量计算入口 -->
+  <view class="calcbar" bindtap="goCalculator" hover-class="btn-hover">
+    <text class="calcbar__text">想知道这个系列要用多少桶？试试用量计算器</text>
+    <text class="calcbar__arrow">›</text>
+  </view>
+
   <!-- ============ 相关资质 ============ -->
   <view class="section section--tight">
     <view class="section-head">

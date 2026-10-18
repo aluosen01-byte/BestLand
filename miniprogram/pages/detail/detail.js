@@ -90,6 +90,10 @@ Component({
       })
     },
 
+    goCalculator() {
+      wx.navigateTo({ url: '/pages/calculator/calculator' })
+    },
+
     goQualification() {
       wx.navigateTo({ url: '/pages/qualification/qualification' })
     },

@@ -31,6 +31,12 @@
     </scroll-view>
   </view>
 
+  <!-- 用量计算入口 -->
+  <view class="calcbar" bindtap="goCalculator" hover-class="btn-hover">
+    <text class="calcbar__text">不确定要买多少桶？用「用量计算器」估一下</text>
+    <text class="calcbar__arrow">›</text>
+  </view>
+
   <!-- 结果统计 -->
   <view class="countbar" wx:if="{{list.length}}">
     <text class="countbar__text">共 {{list.length}} 个系列</text>

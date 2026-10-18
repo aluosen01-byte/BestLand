@@ -65,6 +65,10 @@ Component({
       wx.reLaunch({ url: '/pages/products/products' })
     },
 
+    goCalculator() {
+      wx.navigateTo({ url: '/pages/calculator/calculator' })
+    },
+
     goContact() {
       wx.reLaunch({ url: '/pages/contact/contact' })
     },
