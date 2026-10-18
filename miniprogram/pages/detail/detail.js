@@ -16,6 +16,8 @@ Component({
     images: [],
     certs: [],
     current: 0,
+    // series 为空时（没带 id / id 写错）不能什么都不渲染，否则整页白屏
+    notFound: false,
   },
 
   methods: {
@@ -39,8 +41,11 @@ Component({
     onLoad(query) {
       const id = (query && query.id) || ''
       const series = getSeries(id)
-      if (!series) return
-
+      if (!series) {
+        // 没有有效 id：给出引导页，避免整页空白
+        this.setData({ notFound: true })
+        return
+      }
       // 封面 + 产品图；封面缺失时 mkimg 会自动降级为占位块
       const images = [seriesCover(series.id)]
       for (let i = 1; i <= series.imageCount; i++) {

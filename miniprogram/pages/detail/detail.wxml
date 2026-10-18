@@ -136,6 +136,14 @@
   <view class="missing__btn" bindtap="goProducts" hover-class="btn-hover">返回产品中心</view>
 </view>
 
+<!-- 系列不存在（缺 id 或 id 错误）：给引导，不能白屏 -->
+<view class="nofound" wx:if="{{notFound}}">
+  <text class="nofound__title">没有找到这个产品系列</text>
+  <text class="nofound__desc">可能是链接已失效，或者该系列已经调整。你可以从产品列表重新进入。</text>
+  <view class="nofound__btn" bindtap="goProducts" hover-class="btn-hover">查看全部产品</view>
+  <view class="nofound__btn nofound__btn--ghost" bindtap="goContact" hover-class="btn-hover">联系我们</view>
+</view>
+
 <!-- ============ 底部操作栏 ============ -->
 <view class="actionbar" wx:if="{{series}}">
   <view class="actionbar__inner">

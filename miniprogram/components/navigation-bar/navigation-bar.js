@@ -1,4 +1,9 @@
-// navigation-bar.js —— 由 navigation-bar.ts 编译而来（构建产物）
+// navigation-bar.js 自定义导航栏
+//
+// 【重要】自定义导航栏在所有页面顶部使用，一旦 attached 抛错，
+// 页面顶部乃至整页都可能显示异常。因此所有系统信息读取都做了容错。
+const DEFAULT_NAV_BAR_HEIGHT = 44
+
 Component({
   options: {
     multipleSlots: true, // 在组件定义时的选项中启用多slot支持
@@ -51,26 +56,80 @@ Component({
   },
   data: {
     displayStyle: '',
+    ios: false,
+    innerPaddingRight: '',
+    leftWidth: '',
+    safeAreaTop: '',
   },
   lifetimes: {
     attached() {
       var that = this
-      var rect = wx.getMenuButtonBoundingClientRect()
-      wx.getSystemInfo({
-        success: function (res) {
-          var isAndroid = res.platform === 'android'
-          var isDevtools = res.platform === 'devtools'
-          that.setData({
+
+      // 胶囊按钮位置：可能返回 undefined（窗口未就绪）或 API 不存在
+      var rect = null
+      try {
+        rect =
+          typeof wx.getMenuButtonBoundingClientRect === 'function'
+            ? wx.getMenuButtonBoundingClientRect()
+            : null
+      } catch (e) {
+        rect = null
+      }
+
+      var apply = function (res) {
+        try {
+          res = res || {}
+          var windowWidth = typeof res.windowWidth === 'number' ? res.windowWidth : 375
+          var platform = res.platform || 'devtools'
+          var isAndroid = platform === 'android'
+          var isDevtools = platform === 'devtools'
+
+          var left = rect && typeof rect.left === 'number' ? rect.left : windowWidth - 96
+          var rightWidth = windowWidth - left
+          if (!(rightWidth > 0) || rightWidth > windowWidth) rightWidth = 96
+
+          var patch = {
             ios: !isAndroid,
-            innerPaddingRight: 'padding-right: ' + (res.windowWidth - rect.left) + 'px',
-            leftWidth: 'width: ' + (res.windowWidth - rect.left) + 'px',
-            safeAreaTop:
-              isDevtools || isAndroid
-                ? 'height: calc(var(--height) + ' + res.safeArea.top + 'px); padding-top: ' + res.safeArea.top + 'px'
-                : '',
-          })
-        },
-      })
+            innerPaddingRight: 'padding-right: ' + rightWidth + 'px',
+            leftWidth: 'width: ' + rightWidth + 'px',
+          }
+
+          // safeArea 在极少数环境下缺失，缺了就退化为状态栏高度
+          var safeTop =
+            res.safeArea && typeof res.safeArea.top === 'number'
+              ? res.safeArea.top
+              : typeof res.statusBarHeight === 'number'
+              ? res.statusBarHeight
+              : 20
+
+          patch.safeAreaTop =
+            isDevtools || isAndroid
+              ? 'height: calc(var(--height) + ' + safeTop + 'px); padding-top: ' + safeTop + 'px'
+              : ''
+
+          that.setData(patch)
+        } catch (e) {
+          console.error('[贝之然] 导航栏布局计算失败', e)
+        }
+      }
+
+      // 优先用同步接口（更可靠），失败再退回异步
+      var info = null
+      try {
+        if (typeof wx.getWindowInfo === 'function') info = wx.getWindowInfo()
+        if (!info && typeof wx.getSystemInfoSync === 'function') info = wx.getSystemInfoSync()
+      } catch (e) {
+        info = null
+      }
+      if (info) {
+        apply(info)
+        return
+      }
+      try {
+        wx.getSystemInfo({ success: apply, fail: function () { apply(null) } })
+      } catch (e) {
+        apply(null)
+      }
     },
   },
   methods: {
