@@ -624,6 +624,46 @@ shareTimeline('index', { title: '...' }) // 朋友圈：只能带 query，不能
 
 ## 十二、本次开发遇到的环境限制（需要你知道）
 
+### ⚠️ 白屏 / 「页面不存在」的排查经验（已解决，务必记住）
+
+删掉页面之后，开发者工具可能出现**白屏**，或者显示微信官方的
+「**页面不存在**」提示页。**通常不是代码问题，而是工具的编译缓存还留着旧页面。**
+
+原因：工具的编译缓存按项目哈希存放，删页面后缓存里仍有旧页面的编译产物，
+且模拟器可能还原上次停留的路由。旧路由在新版 `app.json` 里已不存在 → 404。
+
+排查顺序（实测有效）：
+
+1. **先看模拟器日志**，能直接看到加载了哪些页面、有没有报错：
+
+   ```
+   %LOCALAPPDATA%\微信开发者工具\User Data\<哈希>\WeappSimulator\
+     WeappFileSystem\<用户>\<AppID>\usr\miniprogramLog\log1
+   ```
+
+   正常应看到 `page pages/index/index onLoad → onShow → onReady → onRouteDone`。
+
+2. **清编译缓存**（关键步骤）。先完全关闭开发者工具，再删除：
+
+   ```
+   %LOCALAPPDATA%\微信开发者工具\User Data\<哈希>\WeappCache\WeappCompileCache\<项目哈希>\
+   ```
+
+   然后用 `cli open --project D:\projects\BestLand` 重新打开，工具会全量重新编译。
+
+3. **清掉工具里残留的旧路由引用**。全目录搜索已删路由，正常只应出现在
+   `WeappLocalData` 的**上传历史**里（`uploadInfo` 元数据，无害）。
+
+### 顺带加固的启动期容错
+
+白屏也可能是启动期 JS 抛错导致，已修复三处：
+
+| 位置 | 原问题 |
+|---|---|
+| `app.js` `measureSystem` | `wx.getMenuButtonBoundingClientRect()` 可能返回 undefined 或不存在，直接读 `.top` 会抛 TypeError |
+| `components/navigation-bar` | `rect.left`、`res.safeArea.top` 无保护，拿不到就抛错（该组件每个页面都用） |
+| `pages/detail` | 没有 `id` 或 `id` 无效时 `series` 为 null，整页 `wx:if` 不成立 → 全白。现改为显示「没有找到这个产品系列」+ 返回入口 |
+
 在你当前这台机器上，我遇到了两个硬限制，影响了交付方式：
 
 1. **命令行一开始完全不可用，后来恢复。**
