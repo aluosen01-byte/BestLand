@@ -45,6 +45,47 @@ App({
     console.error('[贝之然] 运行异常', err)
   },
 
+  /**
+   * 要打开的页面不存在时触发（分享卡片、扫码、最近使用、历史深链都会带页面路径）。
+   *
+   * 背景：视频中心 / 官网 / 播放页已按审核要求删除，但用户手机里可能还留着
+   * 指向这些旧路径的入口（上一次停留的页面、以前分享出去的卡片）。
+   * 不处理的话微信会显示官方「页面不存在」页，看起来像小程序坏了。
+   * 这里统一回首页，用户体验上是「自动跳回首页」而不是报错。
+   *
+   * 基础库 2.1.0+ 支持；更低的版本不会调用本方法，届时仍显示官方提示页。
+   */
+  onPageNotFound(res) {
+    var path = (res && res.path) || ''
+    console.warn('[贝之然] 页面不存在，自动回首页：' + path)
+
+    // 记录一下，便于排查是哪个旧入口被点了
+    try {
+      var miss = wx.getStorageSync('missPaths') || []
+      miss.unshift({ path: path, at: Date.now() })
+      wx.setStorageSync('missPaths', miss.slice(0, 20))
+    } catch (e) {
+      // 忽略
+    }
+
+    var goHome = function () {
+      wx.reLaunch({
+        url: '/pages/index/index',
+        fail: function () {
+          // reLaunch 失败再退一步用 redirectTo
+          wx.redirectTo({
+            url: '/pages/index/index',
+            fail: function () {
+              console.error('[贝之然] 回首页失败')
+            },
+          })
+        },
+      })
+    }
+
+    goHome()
+  },
+
   initCloud() {
     if (!APP_CONFIG.cloudEnv) return
     if (!wx.cloud) {
