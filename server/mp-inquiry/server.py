@@ -26,6 +26,7 @@
 import json
 import os
 import re
+import sys
 import threading
 import time
 import urllib.request
@@ -80,6 +81,54 @@ def rotate_if_needed():
         pass
 
 
+def build_text(rec):
+    """拼装通知正文"""
+    return (
+        '【贝之然小程序 · 新留言】\n'
+        '称呼：%s\n手机：%s\n'
+        '公司：%s\n城市：%s\n'
+        '类型：%s\n意向：%s\n内容：%s'
+    ) % (
+        rec.get('name', ''), rec.get('phone', ''),
+        rec.get('company') or '—', rec.get('city') or '—',
+        rec.get('type') or '—', rec.get('interest') or '—',
+        (rec.get('message') or '—')[:300],
+    )
+
+
+def send_webhook(url, text, timeout=6):
+    """
+    按 webhook 类型组装并发送，返回 (ok, detail)。
+    企业微信/钉钉是 msgtype=text；Server酱/PushPlus 是 title+desp。
+    """
+    if 'qyapi.weixin.qq.com' in url or 'oapi.dingtalk.com' in url:
+        payload = {'msgtype': 'text', 'text': {'content': text}}
+    elif 'sctapi.ftqq.com' in url or 'pushplus' in url:
+        payload = {'title': '贝之然小程序新留言', 'desp': text, 'content': text}
+    else:
+        payload = {'text': text, 'content': text, 'title': '新留言'}
+
+    body = json.dumps(payload, ensure_ascii=False).encode('utf-8')
+    req = urllib.request.Request(
+        url, data=body,
+        headers={'Content-Type': 'application/json; charset=utf-8'},
+        method='POST',
+    )
+    try:
+        resp = urllib.request.urlopen(req, timeout=timeout)
+        raw = resp.read().decode('utf-8', 'replace')
+        # 企业微信成功返回 {"errcode":0,"errmsg":"ok"}
+        try:
+            j = json.loads(raw)
+        except Exception:
+            j = None
+        if isinstance(j, dict) and j.get('errcode') not in (None, 0):
+            return False, 'errcode=%s errmsg=%s' % (j.get('errcode'), j.get('errmsg'))
+        return True, raw[:300]
+    except Exception as e:
+        return False, repr(e)
+
+
 def notify(rec):
     """可选通知：notify.json 里配了 webhook 才发，失败不影响留言保存。"""
     try:
@@ -89,32 +138,13 @@ def notify(rec):
             conf = json.load(f)
         url = (conf or {}).get('webhook') or ''
         if not url.startswith('https://'):
+            print('[notify] skipped: notify.json 未配置有效 https webhook', flush=True)
             return
-        text = (
-            '【贝之然小程序 · 新留言】\n'
-            '称呼：%s\n手机：%s\n'
-            '公司：%s\n城市：%s\n'
-            '类型：%s\n意向：%s\n内容：%s'
-        ) % (
-            rec.get('name', ''), rec.get('phone', ''),
-            rec.get('company') or '—', rec.get('city') or '—',
-            rec.get('type') or '—', rec.get('interest') or '—',
-            (rec.get('message') or '—')[:300],
-        )
-        # 兼容企业微信 / 钉钉 / Server酱 三种常见格式
-        if 'qyapi.weixin.qq.com' in url or 'oapi.dingtalk.com' in url:
-            payload = {'msgtype': 'text', 'text': {'content': text}}
-        elif 'sctapi.ftqq.com' in url or 'pushplus' in url:
-            payload = {'title': '贝之然小程序新留言', 'desp': text, 'content': text}
+        ok, detail = send_webhook(url, build_text(rec))
+        if ok:
+            print('[notify] ok: %s' % detail, flush=True)
         else:
-            payload = {'text': text, 'content': text, 'title': '新留言'}
-        body = json.dumps(payload, ensure_ascii=False).encode('utf-8')
-        req = urllib.request.Request(
-            url, data=body,
-            headers={'Content-Type': 'application/json; charset=utf-8'},
-            method='POST',
-        )
-        urllib.request.urlopen(req, timeout=5).read()
+            print('[notify] failed: %s' % detail, flush=True)
     except Exception as e:  # 通知失败绝不影响主流程
         print('[notify] failed: %r' % (e,), flush=True)
 
@@ -212,7 +242,64 @@ class Handler(BaseHTTPRequestHandler):
         self._send(200, {'ok': True})
 
 
+def test_notify():
+    """自测：按 notify.json 发一条测试通知，打印明确结果。"""
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+    print('--- 通知自测 ---')
+    if not os.path.exists(NOTIFY_CONF):
+        print('[FAIL] 未找到 %s' % NOTIFY_CONF)
+        print('  请先创建，内容形如：')
+        print('  { "webhook": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxx" }')
+        return 1
+    try:
+        with open(NOTIFY_CONF, encoding='utf-8') as f:
+            conf = json.load(f)
+    except Exception as e:
+        print('[FAIL] notify.json 不是合法 JSON：%r' % (e,))
+        return 1
+
+    url = (conf or {}).get('webhook') or ''
+    if not url:
+        print('[FAIL] notify.json 里没有 webhook 字段')
+        return 1
+    if not url.startswith('https://'):
+        print('[FAIL] webhook 必须以 https:// 开头，当前：%s' % url)
+        return 1
+
+    # 只显示域名和 key 的末 4 位，避免把完整地址打到日志里
+    shown = url.split('?')[0]
+    print('目标: %s   (key 末4位: %s)' % (shown, url[-4:]))
+
+    sample = {
+        'name': '通知自测',
+        'phone': '13600000000',
+        'company': '东莞市贝歌科技有限公司',
+        'city': '东莞',
+        'type': '工程采购',
+        'interest': '家装内墙系列',
+        'message': '这是一条自测消息，收到即表示机器人通知已生效。',
+    }
+    ok, detail = send_webhook(url, build_text(sample))
+    if ok:
+        print('[OK] 发送成功')
+        print('  返回: %s' % detail)
+        return 0
+    print('[FAIL] 发送失败')
+    print('  原因: %s' % detail)
+    print('  常见原因：')
+    print('   · key 写错或机器人已被移出群')
+    print('   · 服务器访问不了 qyapi.weixin.qq.com（出网受限）')
+    print('   · 企业微信要求该 IP 在白名单里')
+    return 1
+
+
 def main():
+    if '--test-notify' in sys.argv:
+        sys.exit(test_notify())
+
     os.makedirs(STORE_DIR, exist_ok=True)
     srv = ThreadingHTTPServer(('127.0.0.1', 5099), Handler)
     srv.daemon_threads = True
