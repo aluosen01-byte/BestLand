@@ -142,7 +142,7 @@
 
     <view class="notice" wx:if="{{showLocalNotice}}">
       <text class="notice__text">
-        当前未启用云端接收，留言会保存在你的手机里。你可以拨打 {{site.phoneText}} 直接联系我们，或在「我的留言」中查看已提交内容。
+        当前网络环境下留言会先保存在你的手机里，恢复网络后可在「我的留言」中重新提交。
       </text>
     </view>
   </view>

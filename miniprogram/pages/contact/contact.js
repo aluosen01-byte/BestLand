@@ -62,7 +62,9 @@ Component({
     },
     agreed: false,
     submitting: false,
-    showLocalNotice: !APP_CONFIG.cloudEnv,
+    // 只有「既没配服务器接口、也没配云开发」时才提示留言仅存本机。
+    // 接口已上线（config.inquiryApi），正常情况下不再显示这句，避免误导。
+    showLocalNotice: !APP_CONFIG.inquiryApi && !APP_CONFIG.cloudEnv,
     faqs: FAQS,
   },
 

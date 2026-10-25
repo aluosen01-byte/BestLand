@@ -71,6 +71,58 @@ export function markSynced(id: string): void {
 }
 
 /**
+ * 上报到自有服务器接口（当前使用）。
+ * 接口：POST https://senluoflow.com/mp/inquiry
+ * 服务端写入 /opt/mp-inquiry/inquiries.jsonl，不提供读取接口。
+ * 返回 true 表示服务端已确认收到。
+ */
+export function postInquiry(item: Inquiry, apiUrl: string): Promise<boolean> {
+  return new Promise((resolve) => {
+    if (!apiUrl) {
+      resolve(false)
+      return
+    }
+    wx.request({
+      url: apiUrl,
+      method: 'POST',
+      timeout: 8000,
+      header: { 'content-type': 'application/json' },
+      data: {
+        id: item.id,
+        name: item.name,
+        phone: item.phone,
+        company: item.company,
+        city: item.city,
+        type: item.type,
+        interest: item.interest,
+        message: item.message,
+      },
+      success: (res) => resolve(!!res && res.statusCode >= 200 && res.statusCode < 300),
+      fail: () => resolve(false),
+    })
+  })
+}
+
+/** 还没成功上报的留言 */
+export function pendingInquiries(): Inquiry[] {
+  return listInquiries().filter((i) => !i.synced)
+}
+
+/** 重试上报所有未同步留言，返回成功条数 */
+export async function retryPending(apiUrl: string): Promise<number> {
+  const pending = pendingInquiries()
+  let done = 0
+  for (const item of pending) {
+    const ok = await postInquiry(item, apiUrl)
+    if (ok) {
+      markSynced(item.id)
+      done++
+    }
+  }
+  return done
+}
+
+/**
  * 上报到微信云开发（可选）。
  * 启用步骤见 README「接入云开发」一节：
  *   1. 在 app.ts 中把 cloudEnv 设为你的云环境 id；

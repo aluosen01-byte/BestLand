@@ -7,10 +7,14 @@
 export interface AppConfig {
   /**
    * 微信云开发环境 id。
-   * 留空 = 不启用云开发，留言只保存在用户本机（见 utils/inquiry.ts）。
-   * 填入后即可把留言上报到云数据库，例如 'beige-prod-1a2b3c'。
+   * 留空 = 不启用云开发（本项目改用自有服务器接口接收留言，见 inquiryApi）。
    */
   cloudEnv: string
+  /**
+   * 留言接收接口。提交后会 POST 到这里，企业后台即可收到。
+   * 留空 = 只保存在用户本机（不推荐，会被审核判为无闭环）。
+   */
+  inquiryApi: string
   /**
    * 是否需要用户授权后才可提交留言。
    * false = 任何人都能提交（转化率更高，推荐）。
@@ -24,10 +28,11 @@ export interface AppConfig {
 
 export const APP_CONFIG: AppConfig = {
   cloudEnv: '',
+  inquiryApi: 'https://senluoflow.com/mp/inquiry',
   requireLogin: false,
   bannerInterval: 4000,
   enableLongPressSave: true,
 }
 
 /** 缺图时的占位图 */
-export const PLACEHOLDER_IMAGE = '/images/placeholder.png'
+export const PLACEHOLDER_IMAGE = '/images/placeholder.svg'
