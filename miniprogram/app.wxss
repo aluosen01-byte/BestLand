@@ -254,7 +254,7 @@ button::after {
 .part__desc {
   position: relative;
   margin-top: 20rpx;
-  max-width: 74%;
+  max-width: 70%;
   font-size: 26rpx;
   color: rgba(244, 241, 234, 0.88);
   line-height: 1.8;
@@ -315,25 +315,33 @@ button::after {
 /* 橙色对角切角：全册母题，放在相对定位容器内绝对定位 */
 .chamfer {
   position: absolute;
+  top: 0;
+  right: 0;
   pointer-events: none;
-  background: #F0A22E;
+  /* 用渐变切出对角三角，避免 clip-path 兼容性与旋转方块越界盖字 */
+  background: linear-gradient(225deg, #F0A22E 50%, rgba(240, 162, 46, 0) 50%);
 }
 
-/* 篇章页 / 首屏右上角的大切角 */
+/* 首屏右上角小切角（不压文字） */
 .chamfer--tr {
-  top: -180rpx;
-  right: -160rpx;
-  width: 560rpx;
-  height: 560rpx;
-  transform: rotate(24deg);
+  width: 240rpx;
+  height: 240rpx;
+}
+
+/* 篇章页右上角大切角 */
+.chamfer--part {
+  width: 320rpx;
+  height: 320rpx;
 }
 
 /* 小节标题左侧的短橙条 */
 .chamfer--mark {
+  position: absolute;
+  top: 8rpx;
+  left: 0;
   width: 8rpx;
   height: 40rpx;
   background: #F0A22E;
-  border-radius: 0;
 }
 
 /* 深色页脚带（品牌 + 页码） */

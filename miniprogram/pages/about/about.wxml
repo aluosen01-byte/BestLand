@@ -169,7 +169,7 @@
 
   <!-- 篇章分隔（宣传册 PART 06）-->
   <view class="part">
-    <view class="chamfer chamfer--tr"></view>
+    <view class="chamfer chamfer--part"></view>
     <text class="part__no">PART 06</text>
     <text class="part__title">品牌推广矩阵</text>
     <text class="part__en">BRAND &amp; PROMOTION</text>
