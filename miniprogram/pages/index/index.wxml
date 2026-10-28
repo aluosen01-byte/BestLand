@@ -51,15 +51,8 @@
     </view>
   </view>
 
-  <!-- ============ 快捷入口：选品 / 寄样 / 关于 ============ -->
-  <view class="section section--tight">
-    <view class="section-head">
-      <view>
-        <text class="kicker">Quick access</text>
-        <view class="section-title">选品与寄样</view>
-      </view>
-    </view>
-
+  <!-- ============ 快捷入口：选品 / 寄样 / 关于（与上方数据条同一套卡片版式）============ -->
+  <view class="quickwrap">
     <view class="quick">
       <view
         class="quick__cell"
@@ -69,14 +62,9 @@
         data-key="{{item.key}}"
         hover-class="card-hover"
       >
-        <text class="quick__no">{{item.no}}</text>
+        <image class="quick__icon" src="{{item.icon}}" mode="aspectFit" />
         <text class="quick__text">{{item.text}}</text>
-        <text class="quick__en">{{item.en}}</text>
       </view>
-    </view>
-
-    <view class="strip">
-      <text class="strip__text">{{sampleNote}}</text>
     </view>
   </view>
 

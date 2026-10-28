@@ -133,13 +133,13 @@ var PRODUCTION = [
 
 /**
  * 首页快捷入口（对应「选品助手 / 免费寄样 / 关于贝之然」）
- * key 决定跳转目标，见 index.js goQuick
+ * key 决定跳转目标，见 index.js goQuick；icon 为本地线性图标（PNG，避免部分安卓 SVG 渲染问题）
  */
 var QUICK = [
-  { no: '01', key: 'products', text: '全部产品', en: 'Products' },
-  { no: '02', key: 'calculator', text: '选品助手', en: 'Selector' },
-  { no: '03', key: 'sample', text: '免费寄样', en: 'Free sample' },
-  { no: '04', key: 'about', text: '关于贝之然', en: 'About' },
+  { no: '01', key: 'products', text: '全部产品', en: 'Products', icon: '/images/quick/grid.png' },
+  { no: '02', key: 'calculator', text: '选品助手', en: 'Selector', icon: '/images/quick/selector.png' },
+  { no: '03', key: 'sample', text: '免费寄样', en: 'Free sample', icon: '/images/quick/sample.png' },
+  { no: '04', key: 'about', text: '关于贝之然', en: 'About', icon: '/images/quick/about.png' },
 ]
 
 /** 寄样说明（首页免费寄样入口下方） */
