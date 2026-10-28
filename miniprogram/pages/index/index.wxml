@@ -14,13 +14,7 @@
     <text class="hero__kicker">BEST LAND · {{site.deckYear}} 宣传简介</text>
 
     <view class="hero__brand">
-      <view class="hero__mark">
-        <text class="hero__mark-text">贝</text>
-      </view>
-      <view class="hero__brand-text">
-        <text class="hero__brand-name">{{site.brand}}</text>
-        <text class="hero__brand-tag">BEST LAND</text>
-      </view>
+      <image class="hero__logo" src="/images/brand/logo.png" mode="aspectFit" />
     </view>
 
     <text class="hero__motto">{{site.motto}}</text>
