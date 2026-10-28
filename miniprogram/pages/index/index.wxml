@@ -38,30 +38,16 @@
     </view>
   </view>
 
-  <!-- ============ 厂房与产量 ============ -->
-  <view class="section section--tight">
-    <view class="section-head">
-      <view>
-        <text class="kicker">Production capacity</text>
-        <view class="section-title">厂房与产量</view>
-      </view>
-    </view>
-
+  <!-- ============ 厂房与产量（排版同永耐：叠在首屏下沿的单行数据条）============ -->
+  <view class="statwrap">
     <view class="stats">
       <view class="stat" wx:for="{{production}}" wx:key="label">
         <view class="stat__value">
           <text class="stat__num">{{item.value}}</text>
           <text class="stat__unit">{{item.unit}}</text>
         </view>
-        <text class="stat__label">{{item.label}}</text>
-        <text class="stat__en">{{item.en}}</text>
+        <view class="stat__label">{{item.label}}</view>
       </view>
-    </view>
-
-    <view class="strip" wx:if="{{productionPending}}">
-      <text class="strip__text">
-        厂房面积、设备数量、年产量与日产量待确认后填入，当前为占位显示。
-      </text>
     </view>
   </view>
 
