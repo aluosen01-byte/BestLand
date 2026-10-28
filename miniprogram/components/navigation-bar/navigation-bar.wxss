@@ -8,9 +8,19 @@
 }
 
 .weui-navigation-bar {
+  /* 随页面上滑时固定在顶部 */
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
   overflow: hidden;
   color: var(--weui-FG-0);
   flex: none;
+}
+
+/* 背景不透明时，给导航栏一条分隔线，内容上滑时不至于糊在一起 */
+.weui-navigation-bar__inner.is-solid {
+  box-shadow: 0 1rpx 0 0 #D8D2C6;
 }
 
 .weui-navigation-bar__inner {

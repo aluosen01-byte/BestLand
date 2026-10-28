@@ -1,6 +1,6 @@
 <!--index.wxml 首页-->
 <navigation-bar
-  title="{{showNavTitle ? site.brand : ''}}"
+  title="{{site.brand}}涂料"
   back="{{false}}"
   color="#1D2226"
   background="{{scrolled ? '#FFFFFF' : 'transparent'}}"
