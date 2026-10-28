@@ -633,3 +633,111 @@
   font-size: 20rpx;
   color: #8A9298;
 }
+
+/* ============ 厂房与产量 ============ */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  background: #FFFFFF;
+  border: 1rpx solid #D8D2C6;
+}
+
+.stat {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 28rpx 24rpx;
+  border-bottom: 1rpx solid #D8D2C6;
+}
+
+.stat:nth-child(odd) {
+  border-right: 1rpx solid #D8D2C6;
+}
+
+.stat:nth-last-child(1),
+.stat:nth-last-child(2) {
+  border-bottom: none;
+}
+
+.stat__value {
+  display: flex;
+  align-items: baseline;
+}
+
+.stat__num {
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1F3A44;
+  line-height: 1;
+}
+
+.stat__unit {
+  margin-left: 6rpx;
+  font-size: 22rpx;
+  color: #5C666B;
+}
+
+.stat__label {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #1D2226;
+}
+
+.stat__en {
+  display: block;
+  margin-top: 2rpx;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 18rpx;
+  letter-spacing: 1rpx;
+  color: #8A9298;
+}
+
+/* ============ 快捷入口 ============ */
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  background: #FFFFFF;
+  border: 1rpx solid #D8D2C6;
+}
+
+.quick__cell {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 26rpx 24rpx;
+  border-bottom: 1rpx solid #D8D2C6;
+  display: flex;
+  flex-direction: column;
+}
+
+.quick__cell:nth-child(odd) {
+  border-right: 1rpx solid #D8D2C6;
+}
+
+.quick__cell:nth-last-child(1),
+.quick__cell:nth-last-child(2) {
+  border-bottom: none;
+}
+
+.quick__no {
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 20rpx;
+  letter-spacing: 1rpx;
+  color: #F0A22E;
+}
+
+.quick__text {
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1F3A44;
+}
+
+.quick__en {
+  margin-top: 4rpx;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 18rpx;
+  letter-spacing: 1rpx;
+  color: #8A9298;
+}

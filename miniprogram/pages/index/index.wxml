@@ -38,6 +38,62 @@
     </view>
   </view>
 
+  <!-- ============ 厂房与产量 ============ -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <text class="kicker">Production capacity</text>
+        <view class="section-title">厂房与产量</view>
+      </view>
+    </view>
+
+    <view class="stats">
+      <view class="stat" wx:for="{{production}}" wx:key="label">
+        <view class="stat__value">
+          <text class="stat__num">{{item.value}}</text>
+          <text class="stat__unit">{{item.unit}}</text>
+        </view>
+        <text class="stat__label">{{item.label}}</text>
+        <text class="stat__en">{{item.en}}</text>
+      </view>
+    </view>
+
+    <view class="strip" wx:if="{{productionPending}}">
+      <text class="strip__text">
+        厂房面积、设备数量、年产量与日产量待确认后填入，当前为占位显示。
+      </text>
+    </view>
+  </view>
+
+  <!-- ============ 快捷入口：选品 / 寄样 / 关于 ============ -->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <text class="kicker">Quick access</text>
+        <view class="section-title">选品与寄样</view>
+      </view>
+    </view>
+
+    <view class="quick">
+      <view
+        class="quick__cell"
+        wx:for="{{quick}}"
+        wx:key="key"
+        bindtap="goQuick"
+        data-key="{{item.key}}"
+        hover-class="card-hover"
+      >
+        <text class="quick__no">{{item.no}}</text>
+        <text class="quick__text">{{item.text}}</text>
+        <text class="quick__en">{{item.en}}</text>
+      </view>
+    </view>
+
+    <view class="strip">
+      <text class="strip__text">{{sampleNote}}</text>
+    </view>
+  </view>
+
   <!-- ============ 产品六大优势（宣传册第 4 页）============ -->
   <view class="section section--tight">
     <view class="section-head">

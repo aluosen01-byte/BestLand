@@ -3,7 +3,14 @@
 // 说明：本小程序定位为「品牌与产品资料库 + 在线咨询」，所有核心内容
 // 都在小程序内完成浏览（产品目录、技术参数、资质原件、政策依据、招商政策），
 // 不依赖跳转外部渠道，避免被判为「纯导流小程序」。
-const { SITE, FEATURES, SCENES } = require('../../data/site')
+const {
+  SITE,
+  FEATURES,
+  SCENES,
+  PRODUCTION,
+  QUICK,
+  SAMPLE_NOTE,
+} = require('../../data/site')
 const { SERIES_LIST, CERTS, BRAND_VALUES, seriesCover } = require('../../data/catalog')
 const { shareApp, shareTimeline } = require('../../utils/share')
 
@@ -13,6 +20,13 @@ Component({
     features: FEATURES,
     scenes: SCENES,
     values: BRAND_VALUES,
+    production: PRODUCTION,
+    // 产能数值未确认时，页面上给出提示，避免把占位当真实数据
+    productionPending: PRODUCTION.some(function (p) {
+      return p.pending
+    }),
+    quick: QUICK,
+    sampleNote: SAMPLE_NOTE,
     series: [],
     certs: [],
     scrolled: false,
@@ -71,6 +85,36 @@ Component({
 
     goContact() {
       wx.reLaunch({ url: '/pages/contact/contact' })
+    },
+
+    /**
+     * 首页快捷入口
+     * products → 产品中心（主导航页，用 reLaunch）
+     * calculator → 选品助手（用量计算页按场景选型）
+     * sample → 咨询页，预填寄样申请
+     * about → 关于贝之然
+     */
+    goQuick(e) {
+      var key = e.currentTarget.dataset.key
+      if (key === 'products') {
+        wx.reLaunch({ url: '/pages/products/products' })
+        return
+      }
+      if (key === 'calculator') {
+        wx.navigateTo({ url: '/pages/calculator/calculator' })
+        return
+      }
+      if (key === 'sample') {
+        wx.navigateTo({
+          url:
+            '/pages/contact/contact?interest=' + encodeURIComponent('免费寄样') +
+            '&msg=' + encodeURIComponent('我想申请免费寄样：\n基材/场景：\n面积或用量：\n收件信息：'),
+        })
+        return
+      }
+      if (key === 'about') {
+        wx.navigateTo({ url: '/pages/about/about' })
+      }
     },
 
     goDetail(e) {

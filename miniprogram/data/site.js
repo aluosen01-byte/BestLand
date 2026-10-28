@@ -117,6 +117,34 @@ var CASES_OUTER = [
 /** 内墙应用案例（宣传册第 17 页） */
 var CASES_INNER = ['广州市越秀区广州宾馆（客房与走廊内墙翻新，边施工边营业）']
 
+/**
+ * 厂房与产量（首页数据条）
+ *
+ * ⚠️ 宣传册与现有素材里都没有产能数据，以下四项为占位：
+ *    value 用 '—'、pending 为 true，页面会显示「待确认」提示。
+ *    拿到真实数字后，把 value 填上、去掉 pending 即可，页面提示会自动消失。
+ */
+var PRODUCTION = [
+  { value: '—', unit: '㎡', label: '自有厂房', en: 'Own plant', pending: true },
+  { value: '—', unit: '台', label: '生产设备', en: 'Equipment', pending: true },
+  { value: '—', unit: '吨', label: '年产量', en: 'Annual output', pending: true },
+  { value: '—', unit: '吨', label: '日产量', en: 'Daily output', pending: true },
+]
+
+/**
+ * 首页快捷入口（对应「选品助手 / 免费寄样 / 关于贝之然」）
+ * key 决定跳转目标，见 index.js goQuick
+ */
+var QUICK = [
+  { no: '01', key: 'products', text: '全部产品', en: 'Products' },
+  { no: '02', key: 'calculator', text: '选品助手', en: 'Selector' },
+  { no: '03', key: 'sample', text: '免费寄样', en: 'Free sample' },
+  { no: '04', key: 'about', text: '关于贝之然', en: 'About' },
+]
+
+/** 寄样说明（首页免费寄样入口下方） */
+var SAMPLE_NOTE = '提交寄样申请后，由业务人员确认适配型号与寄送方式；样品与试刷不收费。'
+
 /** 外墙标准做法（宣传册第 11 页「同一面墙的三个阶段」） */
 var OUTER_STEPS = [
   { no: '01', title: '原始水泥砂浆墙面', desc: '抗裂防水砂浆找平，不刮腻子、不刷底漆' },
@@ -177,4 +205,7 @@ module.exports = {
   CASES_INNER: CASES_INNER,
   OUTER_STEPS: OUTER_STEPS,
   PROMOTION: PROMOTION,
+  PRODUCTION: PRODUCTION,
+  QUICK: QUICK,
+  SAMPLE_NOTE: SAMPLE_NOTE,
 }
