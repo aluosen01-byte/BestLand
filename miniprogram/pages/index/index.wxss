@@ -180,31 +180,35 @@
 .features {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -10rpx;
+  margin: 0 -8rpx;
 }
 
-/* 宣传册第 4 页：橙色编号 + 白卡片，两列 */
+/* 六大优势：每张卡片独立底色（底色来自 data/site.js 的 bg 字段） */
 .feature {
-  width: 50%;
-  padding: 0 10rpx 20rpx;
+  width: calc(50% - 16rpx);
+  margin: 0 8rpx 16rpx;
+  padding: 26rpx 24rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx;
   display: flex;
   flex-direction: column;
 }
 
 .feature__no {
   font-family: Arial, "Helvetica Neue", sans-serif;
-  font-size: 42rpx;
-  font-weight: 700;
-  color: #F0A22E;
-  line-height: 1;
+  font-size: 24rpx;
+  font-weight: 800;
+  letter-spacing: 1rpx;
+  color: #D98A1F;
+  line-height: 1.2;
 }
 
 .feature__title {
-  margin-top: 14rpx;
-  font-size: 29rpx;
+  margin-top: 10rpx;
+  font-size: 28rpx;
   font-weight: 700;
   color: #1F3A44;
-  letter-spacing: 0.5rpx;
+  line-height: 1.4;
 }
 
 .feature__desc {

@@ -77,7 +77,7 @@
       </view>
     </view>
     <view class="features">
-      <view class="feature" wx:for="{{features}}" wx:key="no">
+      <view class="feature" wx:for="{{features}}" wx:key="no" style="background: {{item.bg}};">
         <text class="feature__no">{{item.no}}</text>
         <text class="feature__title">{{item.title}}</text>
         <text class="feature__desc">{{item.desc}}</text>
