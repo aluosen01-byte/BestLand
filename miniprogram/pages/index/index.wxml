@@ -9,7 +9,12 @@
 <view class="page">
   <!-- ============ 品牌首屏 ============ -->
   <view class="hero">
-    <view class="chamfer chamfer--tr"></view>
+    <!-- 封面斜线：米色细线 / 深墨青条 / 橙色块，三条平行斜切 -->
+    <view class="hero__deco">
+      <view class="hero__deco-line"></view>
+      <view class="hero__deco-band"></view>
+      <view class="hero__deco-block"></view>
+    </view>
 
     <text class="hero__kicker">BEST LAND · {{site.deckYear}} 宣传简介</text>
 

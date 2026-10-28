@@ -14,6 +14,48 @@
   overflow: hidden;
 }
 
+/* ---------- 封面斜线（v47 封面构图）----------
+   一个斜切容器内放三条竖条，天然平行；
+   比旋转方块更可控，不会溢出盖住文字。
+   倾斜 5deg，容器占右侧 30%，文字区限制在 62% */
+.hero__deco {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+  transform: skewX(-5deg);
+  transform-origin: right center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero__deco-line,
+.hero__deco-band,
+.hero__deco-block {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.hero__deco-line {
+  left: 0;
+  width: 8rpx;
+  background: #F4F1EA;
+}
+
+.hero__deco-band {
+  left: 24rpx;
+  width: 72rpx;
+  background: #1F3A44;
+}
+
+.hero__deco-block {
+  left: 110rpx;
+  right: 0;
+  background: #F0A22E;
+}
+
 .hero__brand {
   position: relative;
   display: flex;
@@ -32,6 +74,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 32rpx;
+  max-width: 64%;
 }
 
 .hero__tag {
@@ -50,6 +93,7 @@
   position: relative;
   display: flex;
   margin-top: 48rpx;
+  max-width: 64%;
 }
 
 .hero__btn {
