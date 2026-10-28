@@ -120,15 +120,15 @@ var CASES_INNER = ['广州市越秀区广州宾馆（客房与走廊内墙翻新
 /**
  * 厂房与产量（首页数据条）
  *
- * ⚠️ 宣传册与现有素材里都没有产能数据，以下四项为占位：
- *    value 用 '—'、pending 为 true，页面会显示「待确认」提示。
- *    拿到真实数字后，把 value 填上、去掉 pending 即可，页面提示会自动消失。
+ * 数值与「永耐」小程序首页保持一致（同一自有厂房与产线口径）：
+ *   自有厂房 4,000 ㎡ / 生产设备 10 台+ / 年产量 10,000 吨+ / 日产量 30 吨+
+ * pending 为 false 时页面不显示占位提示。
  */
 var PRODUCTION = [
-  { value: '—', unit: '㎡', label: '自有厂房', en: 'Own plant', pending: true },
-  { value: '—', unit: '台', label: '生产设备', en: 'Equipment', pending: true },
-  { value: '—', unit: '吨', label: '年产量', en: 'Annual output', pending: true },
-  { value: '—', unit: '吨', label: '日产量', en: 'Daily output', pending: true },
+  { value: '4,000', unit: '㎡', label: '自有厂房', en: 'Own plant' },
+  { value: '10', unit: '台+', label: '生产设备', en: 'Equipment' },
+  { value: '10,000', unit: '吨+', label: '年产量', en: 'Annual output' },
+  { value: '30', unit: '吨+', label: '日产量', en: 'Daily output' },
 ]
 
 /**
