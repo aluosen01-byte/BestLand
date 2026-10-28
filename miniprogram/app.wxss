@@ -381,3 +381,39 @@ button::after {
   letter-spacing: 1rpx;
   line-height: 1.25;
 }
+
+
+/* ============================================================
+   模块标题：橙色短竖条 + 中文标题 + 右侧英文（参考永耐 sec-bar）
+   ============================================================ */
+
+/* 标题前的橙色短竖条（8×32rpx，与永耐一致） */
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 8rpx;
+  height: 36rpx;
+  border-radius: 4rpx;
+  background: #F0A22E;
+  margin-right: 16rpx;
+  vertical-align: middle;
+  transform: translateY(-2rpx);
+}
+
+/* 标题行：中文标题 + 右侧英文小标 */
+.section-title-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+/* 英文小标（永耐 .sec-en：18rpx / 600 / #B3A98F / 字距 2rpx / 大写） */
+.section-en {
+  margin-left: 14rpx;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 18rpx;
+  font-weight: 600;
+  color: #B3A98F;
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+}

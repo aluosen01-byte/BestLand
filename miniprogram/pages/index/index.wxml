@@ -71,8 +71,10 @@
   <view class="section section--tight">
     <view class="section-head">
       <view>
-        <text class="kicker">Product advantages</text>
-        <view class="section-title">产品六大优势</view>
+        <view class="section-title-row">
+          <view class="section-title">产品六大优势</view>
+          <text class="section-en">Product advantages</text>
+        </view>
       </view>
     </view>
     <view class="features">

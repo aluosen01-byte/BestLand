@@ -120,8 +120,10 @@
   <view class="section section--tight">
     <view class="section-head">
       <view>
-        <text class="kicker">Brand identity</text>
-        <view class="section-title">品牌标识</view>
+        <view class="section-title-row">
+          <view class="section-title">品牌标识</view>
+          <text class="section-en">Brand identity</text>
+        </view>
       </view>
     </view>
     <view class="card prose">
@@ -150,8 +152,10 @@
   <view class="section section--tight">
     <view class="section-head">
       <view>
-        <text class="kicker">Application cases</text>
-        <view class="section-title">应用案例</view>
+        <view class="section-title-row">
+          <view class="section-title">应用案例</view>
+          <text class="section-en">Application cases</text>
+        </view>
         <view class="section-sub">以下均为现场实拍，未经效果图修饰</view>
       </view>
     </view>
@@ -180,8 +184,10 @@
   <view class="section section--tight">
     <view class="section-head">
       <view>
-        <text class="kicker">Promotion matrix</text>
-        <view class="section-title">品牌推广矩阵</view>
+        <view class="section-title-row">
+          <view class="section-title">品牌推广矩阵</view>
+          <text class="section-en">Promotion matrix</text>
+        </view>
         <view class="section-sub">账号：{{promotion.account}}</view>
       </view>
     </view>
