@@ -18,14 +18,14 @@
 /* ---------- 封面斜线（v47 封面构图）----------
    一个斜切容器内放三条竖条，天然平行；
    比旋转方块更可控，不会溢出盖住文字。
-   倾斜 5deg，容器占右侧 30%，文字区限制在 62% */
+   倾斜 +5deg：上端偏左、下端偏右（右下倾斜） */
 .hero__deco {
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   width: 30%;
-  transform: skewX(-5deg);
+  transform: skewX(5deg);
   transform-origin: right center;
   pointer-events: none;
   z-index: 0;
@@ -77,7 +77,6 @@
   color: #F0A22E;
   letter-spacing: 2rpx;
   line-height: 1.25;
-  max-width: 64%;
 }
 
 .hero__motto-en {
@@ -88,7 +87,6 @@
   font-size: 20rpx;
   letter-spacing: 3rpx;
   color: #5C666B;
-  max-width: 64%;
 }
 
 .hero__line {
@@ -98,7 +96,6 @@
   font-size: 24rpx;
   color: #1D2226;
   line-height: 1.7;
-  max-width: 64%;
 }
 .hero__brand {
   position: relative;
@@ -118,7 +115,6 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 28rpx;
-  max-width: 64%;
 }
 
 .hero__tag {
@@ -137,7 +133,6 @@
   position: relative;
   display: flex;
   margin-top: 36rpx;
-  max-width: 64%;
 }
 
 .hero__btn {
