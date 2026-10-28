@@ -9,7 +9,7 @@
 
 /* 形状：默认直角，由 shape 决定 */
 .mkimg--rounded {
-  border-radius: 20rpx;
+  border-radius: 0;
 }
 
 .mkimg--circle {

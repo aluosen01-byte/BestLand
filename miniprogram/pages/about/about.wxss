@@ -57,7 +57,7 @@
   display: flex;
   align-items: flex-start;
   padding: 28rpx 28rpx;
-  border-bottom: 1rpx solid #E2DDD3;
+  border-bottom: 1rpx solid #D8D2C6;
 }
 
 .row--last {
@@ -117,8 +117,8 @@
 /* ============ 产品链路 ============ */
 .chain {
   background: #FFFFFF;
-  border-radius: 24rpx;
-  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
+  border-radius: 0;
+  box-shadow: none;
   padding: 34rpx 30rpx 14rpx;
 }
 
@@ -167,8 +167,8 @@
   margin: 0 10rpx 20rpx;
   padding: 28rpx 24rpx;
   background: #FFFFFF;
-  border-radius: 16rpx;
-  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
+  border-radius: 0;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
 }
@@ -199,7 +199,7 @@
   display: flex;
   align-items: flex-start;
   padding: 26rpx 28rpx;
-  border-bottom: 1rpx solid #E2DDD3;
+  border-bottom: 1rpx solid #D8D2C6;
 }
 
 .patent:last-child {
@@ -231,8 +231,8 @@
   display: flex;
   align-items: center;
   background: #FFFFFF;
-  border-radius: 16rpx;
-  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
+  border-radius: 0;
+  box-shadow: none;
   padding: 26rpx 28rpx;
   margin-bottom: 18rpx;
 }
@@ -245,7 +245,7 @@
   height: 38rpx;
   line-height: 38rpx;
   padding: 0 14rpx;
-  border-radius: 8rpx;
+  border-radius: 0;
   margin-right: 20rpx;
 }
 
@@ -305,9 +305,9 @@
 .cta {
   margin: 40rpx 32rpx 0;
   padding: 42rpx 36rpx;
-  border-radius: 24rpx;
+  border-radius: 0;
   background: linear-gradient(150deg, #16292F 0%, #1F3A44 100%);
-  box-shadow: 0 12rpx 32rpx rgba(31, 58, 68, 0.22);
+  box-shadow: none;
   display: flex;
   flex-direction: column;
 }
@@ -327,7 +327,7 @@
 .cta__btn {
   margin-top: 32rpx;
   height: 84rpx;
-  border-radius: 42rpx;
+  border-radius: 0;
   background: #FFFFFF;
   color: #16292F;
   display: flex;
@@ -342,7 +342,7 @@
   margin-top: 56rpx;
   padding: 44rpx 40rpx 36rpx;
   background: #FFFFFF;
-  border-top: 1rpx solid #E2DDD3;
+  border-top: 1rpx solid #D8D2C6;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -379,7 +379,7 @@
 .ident__mark {
   width: 96rpx;
   height: 96rpx;
-  border-radius: 24rpx;
+  border-radius: 0;
   background: #1F3A44;
   display: flex;
   align-items: center;
@@ -418,7 +418,7 @@
   display: flex;
   align-items: baseline;
   padding: 16rpx 0;
-  border-top: 1rpx solid #E2DDD3;
+  border-top: 1rpx solid #D8D2C6;
 }
 
 .ident__pos-label {
@@ -464,7 +464,7 @@
   display: flex;
   align-items: baseline;
   padding: 12rpx 0;
-  border-bottom: 1rpx solid #E2DDD3;
+  border-bottom: 1rpx solid #D8D2C6;
 }
 
 .promo__no {

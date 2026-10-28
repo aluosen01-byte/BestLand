@@ -6,9 +6,9 @@
   bottom: 0;
   z-index: 100;
   background: #ffffff;
-  border-top: 1rpx solid #E2DDD3;
+  border-top: 1rpx solid #D8D2C6;
   padding-bottom: env(safe-area-inset-bottom);
-  box-shadow: 0 -6rpx 24rpx rgba(31, 58, 68, 0.06);
+  box-shadow: none;
 }
 
 .tabbar__inner {

@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   padding: 26rpx 40rpx;
-  border-bottom: 1rpx solid #E2DDD3;
+  border-bottom: 1rpx solid #D8D2C6;
 }
 
 .log-item__no {

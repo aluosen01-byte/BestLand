@@ -28,8 +28,9 @@
 @ink-2: #3A4348;
 @ink-3: #5C666B;
 @ink-4: #8A9298;
-@line: #E2DDD3;
-@bg: #F7F5F0;
+@line: #D8D2C6;
+@bg: #FFFFFF; /* 正文页白底 */
+@bg-alt: #F4F1EA; /* 说明条 / 图片底衬 */
 @white: #FFFFFF;
 
 /* 功能色 */
@@ -45,11 +46,11 @@
 @fs-label: 24rpx; /* 12pt 英文副标题/标签 */
 @fs-caption: 21rpx; /* 10.5pt 注释 */
 
-/* 圆角与间距 */
-@radius: 16rpx;
-@radius-lg: 24rpx;
+/* 圆角与间距（v47 规范：圆角 0） */
+@radius: 0;
+@radius-lg: 0;
 @gap: 24rpx;
 
-/* 阴影 */
-@shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
-@shadow-up: 0 -6rpx 24rpx rgba(31, 58, 68, 0.06);
+/* 阴影（v47 规范：不使用阴影） */
+@shadow: none;
+@shadow-up: none;

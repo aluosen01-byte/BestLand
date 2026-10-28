@@ -2,14 +2,14 @@
 <navigation-bar
   title="{{showNavTitle ? site.brand : ''}}"
   back="{{false}}"
-  color="{{scrolled ? '#1D2226' : '#FFFFFF'}}"
+  color="#1D2226"
   background="{{scrolled ? '#FFFFFF' : 'transparent'}}"
 ></navigation-bar>
 
 <view class="page">
   <!-- ============ 品牌首屏 ============ -->
   <view class="hero">
-    <view class="hero__glow"></view>
+    <view class="chamfer chamfer--tr"></view>
 
     <text class="hero__kicker">BEST LAND · {{site.deckYear}} 宣传简介</text>
 

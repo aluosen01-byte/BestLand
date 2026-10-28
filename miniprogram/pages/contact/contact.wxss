@@ -34,7 +34,7 @@
 .hero__btn {
   flex: 1;
   height: 116rpx;
-  border-radius: 16rpx;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,12 +44,12 @@
 .hero__btn--solid {
   background: #1F3A44;
   margin-right: 20rpx;
-  box-shadow: 0 8rpx 24rpx rgba(31, 58, 68, 0.22);
+  box-shadow: none;
 }
 
 .hero__btn--ghost {
   background: #FFFFFF;
-  border: 2rpx solid #E2DDD3;
+  border: 2rpx solid #D8D2C6;
 }
 
 .hero__btn-label {
@@ -87,7 +87,7 @@
   display: flex;
   align-items: center;
   padding: 26rpx 0;
-  border-bottom: 1rpx solid #E2DDD3;
+  border-bottom: 1rpx solid #D8D2C6;
 }
 
 .field--block {
@@ -127,7 +127,7 @@
   margin-top: 18rpx;
   padding: 22rpx 24rpx;
   background: #F7F5F0;
-  border-radius: 12rpx;
+  border-radius: 0;
   font-size: 26rpx;
   color: #1D2226;
   line-height: 1.7;
@@ -151,11 +151,11 @@
   height: 66rpx;
   line-height: 64rpx;
   padding: 0 28rpx;
-  border-radius: 33rpx;
+  border-radius: 0;
   font-size: 25rpx;
   color: #3A4348;
   background: #F7F5F0;
-  border: 1rpx solid #E2DDD3;
+  border: 1rpx solid #D8D2C6;
   margin: 0 16rpx 16rpx 0;
 }
 
@@ -175,7 +175,7 @@
   margin-top: 18rpx;
   padding: 0 26rpx;
   background: #F7F5F0;
-  border-radius: 12rpx;
+  border-radius: 0;
 }
 
 .picker__text {
@@ -196,7 +196,7 @@
 .submit {
   margin-top: 40rpx;
   height: 96rpx;
-  border-radius: 48rpx;
+  border-radius: 0;
   background: #1F3A44;
   color: #FFFFFF;
   font-size: 32rpx;
@@ -204,7 +204,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10rpx 28rpx rgba(31, 58, 68, 0.24);
+  box-shadow: none;
 }
 
 .submit.is-disabled {
@@ -223,7 +223,7 @@
 .agree__box {
   width: 34rpx;
   height: 34rpx;
-  border-radius: 8rpx;
+  border-radius: 0;
   border: 2rpx solid #8A9298;
   margin-right: 12rpx;
   display: flex;
@@ -255,7 +255,7 @@
   padding: 24rpx 26rpx;
   background: #FBF6EA;
   border: 1rpx solid #EBD9B4;
-  border-radius: 12rpx;
+  border-radius: 0;
 }
 
 .notice__text {
@@ -270,7 +270,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 30rpx 28rpx;
-  border-bottom: 1rpx solid #E2DDD3;
+  border-bottom: 1rpx solid #D8D2C6;
 }
 
 .contact--last {
@@ -322,7 +322,7 @@
 /* ============ FAQ ============ */
 .faq {
   padding: 30rpx 28rpx;
-  border-bottom: 1rpx solid #E2DDD3;
+  border-bottom: 1rpx solid #D8D2C6;
 }
 
 .faq:last-child {

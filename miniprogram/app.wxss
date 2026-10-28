@@ -1,6 +1,6 @@
 /**app.wxss —— 全局样式（由 app.less + theme.less 编译而来，构建产物）**/
 page {
-  background: #F7F5F0;
+  background: #FFFFFF;
   color: #1D2226;
   font-size: 28rpx;
   line-height: 1.6;
@@ -35,7 +35,7 @@ textarea {
 
 /* ============ 通用排版 ============ */
 .section {
-  padding: 48rpx 32rpx;
+  padding: 48rpx 40rpx;
 }
 
 .section--tight {
@@ -46,7 +46,9 @@ textarea {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 32rpx;
+  margin-bottom: 28rpx;
+  padding-bottom: 14rpx;
+  border-bottom: 1rpx solid #D8D2C6;
 }
 
 .section-title {
@@ -77,14 +79,15 @@ textarea {
 
 .card {
   background: #FFFFFF;
-  border-radius: 24rpx;
-  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
+  border: 1rpx solid #D8D2C6;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
 }
 
 .divider {
   height: 1rpx;
-  background: #E2DDD3;
+  background: #D8D2C6;
 }
 
 /* ============ 按钮 ============ */
@@ -94,7 +97,7 @@ textarea {
   align-items: center;
   justify-content: center;
   height: 92rpx;
-  border-radius: 46rpx;
+  border-radius: 0;
   font-size: 32rpx;
   font-weight: 600;
   line-height: 1;
@@ -135,12 +138,13 @@ button::after {
   display: inline-flex;
   align-items: center;
   height: 40rpx;
-  padding: 0 16rpx;
-  border-radius: 20rpx;
-  font-size: 22rpx;
-  background: #E8EDEE;
+  padding: 0 14rpx;
+  border-radius: 0;
+  font-size: 21rpx;
+  background: #FFFFFF;
+  border: 1rpx solid #D8D2C6;
   color: #1F3A44;
-  margin: 0 12rpx 12rpx 0;
+  margin: 0 10rpx 10rpx 0;
 }
 
 .tag--accent {
@@ -162,9 +166,10 @@ button::after {
 .kicker {
   display: block;
   font-family: Arial, "Helvetica Neue", sans-serif;
-  font-size: 22rpx;
+  font-size: 21rpx;
   letter-spacing: 2rpx;
-  color: #5C666B;
+  color: #2F6FB2;
+  margin-bottom: 8rpx;
   text-transform: uppercase;
 }
 
@@ -211,13 +216,16 @@ button::after {
 
 /* 篇章分隔页（PART 05 政策支持），深底大字 */
 .part {
-  padding: 60rpx 40rpx;
-  background: linear-gradient(150deg, #16292F 0%, #1F3A44 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 64rpx 40rpx 60rpx;
+  background: #1F3A44;
   display: flex;
   flex-direction: column;
 }
 
 .part__no {
+  position: relative;
   font-family: Arial, "Helvetica Neue", sans-serif;
   font-size: 24rpx;
   letter-spacing: 4rpx;
@@ -225,8 +233,9 @@ button::after {
 }
 
 .part__title {
+  position: relative;
   margin-top: 14rpx;
-  font-size: 76rpx;
+  font-size: 72rpx;
   font-weight: 700;
   color: #FFFFFF;
   letter-spacing: 4rpx;
@@ -234,6 +243,7 @@ button::after {
 }
 
 .part__en {
+  position: relative;
   margin-top: 12rpx;
   font-family: Arial, "Helvetica Neue", sans-serif;
   font-size: 22rpx;
@@ -242,17 +252,19 @@ button::after {
 }
 
 .part__desc {
+  position: relative;
   margin-top: 20rpx;
+  max-width: 74%;
   font-size: 26rpx;
-  color: rgba(244, 241, 234, 0.86);
+  color: rgba(244, 241, 234, 0.88);
   line-height: 1.8;
 }
 
 /* 暖色卡片：宣传册的米色底块 */
 .card-warm {
   background: #FFFFFF;
-  border: 1rpx solid #E2DDD3;
-  border-radius: 20rpx;
+  border: 1rpx solid #D8D2C6;
+  border-radius: 0;
 }
 
 /* 引用/出处块 */
@@ -260,11 +272,104 @@ button::after {
   padding: 20rpx 24rpx;
   background: #FBF6EA;
   border-left: 6rpx solid #F0A22E;
-  border-radius: 8rpx;
+  border-radius: 0;
 }
 
 .ref__text {
   font-size: 22rpx;
   color: #5C666B;
   line-height: 1.7;
+}
+
+/* ============================================================
+   以下按 v47 design_spec 补充
+   规范要点：白底正文页 / 圆角 0 / 无阴影 / 分隔线 #D8D2C6
+            英文副行 #2F6FB2 / 橙色对角切角为全册母题
+   ============================================================ */
+
+/* 1px 结构线 */
+.rule {
+  height: 1rpx;
+  background: #D8D2C6;
+  margin: 24rpx 0;
+}
+
+/* 图片底衬（规范：Secondary background #F4F1EA） */
+.figure {
+  background: #F4F1EA;
+}
+
+/* 说明条 / 次级色块 */
+.strip {
+  padding: 20rpx 24rpx;
+  background: #F4F1EA;
+  border-left: 4rpx solid #F0A22E;
+}
+
+.strip__text {
+  font-size: 22rpx;
+  color: #5C666B;
+  line-height: 1.75;
+}
+
+/* 橙色对角切角：全册母题，放在相对定位容器内绝对定位 */
+.chamfer {
+  position: absolute;
+  pointer-events: none;
+  background: #F0A22E;
+}
+
+/* 篇章页 / 首屏右上角的大切角 */
+.chamfer--tr {
+  top: -180rpx;
+  right: -160rpx;
+  width: 560rpx;
+  height: 560rpx;
+  transform: rotate(24deg);
+}
+
+/* 小节标题左侧的短橙条 */
+.chamfer--mark {
+  width: 8rpx;
+  height: 40rpx;
+  background: #F0A22E;
+  border-radius: 0;
+}
+
+/* 深色页脚带（品牌 + 页码） */
+.band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 40rpx;
+  background: #1F3A44;
+}
+
+.band__text {
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 18rpx;
+  letter-spacing: 1rpx;
+  color: #F4F1EA;
+}
+
+/* 页面标题组：英文小标 + 中文大标 + 英文副行 */
+.headline {
+  display: flex;
+  flex-direction: column;
+}
+
+.headline__en {
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
+  color: #2F6FB2;
+}
+
+.headline__zh {
+  margin-top: 6rpx;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1F3A44;
+  letter-spacing: 1rpx;
+  line-height: 1.25;
 }
