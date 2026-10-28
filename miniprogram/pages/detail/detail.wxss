@@ -1,6 +1,6 @@
 /**detail.wxss —— 构建产物（由 detail.less 编译而来）**/
 .page {
-  background: #F5F7F6;
+  background: #F7F5F0;
   padding-bottom: 40rpx;
 }
 
@@ -14,7 +14,7 @@
 .gallery__swiper {
   width: 100%;
   height: 620rpx;
-  background: #F2F8F5;
+  background: #F2F5F5;
 }
 
 .gallery__item {
@@ -34,14 +34,14 @@
   width: 12rpx;
   height: 12rpx;
   border-radius: 6rpx;
-  background: #E3E9E6;
+  background: #E2DDD3;
   margin: 0 8rpx;
   transition: width 0.2s;
 }
 
 .gallery__dot.is-on {
   width: 32rpx;
-  background: #0F6B4F;
+  background: #1F3A44;
 }
 
 .gallery__counter {
@@ -49,7 +49,7 @@
   right: 32rpx;
   top: 32rpx;
   font-size: 22rpx;
-  color: #3D4A45;
+  color: #3A4348;
   background: rgba(255, 255, 255, 0.86);
   height: 44rpx;
   line-height: 44rpx;
@@ -73,7 +73,7 @@
 .intro__name {
   font-size: 44rpx;
   font-weight: 700;
-  color: #16211D;
+  color: #1D2226;
   letter-spacing: 1rpx;
 }
 
@@ -82,7 +82,7 @@
   font-size: 20rpx;
   font-weight: 700;
   color: #FFFFFF;
-  background: #0F6B4F;
+  background: #1F3A44;
   height: 36rpx;
   line-height: 36rpx;
   padding: 0 14rpx;
@@ -90,13 +90,13 @@
 }
 
 .intro__badge.is-accent {
-  background: #C2703E;
+  background: #F0A22E;
 }
 
 .intro__tagline {
   margin-top: 14rpx;
   font-size: 28rpx;
-  color: #6B7B75;
+  color: #5C666B;
 }
 
 .intro__tags {
@@ -109,7 +109,7 @@
 .specs {
   background: #FFFFFF;
   border-radius: 24rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   padding: 4rpx 28rpx;
 }
 
@@ -117,7 +117,7 @@
   display: flex;
   align-items: flex-start;
   padding: 24rpx 0;
-  border-bottom: 1rpx solid #E3E9E6;
+  border-bottom: 1rpx solid #E2DDD3;
 }
 
 .spec:last-child {
@@ -128,13 +128,13 @@
   width: 190rpx;
   flex: none;
   font-size: 26rpx;
-  color: #6B7B75;
+  color: #5C666B;
 }
 
 .spec__value {
   flex: 1;
   font-size: 26rpx;
-  color: #16211D;
+  color: #1D2226;
   font-weight: 500;
 }
 
@@ -142,7 +142,7 @@
   display: block;
   margin-top: 18rpx;
   font-size: 21rpx;
-  color: #9AA8A2;
+  color: #8A9298;
   line-height: 1.6;
 }
 
@@ -152,7 +152,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 28rpx;
-  border-bottom: 1rpx solid #E3E9E6;
+  border-bottom: 1rpx solid #E2DDD3;
 }
 
 .model:last-child {
@@ -169,13 +169,13 @@
 .model__name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #16211D;
+  color: #1D2226;
 }
 
 .model__spec {
   margin-top: 6rpx;
   font-size: 22rpx;
-  color: #6B7B75;
+  color: #5C666B;
 }
 
 .model__ask {
@@ -185,8 +185,8 @@
   line-height: 58rpx;
   padding: 0 32rpx;
   border-radius: 30rpx;
-  border: 2rpx solid #0F6B4F;
-  color: #0F6B4F;
+  border: 2rpx solid #1F3A44;
+  color: #1F3A44;
   font-size: 25rpx;
   font-weight: 600;
 }
@@ -194,8 +194,8 @@
 .model__tip {
   padding: 24rpx 28rpx 28rpx;
   font-size: 21rpx;
-  color: #D98A1F;
-  background: #FDFAF2;
+  color: #C97A12;
+  background: #FBF6EA;
   line-height: 1.65;
 }
 
@@ -207,9 +207,9 @@
 
 .scene {
   font-size: 26rpx;
-  color: #3D4A45;
+  color: #3A4348;
   background: #FFFFFF;
-  border: 1rpx solid #E3E9E6;
+  border: 1rpx solid #E2DDD3;
   height: 68rpx;
   line-height: 66rpx;
   padding: 0 32rpx;
@@ -221,13 +221,13 @@
 .desc {
   background: #FFFFFF;
   border-radius: 24rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   padding: 34rpx 30rpx;
 }
 
 .desc__text {
   font-size: 27rpx;
-  color: #3D4A45;
+  color: #3A4348;
   line-height: 1.85;
 }
 
@@ -236,8 +236,8 @@
   margin: 40rpx 32rpx 0;
   padding: 42rpx 36rpx;
   border-radius: 24rpx;
-  background: linear-gradient(150deg, #0A4A37 0%, #0F6B4F 100%);
-  box-shadow: 0 12rpx 32rpx rgba(15, 107, 79, 0.22);
+  background: linear-gradient(150deg, #16292F 0%, #1F3A44 100%);
+  box-shadow: 0 12rpx 32rpx rgba(31, 58, 68, 0.22);
   display: flex;
   flex-direction: column;
 }
@@ -259,7 +259,7 @@
   height: 84rpx;
   border-radius: 42rpx;
   background: #FFFFFF;
-  color: #0A4A37;
+  color: #16292F;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,11 +272,11 @@
   margin: 0 32rpx 8rpx;
   padding: 24rpx 26rpx;
   border-radius: 16rpx;
-  background: #0F6B4F;
+  background: #1F3A44;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 8rpx 24rpx rgba(15, 107, 79, 0.2);
+  box-shadow: 0 8rpx 24rpx rgba(31, 58, 68, 0.2);
 }
 
 .calcbar__text {
@@ -302,7 +302,7 @@
 .cert {
   background: #FFFFFF;
   border-radius: 16rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   padding: 26rpx 28rpx;
   margin-bottom: 18rpx;
   display: flex;
@@ -312,14 +312,14 @@
 .cert__title {
   font-size: 26rpx;
   font-weight: 600;
-  color: #16211D;
+  color: #1D2226;
   line-height: 1.5;
 }
 
 .cert__issuer {
   margin-top: 8rpx;
   font-size: 21rpx;
-  color: #9AA8A2;
+  color: #8A9298;
 }
 
 .card-hover {
@@ -341,13 +341,13 @@
 .missing__title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #3D4A45;
+  color: #3A4348;
 }
 
 .missing__desc {
   margin-top: 14rpx;
   font-size: 24rpx;
-  color: #9AA8A2;
+  color: #8A9298;
 }
 
 .missing__btn {
@@ -356,7 +356,7 @@
   line-height: 84rpx;
   padding: 0 56rpx;
   border-radius: 42rpx;
-  background: #0F6B4F;
+  background: #1F3A44;
   color: #FFFFFF;
   font-size: 28rpx;
   font-weight: 600;
@@ -370,7 +370,7 @@
   bottom: 0;
   z-index: 50;
   background: #FFFFFF;
-  border-top: 1rpx solid #E3E9E6;
+  border-top: 1rpx solid #E2DDD3;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
@@ -392,7 +392,7 @@
 
 .actionbar__side-text {
   font-size: 24rpx;
-  color: #3D4A45;
+  color: #3A4348;
 }
 
 .actionbar__main {
@@ -400,7 +400,7 @@
   height: 84rpx;
   margin-left: 16rpx;
   border-radius: 42rpx;
-  background: #0F6B4F;
+  background: #1F3A44;
   color: #FFFFFF;
   display: flex;
   align-items: center;
@@ -420,14 +420,14 @@
 .nofound__title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #16211D;
+  color: #1D2226;
   text-align: center;
 }
 
 .nofound__desc {
   margin-top: 20rpx;
   font-size: 25rpx;
-  color: #6B7B75;
+  color: #5C666B;
   line-height: 1.8;
   text-align: center;
 }
@@ -438,7 +438,7 @@
   max-width: 480rpx;
   height: 88rpx;
   border-radius: 44rpx;
-  background: #0F6B4F;
+  background: #1F3A44;
   color: #FFFFFF;
   font-size: 29rpx;
   font-weight: 600;
@@ -450,6 +450,6 @@
 .nofound__btn--ghost {
   margin-top: 20rpx;
   background: #FFFFFF;
-  color: #0F6B4F;
-  border: 2rpx solid #0F6B4F;
+  color: #1F3A44;
+  border: 2rpx solid #1F3A44;
 }

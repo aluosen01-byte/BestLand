@@ -2,7 +2,7 @@
 @import "../../components/tab-bar/tab-bar.wxss";
 
 .page {
-  background: #F5F7F6;
+  background: #F7F5F0;
 }
 
 /* ============ 品牌首屏 ============ */
@@ -10,7 +10,7 @@
   position: relative;
   margin-top: -1px;
   padding: 0 48rpx 64rpx;
-  background: linear-gradient(165deg, #0A4A37 0%, #0F6B4F 52%, #13795A 100%);
+  background: linear-gradient(165deg, #16292F 0%, #1F3A44 52%, #2A5566 100%);
   overflow: hidden;
 }
 
@@ -24,11 +24,51 @@
   background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 68%);
 }
 
+/* 宣传册封面语言：英文小标 + 口号 + 特性行 */
+.hero__kicker {
+  position: relative;
+  display: block;
+  padding-top: 34rpx;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 21rpx;
+  letter-spacing: 3rpx;
+  color: #F0A22E;
+}
+
+.hero__motto {
+  position: relative;
+  display: block;
+  margin-top: 30rpx;
+  font-size: 46rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
+  line-height: 1.3;
+}
+
+.hero__motto-en {
+  position: relative;
+  display: block;
+  margin-top: 10rpx;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 20rpx;
+  letter-spacing: 3rpx;
+  color: rgba(240, 162, 46, 0.92);
+}
+
+.hero__line {
+  position: relative;
+  display: block;
+  margin-top: 26rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.7;
+}
 .hero__brand {
   position: relative;
   display: flex;
   align-items: center;
-  padding-top: 24rpx;
+  padding-top: 34rpx;
 }
 
 .hero__mark {
@@ -126,7 +166,7 @@
 
 .hero__btn--solid {
   background: #FFFFFF;
-  color: #0A4A37;
+  color: #16292F;
   margin-right: 20rpx;
 }
 
@@ -142,6 +182,7 @@
   margin: 0 -10rpx;
 }
 
+/* 宣传册第 4 页：橙色编号 + 白卡片，两列 */
 .feature {
   width: 50%;
   padding: 0 10rpx 20rpx;
@@ -150,24 +191,26 @@
 }
 
 .feature__no {
-  font-size: 34rpx;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 42rpx;
   font-weight: 700;
-  color: #0F6B4F;
-  line-height: 1.2;
+  color: #F0A22E;
+  line-height: 1;
 }
 
 .feature__title {
-  margin-top: 10rpx;
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #16211D;
+  margin-top: 14rpx;
+  font-size: 29rpx;
+  font-weight: 700;
+  color: #1F3A44;
+  letter-spacing: 0.5rpx;
 }
 
 .feature__desc {
-  margin-top: 6rpx;
-  font-size: 22rpx;
-  color: #6B7B75;
-  line-height: 1.6;
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: #5C666B;
+  line-height: 1.65;
 }
 
 /* ============ 用量计算入口 ============ */
@@ -175,8 +218,8 @@
   margin: 8rpx 32rpx 0;
   padding: 32rpx 30rpx;
   border-radius: 24rpx;
-  background: linear-gradient(150deg, #0A4A37 0%, #0F6B4F 100%);
-  box-shadow: 0 12rpx 32rpx rgba(15, 107, 79, 0.22);
+  background: linear-gradient(150deg, #16292F 0%, #1F3A44 100%);
+  box-shadow: 0 12rpx 32rpx rgba(31, 58, 68, 0.22);
   display: flex;
   align-items: center;
 }
@@ -193,7 +236,7 @@
   align-self: flex-start;
   font-size: 19rpx;
   font-weight: 700;
-  color: #0A4A37;
+  color: #16292F;
   background: #FFFFFF;
   height: 32rpx;
   line-height: 32rpx;
@@ -241,7 +284,7 @@
   margin-right: 24rpx;
   background: #FFFFFF;
   border-radius: 24rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   overflow: hidden;
 }
 
@@ -256,7 +299,7 @@
 .series-card__pic {
   position: relative;
   height: 240rpx;
-  background: #F2F8F5;
+  background: #F2F5F5;
 }
 
 .series-card__badge {
@@ -266,7 +309,7 @@
   font-size: 20rpx;
   font-weight: 700;
   color: #FFFFFF;
-  background: #0F6B4F;
+  background: #1F3A44;
   height: 38rpx;
   line-height: 38rpx;
   padding: 0 14rpx;
@@ -275,7 +318,7 @@
 }
 
 .series-card__badge.is-accent {
-  background: #C2703E;
+  background: #F0A22E;
 }
 
 .series-card__body {
@@ -287,13 +330,13 @@
 .series-card__name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #16211D;
+  color: #1D2226;
 }
 
 .series-card__tag {
   margin-top: 6rpx;
   font-size: 22rpx;
-  color: #6B7B75;
+  color: #5C666B;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -303,14 +346,14 @@
 .values {
   background: #FFFFFF;
   border-radius: 24rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   padding: 8rpx 28rpx;
 }
 
 .value {
   display: flex;
   padding: 26rpx 0;
-  border-bottom: 1rpx solid #E3E9E6;
+  border-bottom: 1rpx solid #E2DDD3;
 }
 
 .value:last-child {
@@ -321,7 +364,7 @@
   width: 12rpx;
   height: 12rpx;
   border-radius: 50%;
-  background: #0F6B4F;
+  background: #1F3A44;
   margin: 14rpx 20rpx 0 0;
   flex: none;
 }
@@ -335,13 +378,13 @@
 .value__title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #16211D;
+  color: #1D2226;
 }
 
 .value__desc {
   margin-top: 4rpx;
   font-size: 24rpx;
-  color: #6B7B75;
+  color: #5C666B;
   line-height: 1.65;
 }
 
@@ -362,7 +405,7 @@
   margin-right: 24rpx;
   background: #FFFFFF;
   border-radius: 16rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   overflow: hidden;
 }
 
@@ -379,7 +422,7 @@
   display: block;
   padding: 16rpx 18rpx 22rpx;
   font-size: 22rpx;
-  color: #3D4A45;
+  color: #3A4348;
   line-height: 1.5;
   white-space: normal;
 }
@@ -392,9 +435,9 @@
 
 .scene {
   font-size: 26rpx;
-  color: #3D4A45;
+  color: #3A4348;
   background: #FFFFFF;
-  border: 1rpx solid #E3E9E6;
+  border: 1rpx solid #E2DDD3;
   height: 68rpx;
   line-height: 66rpx;
   padding: 0 30rpx;
@@ -407,8 +450,8 @@
   margin: 8rpx 32rpx 0;
   padding: 44rpx 36rpx;
   border-radius: 24rpx;
-  background: linear-gradient(150deg, #0A4A37 0%, #0F6B4F 100%);
-  box-shadow: 0 12rpx 32rpx rgba(15, 107, 79, 0.22);
+  background: linear-gradient(150deg, #16292F 0%, #1F3A44 100%);
+  box-shadow: 0 12rpx 32rpx rgba(31, 58, 68, 0.22);
 }
 
 .cta__body {
@@ -447,7 +490,7 @@
 
 .cta__btn--solid {
   background: #FFFFFF;
-  color: #0A4A37;
+  color: #16292F;
   margin-right: 18rpx;
 }
 
@@ -462,8 +505,8 @@
   padding: 40rpx 34rpx;
   border-radius: 24rpx;
   background: #FFFFFF;
-  border: 2rpx solid #E6F2ED;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  border: 2rpx solid #E8EDEE;
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   display: flex;
   flex-direction: column;
 }
@@ -477,7 +520,7 @@
   font-size: 20rpx;
   font-weight: 700;
   color: #FFFFFF;
-  background: #C2703E;
+  background: #F0A22E;
   height: 38rpx;
   line-height: 38rpx;
   padding: 0 14rpx;
@@ -488,13 +531,13 @@
 .biz__title {
   font-size: 34rpx;
   font-weight: 700;
-  color: #16211D;
+  color: #1D2226;
 }
 
 .biz__desc {
   margin-top: 18rpx;
   font-size: 24rpx;
-  color: #6B7B75;
+  color: #5C666B;
   line-height: 1.8;
 }
 
@@ -506,8 +549,8 @@
 
 .biz__point {
   font-size: 22rpx;
-  color: #0F6B4F;
-  background: #E6F2ED;
+  color: #1F3A44;
+  background: #E8EDEE;
   height: 44rpx;
   line-height: 44rpx;
   padding: 0 20rpx;
@@ -532,15 +575,15 @@
 }
 
 .biz__btn--solid {
-  background: #0F6B4F;
+  background: #1F3A44;
   color: #FFFFFF;
   margin-right: 18rpx;
 }
 
 .biz__btn--ghost {
   background: #FFFFFF;
-  color: #0F6B4F;
-  border: 2rpx solid #0F6B4F;
+  color: #1F3A44;
+  border: 2rpx solid #1F3A44;
 }
 
 /* ============ 页脚 ============ */
@@ -551,19 +594,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 1rpx solid #E3E9E6;
+  border-top: 1rpx solid #E2DDD3;
 }
 
 .footer__brand {
   font-size: 26rpx;
   font-weight: 600;
-  color: #3D4A45;
+  color: #3A4348;
 }
 
 .footer__line {
   margin-top: 12rpx;
   font-size: 22rpx;
-  color: #9AA8A2;
+  color: #8A9298;
   text-align: center;
 }
 
@@ -575,17 +618,17 @@
 
 .footer__link {
   font-size: 22rpx;
-  color: #0F6B4F;
+  color: #1F3A44;
 }
 
 .footer__dot {
   font-size: 22rpx;
-  color: #9AA8A2;
+  color: #8A9298;
   margin: 0 14rpx;
 }
 
 .footer__copy {
   margin-top: 22rpx;
   font-size: 20rpx;
-  color: #9AA8A2;
+  color: #8A9298;
 }

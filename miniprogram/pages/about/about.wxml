@@ -1,5 +1,5 @@
 <!--about.wxml 关于我们-->
-<navigation-bar title="关于我们" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="关于我们" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <!-- 品牌头图 -->
@@ -116,12 +116,43 @@
     </view>
   </view>
 
+  <!-- 品牌标识（宣传册第 3 页）-->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <text class="kicker">Brand identity</text>
+        <view class="section-title">品牌标识</view>
+      </view>
+    </view>
+    <view class="card prose">
+      <view class="ident">
+        <view class="ident__mark">
+          <text class="ident__mark-text">贝</text>
+        </view>
+        <view class="ident__text">
+          <text class="ident__name">{{site.brand}}</text>
+          <text class="ident__en">{{site.brandEn}}</text>
+        </view>
+      </view>
+      <text class="prose__p">{{site.brandIdentity}}</text>
+      <view class="ident__pos">
+        <text class="ident__pos-label">品牌定位</text>
+        <text class="ident__pos-value">{{site.positioning}}</text>
+      </view>
+      <view class="ident__pos">
+        <text class="ident__pos-label">品牌口号</text>
+        <text class="ident__pos-value ident__pos-value--accent">{{site.motto}}</text>
+      </view>
+    </view>
+  </view>
+
   <!-- 应用案例 -->
   <view class="section section--tight">
     <view class="section-head">
       <view>
+        <text class="kicker">Application cases</text>
         <view class="section-title">应用案例</view>
-        <view class="section-sub">外墙与内墙实际工程项目</view>
+        <view class="section-sub">以下均为现场实拍，未经效果图修饰</view>
       </view>
     </view>
     <view class="cases">
@@ -133,6 +164,47 @@
         <text class="case__tag case__tag--inner">内墙</text>
         <text class="case__name">{{item}}</text>
       </view>
+    </view>
+  </view>
+
+  <!-- 篇章分隔（宣传册 PART 06）-->
+  <view class="part">
+    <text class="part__no">PART 06</text>
+    <text class="part__title">品牌推广矩阵</text>
+    <text class="part__en">BRAND &amp; PROMOTION</text>
+    <text class="part__desc">官网、搜索引擎、电商与社媒的完整推广矩阵。</text>
+  </view>
+
+  <!-- 推广矩阵（宣传册第 37 页）-->
+  <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <text class="kicker">Promotion matrix</text>
+        <view class="section-title">品牌推广矩阵</view>
+        <view class="section-sub">账号：{{promotion.account}}</view>
+      </view>
+    </view>
+
+    <view class="promo">
+      <view class="promo__col">
+        <text class="promo__head">国内阵地</text>
+        <view class="promo__item" wx:for="{{promotion.domestic}}" wx:key="no">
+          <text class="promo__no">{{item.no}}</text>
+          <text class="promo__name">{{item.name}}</text>
+          <text class="promo__type">{{item.type}}</text>
+        </view>
+      </view>
+      <view class="promo__col">
+        <text class="promo__head">跨境阵地</text>
+        <view class="promo__item" wx:for="{{promotion.overseas}}" wx:key="no">
+          <text class="promo__no">{{item.no}}</text>
+          <text class="promo__name">{{item.name}}</text>
+          <text class="promo__type">{{item.type}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="ref">
+      <text class="ref__text">{{promotion.note}}</text>
     </view>
   </view>
 

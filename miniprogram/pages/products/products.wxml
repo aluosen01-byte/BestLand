@@ -1,5 +1,5 @@
 <!--products.wxml 产品中心-->
-<navigation-bar title="产品中心" back="{{false}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="产品中心" back="{{false}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <!-- 吸顶筛选区 -->

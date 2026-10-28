@@ -1,5 +1,5 @@
 <!--messages.wxml 我的留言-->
-<navigation-bar title="我的留言" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="我的留言" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <!-- 计数 -->

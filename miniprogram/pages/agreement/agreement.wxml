@@ -1,5 +1,5 @@
 <!--agreement.wxml 免责声明与信息使用说明-->
-<navigation-bar title="免责声明" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="免责声明" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <view class="head">

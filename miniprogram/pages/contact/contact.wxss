@@ -2,7 +2,7 @@
 @import "../../components/tab-bar/tab-bar.wxss";
 
 .page {
-  background: #F5F7F6;
+  background: #F7F5F0;
 }
 
 /* ============ 顶部 ============ */
@@ -15,14 +15,14 @@
 .hero__title {
   font-size: 46rpx;
   font-weight: 700;
-  color: #16211D;
+  color: #1D2226;
   letter-spacing: 1rpx;
 }
 
 .hero__desc {
   margin-top: 14rpx;
   font-size: 25rpx;
-  color: #6B7B75;
+  color: #5C666B;
   line-height: 1.7;
 }
 
@@ -42,14 +42,14 @@
 }
 
 .hero__btn--solid {
-  background: #0F6B4F;
+  background: #1F3A44;
   margin-right: 20rpx;
-  box-shadow: 0 8rpx 24rpx rgba(15, 107, 79, 0.22);
+  box-shadow: 0 8rpx 24rpx rgba(31, 58, 68, 0.22);
 }
 
 .hero__btn--ghost {
   background: #FFFFFF;
-  border: 2rpx solid #E3E9E6;
+  border: 2rpx solid #E2DDD3;
 }
 
 .hero__btn-label {
@@ -62,7 +62,7 @@
 }
 
 .hero__btn--ghost .hero__btn-label {
-  color: #16211D;
+  color: #1D2226;
 }
 
 .hero__btn-sub {
@@ -75,7 +75,7 @@
 }
 
 .hero__btn--ghost .hero__btn-sub {
-  color: #9AA8A2;
+  color: #8A9298;
 }
 
 /* ============ 表单 ============ */
@@ -87,7 +87,7 @@
   display: flex;
   align-items: center;
   padding: 26rpx 0;
-  border-bottom: 1rpx solid #E3E9E6;
+  border-bottom: 1rpx solid #E2DDD3;
 }
 
 .field--block {
@@ -102,7 +102,7 @@
   width: 190rpx;
   flex: none;
   font-size: 27rpx;
-  color: #3D4A45;
+  color: #3A4348;
 }
 
 .req {
@@ -113,11 +113,11 @@
 .field__input {
   flex: 1;
   font-size: 27rpx;
-  color: #16211D;
+  color: #1D2226;
 }
 
 .ph {
-  color: #9AA8A2;
+  color: #8A9298;
   font-size: 25rpx;
 }
 
@@ -126,17 +126,17 @@
   min-height: 170rpx;
   margin-top: 18rpx;
   padding: 22rpx 24rpx;
-  background: #F5F7F6;
+  background: #F7F5F0;
   border-radius: 12rpx;
   font-size: 26rpx;
-  color: #16211D;
+  color: #1D2226;
   line-height: 1.7;
 }
 
 .counter {
   text-align: right;
   font-size: 21rpx;
-  color: #9AA8A2;
+  color: #8A9298;
   margin-top: 10rpx;
 }
 
@@ -153,16 +153,16 @@
   padding: 0 28rpx;
   border-radius: 33rpx;
   font-size: 25rpx;
-  color: #3D4A45;
-  background: #F5F7F6;
-  border: 1rpx solid #E3E9E6;
+  color: #3A4348;
+  background: #F7F5F0;
+  border: 1rpx solid #E2DDD3;
   margin: 0 16rpx 16rpx 0;
 }
 
 .type.is-on {
-  background: #E6F2ED;
-  border-color: #0F6B4F;
-  color: #0F6B4F;
+  background: #E8EDEE;
+  border-color: #1F3A44;
+  color: #1F3A44;
   font-weight: 600;
 }
 
@@ -174,22 +174,22 @@
   height: 88rpx;
   margin-top: 18rpx;
   padding: 0 26rpx;
-  background: #F5F7F6;
+  background: #F7F5F0;
   border-radius: 12rpx;
 }
 
 .picker__text {
   font-size: 26rpx;
-  color: #16211D;
+  color: #1D2226;
 }
 
 .picker__text.is-ph {
-  color: #9AA8A2;
+  color: #8A9298;
 }
 
 .picker__arrow {
   font-size: 24rpx;
-  color: #9AA8A2;
+  color: #8A9298;
 }
 
 /* 提交 */
@@ -197,14 +197,14 @@
   margin-top: 40rpx;
   height: 96rpx;
   border-radius: 48rpx;
-  background: #0F6B4F;
+  background: #1F3A44;
   color: #FFFFFF;
   font-size: 32rpx;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10rpx 28rpx rgba(15, 107, 79, 0.24);
+  box-shadow: 0 10rpx 28rpx rgba(31, 58, 68, 0.24);
 }
 
 .submit.is-disabled {
@@ -224,7 +224,7 @@
   width: 34rpx;
   height: 34rpx;
   border-radius: 8rpx;
-  border: 2rpx solid #9AA8A2;
+  border: 2rpx solid #8A9298;
   margin-right: 12rpx;
   display: flex;
   align-items: center;
@@ -235,32 +235,32 @@
 }
 
 .agree__box.is-on {
-  background: #0F6B4F;
-  border-color: #0F6B4F;
+  background: #1F3A44;
+  border-color: #1F3A44;
 }
 
 .agree__text {
   font-size: 22rpx;
-  color: #6B7B75;
+  color: #5C666B;
 }
 
 .agree__link {
   font-size: 22rpx;
-  color: #0F6B4F;
+  color: #1F3A44;
 }
 
 /* 本地留存提示 */
 .notice {
   margin-top: 26rpx;
   padding: 24rpx 26rpx;
-  background: #FDFAF2;
-  border: 1rpx solid #F3E4C4;
+  background: #FBF6EA;
+  border: 1rpx solid #EBD9B4;
   border-radius: 12rpx;
 }
 
 .notice__text {
   font-size: 22rpx;
-  color: #8A6A24;
+  color: #8A6A1F;
   line-height: 1.75;
 }
 
@@ -270,7 +270,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 30rpx 28rpx;
-  border-bottom: 1rpx solid #E3E9E6;
+  border-bottom: 1rpx solid #E2DDD3;
 }
 
 .contact--last {
@@ -279,7 +279,7 @@
 
 .contact__label {
   font-size: 27rpx;
-  color: #6B7B75;
+  color: #5C666B;
   flex: none;
   margin-right: 24rpx;
 }
@@ -294,14 +294,14 @@
 
 .contact__value {
   font-size: 27rpx;
-  color: #16211D;
+  color: #1D2226;
   font-weight: 500;
   text-align: right;
 }
 
 /* 电话：可点击，用品牌色 + 下划线暗示可拨号 */
 .contact__value--link {
-  color: #0F6B4F;
+  color: #1F3A44;
   font-weight: 600;
 }
 
@@ -311,7 +311,7 @@
 
 .contact__arrow {
   font-size: 32rpx;
-  color: #9AA8A2;
+  color: #8A9298;
   margin-left: 10rpx;
 }
 
@@ -322,7 +322,7 @@
 /* ============ FAQ ============ */
 .faq {
   padding: 30rpx 28rpx;
-  border-bottom: 1rpx solid #E3E9E6;
+  border-bottom: 1rpx solid #E2DDD3;
 }
 
 .faq:last-child {
@@ -339,14 +339,14 @@
   flex: 1;
   font-size: 28rpx;
   font-weight: 600;
-  color: #16211D;
+  color: #1D2226;
   line-height: 1.55;
   padding-right: 20rpx;
 }
 
 .faq__icon {
   font-size: 36rpx;
-  color: #0F6B4F;
+  color: #1F3A44;
   line-height: 1.2;
   flex: none;
 }
@@ -355,7 +355,7 @@
   display: block;
   margin-top: 18rpx;
   font-size: 25rpx;
-  color: #6B7B75;
+  color: #5C666B;
   line-height: 1.85;
 }
 

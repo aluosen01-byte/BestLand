@@ -1,5 +1,5 @@
 <!--calculator.wxml 选型与用量计算-->
-<navigation-bar title="用量计算" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="用量计算" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <view class="intro">

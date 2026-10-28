@@ -1,5 +1,5 @@
 <!--detail.wxml 系列详情-->
-<navigation-bar title="{{series.name}}" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="{{series.name}}" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page" wx:if="{{series}}">
   <!-- ============ 图片区 ============ -->
@@ -31,6 +31,7 @@
 
   <!-- ============ 标题 ============ -->
   <view class="intro">
+    <text class="kicker">{{series.nameEn}}</text>
     <view class="intro__head">
       <text class="intro__name">{{series.name}}</text>
       <text class="intro__badge {{series.accent === 'accent' ? 'is-accent' : ''}}">{{series.code}}</text>

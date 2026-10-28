@@ -1,6 +1,6 @@
 /**messages.wxss —— 构建产物（由 messages.less 编译而来）**/
 .page {
-  background: #F5F7F6;
+  background: #F7F5F0;
 }
 
 /* ============ 计数 ============ */
@@ -14,12 +14,12 @@
 .head__num {
   font-size: 44rpx;
   font-weight: 700;
-  color: #0F6B4F;
+  color: #1F3A44;
 }
 
 .head__unit {
   font-size: 24rpx;
-  color: #6B7B75;
+  color: #5C666B;
   margin-left: 10rpx;
 }
 
@@ -34,13 +34,13 @@
   margin: 18rpx 32rpx 0;
   padding: 22rpx 24rpx;
   border-radius: 12rpx;
-  background: #FDFAF2;
-  border: 1rpx solid #F3E4C4;
+  background: #FBF6EA;
+  border: 1rpx solid #EBD9B4;
 }
 
 .banner__text {
   font-size: 22rpx;
-  color: #8A6A24;
+  color: #8A6A1F;
   line-height: 1.75;
 }
 
@@ -50,7 +50,7 @@
   height: 60rpx;
   padding: 0 30rpx;
   border-radius: 30rpx;
-  background: #8A6A24;
+  background: #8A6A1F;
   color: #FFFFFF;
   font-size: 24rpx;
   font-weight: 600;
@@ -67,7 +67,7 @@
 .msg {
   background: #FFFFFF;
   border-radius: 24rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   padding: 28rpx 28rpx 24rpx;
   margin-bottom: 24rpx;
 }
@@ -87,14 +87,14 @@
 .msg__name {
   font-size: 30rpx;
   font-weight: 700;
-  color: #16211D;
+  color: #1D2226;
 }
 
 .msg__type {
   margin-left: 16rpx;
   font-size: 20rpx;
-  color: #0F6B4F;
-  background: #E6F2ED;
+  color: #1F3A44;
+  background: #E8EDEE;
   height: 36rpx;
   line-height: 36rpx;
   padding: 0 14rpx;
@@ -104,7 +104,7 @@
 
 .msg__time {
   font-size: 21rpx;
-  color: #9AA8A2;
+  color: #8A9298;
   flex: none;
   margin-left: 16rpx;
 }
@@ -112,7 +112,7 @@
 .msg__rows {
   margin-top: 22rpx;
   padding-top: 6rpx;
-  border-top: 1rpx solid #E3E9E6;
+  border-top: 1rpx solid #E2DDD3;
 }
 
 .msg__row {
@@ -124,31 +124,31 @@
   width: 92rpx;
   flex: none;
   font-size: 24rpx;
-  color: #9AA8A2;
+  color: #8A9298;
 }
 
 .msg__value {
   flex: 1;
   font-size: 25rpx;
-  color: #3D4A45;
+  color: #3A4348;
   line-height: 1.6;
 }
 
 .msg__value--link {
-  color: #0F6B4F;
+  color: #1F3A44;
   font-weight: 600;
 }
 
 .msg__body {
   margin-top: 16rpx;
   padding: 20rpx 22rpx;
-  background: #F5F7F6;
+  background: #F7F5F0;
   border-radius: 12rpx;
 }
 
 .msg__body-text {
   font-size: 24rpx;
-  color: #3D4A45;
+  color: #3A4348;
   line-height: 1.8;
 }
 
@@ -158,16 +158,16 @@
   justify-content: space-between;
   margin-top: 22rpx;
   padding-top: 20rpx;
-  border-top: 1rpx solid #E3E9E6;
+  border-top: 1rpx solid #E2DDD3;
 }
 
 .msg__status {
   font-size: 21rpx;
-  color: #9AA8A2;
+  color: #8A9298;
 }
 
 .msg__status.is-ok {
-  color: #0F6B4F;
+  color: #1F3A44;
 }
 
 .msg__actions {
@@ -177,7 +177,7 @@
 
 .msg__act {
   font-size: 24rpx;
-  color: #0F6B4F;
+  color: #1F3A44;
   margin-left: 32rpx;
 }
 
@@ -200,13 +200,13 @@
 .empty__title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #3D4A45;
+  color: #3A4348;
 }
 
 .empty__desc {
   margin-top: 16rpx;
   font-size: 24rpx;
-  color: #9AA8A2;
+  color: #8A9298;
   line-height: 1.8;
   text-align: center;
 }
@@ -217,7 +217,7 @@
   line-height: 84rpx;
   padding: 0 56rpx;
   border-radius: 42rpx;
-  background: #0F6B4F;
+  background: #1F3A44;
   color: #FFFFFF;
   font-size: 28rpx;
   font-weight: 600;

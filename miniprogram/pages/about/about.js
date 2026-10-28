@@ -1,5 +1,5 @@
 // about.js —— 由 about.ts 编译而来（构建产物）｜关于我们
-const { SITE, PATENTS, CREDENTIALS, CASES_OUTER, CASES_INNER } = require('../../data/site')
+const { SITE, PATENTS, CREDENTIALS, CASES_OUTER, CASES_INNER, PROMOTION } = require('../../data/site')
 const { BRAND_STORY, BRAND_VALUES } = require('../../data/catalog')
 const { shareApp, shareTimeline } = require('../../utils/share')
 
@@ -20,6 +20,7 @@ Component({
     credentials: CREDENTIALS,
     casesOuter: CASES_OUTER,
     casesInner: CASES_INNER,
+    promotion: PROMOTION,
     year: new Date().getFullYear(),
   },
 

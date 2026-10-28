@@ -1,5 +1,5 @@
 <!--contact.wxml 咨询与留言-->
-<navigation-bar title="咨询与留言" back="{{false}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="咨询与留言" back="{{false}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <!-- ============ 直接联系我们 ============ -->

@@ -1,5 +1,5 @@
 <!--logs.wxml 启动日志（开发者调试用，sitemap 中已禁止收录）-->
-<navigation-bar title="查看启动日志" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="查看启动日志" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <scroll-view class="scrollarea" scroll-y type="list">

@@ -2,7 +2,7 @@
 <navigation-bar
   title="{{showNavTitle ? site.brand : ''}}"
   back="{{false}}"
-  color="{{scrolled ? '#16211D' : '#FFFFFF'}}"
+  color="{{scrolled ? '#1D2226' : '#FFFFFF'}}"
   background="{{scrolled ? '#FFFFFF' : 'transparent'}}"
 ></navigation-bar>
 
@@ -11,23 +11,25 @@
   <view class="hero">
     <view class="hero__glow"></view>
 
+    <text class="hero__kicker">BEST LAND · {{site.deckYear}} 宣传简介</text>
+
     <view class="hero__brand">
       <view class="hero__mark">
         <text class="hero__mark-text">贝</text>
       </view>
       <view class="hero__brand-text">
         <text class="hero__brand-name">{{site.brand}}</text>
-        <text class="hero__brand-tag">BEI ZHI RAN</text>
+        <text class="hero__brand-tag">BEST LAND</text>
       </view>
     </view>
 
-    <text class="hero__title">{{site.slogan}}</text>
-    <text class="hero__desc">{{site.positioning}}</text>
+    <text class="hero__motto">{{site.motto}}</text>
+    <text class="hero__motto-en">{{site.mottoEn}}</text>
+
+    <text class="hero__line">{{site.coverLine}}</text>
 
     <view class="hero__tags">
-      <text class="hero__tag">纯无机</text>
-      <text class="hero__tag">A1 级不燃</text>
-      <text class="hero__tag">第三方检测</text>
+      <text class="hero__tag" wx:for="{{site.coverTags}}" wx:key="*this">{{item}}</text>
     </view>
 
     <view class="hero__actions">
@@ -36,8 +38,14 @@
     </view>
   </view>
 
-  <!-- ============ 核心卖点 ============ -->
+  <!-- ============ 产品六大优势（宣传册第 4 页）============ -->
   <view class="section section--tight">
+    <view class="section-head">
+      <view>
+        <text class="kicker">Product advantages</text>
+        <view class="section-title">产品六大优势</view>
+      </view>
+    </view>
     <view class="features">
       <view class="feature" wx:for="{{features}}" wx:key="no">
         <text class="feature__no">{{item.no}}</text>

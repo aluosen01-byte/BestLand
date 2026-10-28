@@ -1,10 +1,10 @@
 /**app.wxss —— 全局样式（由 app.less + theme.less 编译而来，构建产物）**/
 page {
-  background: #F5F7F6;
-  color: #16211D;
+  background: #F7F5F0;
+  color: #1D2226;
   font-size: 28rpx;
   line-height: 1.6;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -50,21 +50,21 @@ textarea {
 }
 
 .section-title {
-  font-size: 38rpx;
+  font-size: 44rpx;
   font-weight: 700;
-  color: #16211D;
+  color: #1D2226;
   letter-spacing: 1rpx;
 }
 
 .section-sub {
-  font-size: 24rpx;
-  color: #6B7B75;
+  font-size: 23rpx;
+  color: #5C666B;
   margin-top: 8rpx;
 }
 
 .section-more {
   font-size: 26rpx;
-  color: #0F6B4F;
+  color: #1F3A44;
   display: flex;
   align-items: center;
   flex: none;
@@ -78,13 +78,13 @@ textarea {
 .card {
   background: #FFFFFF;
   border-radius: 24rpx;
-  box-shadow: 0 6rpx 24rpx rgba(15, 107, 79, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(31, 58, 68, 0.08);
   overflow: hidden;
 }
 
 .divider {
   height: 1rpx;
-  background: #E3E9E6;
+  background: #E2DDD3;
 }
 
 /* ============ 按钮 ============ */
@@ -101,7 +101,7 @@ textarea {
 }
 
 .btn-primary {
-  background: #0F6B4F;
+  background: #1F3A44;
   color: #FFFFFF;
 }
 
@@ -111,8 +111,8 @@ textarea {
 
 .btn-ghost {
   background: #FFFFFF;
-  color: #0F6B4F;
-  border: 2rpx solid #0F6B4F;
+  color: #1F3A44;
+  border: 2rpx solid #1F3A44;
 }
 
 .btn-hover {
@@ -138,17 +138,133 @@ button::after {
   padding: 0 16rpx;
   border-radius: 20rpx;
   font-size: 22rpx;
-  background: #E6F2ED;
-  color: #0F6B4F;
+  background: #E8EDEE;
+  color: #1F3A44;
   margin: 0 12rpx 12rpx 0;
 }
 
 .tag--accent {
-  background: #FBF1EA;
-  color: #C2703E;
+  background: #FDF3E3;
+  color: #F0A22E;
 }
 
 .tag--plain {
-  background: #F5F7F6;
-  color: #6B7B75;
+  background: #F7F5F0;
+  color: #5C666B;
+}
+
+/* ============================================================
+   v47 宣传册风格工具类
+   用法：中文主标题 + 英文 kicker（宣传册每页都是这个结构）
+   ============================================================ */
+
+/* 英文小标签：位于中文标题上方或下方，字距略宽 */
+.kicker {
+  display: block;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+  color: #5C666B;
+  text-transform: uppercase;
+}
+
+/* 橙色编号 01 / 02 */
+.num {
+  display: block;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 42rpx;
+  font-weight: 700;
+  color: #F0A22E;
+  line-height: 1;
+}
+
+/* 页面主标题（30pt） */
+.h1 {
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #1F3A44;
+  letter-spacing: 1rpx;
+  line-height: 1.25;
+}
+
+/* 卡片标题（21pt） */
+.h2 {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #1F3A44;
+  line-height: 1.35;
+}
+
+/* 正文（15pt） */
+.body {
+  font-size: 28rpx;
+  color: #1D2226;
+  line-height: 1.85;
+}
+
+/* 注释（10.5pt） */
+.caption {
+  font-size: 22rpx;
+  color: #5C666B;
+  line-height: 1.7;
+}
+
+/* 篇章分隔页（PART 05 政策支持），深底大字 */
+.part {
+  padding: 60rpx 40rpx;
+  background: linear-gradient(150deg, #16292F 0%, #1F3A44 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.part__no {
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 24rpx;
+  letter-spacing: 4rpx;
+  color: #F0A22E;
+}
+
+.part__title {
+  margin-top: 14rpx;
+  font-size: 76rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 4rpx;
+  line-height: 1.15;
+}
+
+.part__en {
+  margin-top: 12rpx;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+  color: #F4F1EA;
+}
+
+.part__desc {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: rgba(244, 241, 234, 0.86);
+  line-height: 1.8;
+}
+
+/* 暖色卡片：宣传册的米色底块 */
+.card-warm {
+  background: #FFFFFF;
+  border: 1rpx solid #E2DDD3;
+  border-radius: 20rpx;
+}
+
+/* 引用/出处块 */
+.ref {
+  padding: 20rpx 24rpx;
+  background: #FBF6EA;
+  border-left: 6rpx solid #F0A22E;
+  border-radius: 8rpx;
+}
+
+.ref__text {
+  font-size: 22rpx;
+  color: #5C666B;
+  line-height: 1.7;
 }

@@ -1,7 +1,15 @@
 <!--policy.wxml 政策背书-->
-<navigation-bar title="政策与标准" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="政策与标准" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
+  <!-- 篇章分隔（宣传册 PART 05）-->
+  <view class="part">
+    <text class="part__no">PART 05</text>
+    <text class="part__title">政策支持</text>
+    <text class="part__en">POLICY &amp; PARTNERSHIP</text>
+    <text class="part__desc">国家层面的绿色建筑与防火强条，正在把无机涂料推成必选项。</text>
+  </view>
+
   <!-- 引言 -->
   <view class="banner">
     <text class="banner__title">政策导向</text>

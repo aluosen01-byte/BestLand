@@ -1,5 +1,5 @@
 <!--franchise.wxml 招商加盟-->
-<navigation-bar title="招商加盟" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="招商加盟" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <!-- 首屏 -->

@@ -1,5 +1,5 @@
 <!--qualification.wxml 资质证书-->
-<navigation-bar title="资质与检测" back="{{true}}" color="#16211D" background="#FFFFFF"></navigation-bar>
+<navigation-bar title="资质与检测" back="{{true}}" color="#1D2226" background="#FFFFFF"></navigation-bar>
 
 <view class="page">
   <!-- 概览 -->
