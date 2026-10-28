@@ -126,17 +126,17 @@ var CASES_INNER = ['广州市越秀区广州宾馆（客房与走廊内墙翻新
  */
 var PRODUCTION = [
   { value: '4,000', unit: '㎡', label: '自有厂房', en: 'Own plant' },
-  { value: '10', unit: '台+', label: '生产设备', en: 'Equipment' },
-  { value: '10,000', unit: '吨+', label: '年产量', en: 'Annual output' },
-  { value: '30', unit: '吨+', label: '日产量', en: 'Daily output' },
+  { value: '10', unit: '台+', label: '生产设备', en: 'Production units' },
+  { value: '10,000', unit: '吨+', label: '年产量', en: 'Tons per year' },
+  { value: '30', unit: '吨+', label: '日产量', en: 'Tons per day' },
 ]
 
 /**
  * 首页快捷入口（对应「选品助手 / 免费寄样 / 关于贝之然」）
- * key 决定跳转目标，见 index.js goQuick；icon 为本地线性图标（PNG，避免部分安卓 SVG 渲染问题）
+ * key 决定跳转目标，见 index.js goQuick；icon 取自永耐小程序同名图标（products / selector / sample / about）
  */
 var QUICK = [
-  { no: '01', key: 'products', text: '全部产品', en: 'Products', icon: '/images/quick/grid.png' },
+  { no: '01', key: 'products', text: '全部产品', en: 'Products', icon: '/images/quick/products.png' },
   { no: '02', key: 'calculator', text: '选品助手', en: 'Selector', icon: '/images/quick/selector.png' },
   { no: '03', key: 'sample', text: '免费寄样', en: 'Free sample', icon: '/images/quick/sample.png' },
   { no: '04', key: 'about', text: '关于贝之然', en: 'About', icon: '/images/quick/about.png' },
