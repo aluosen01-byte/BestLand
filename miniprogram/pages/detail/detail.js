@@ -27,6 +27,8 @@ Component({
       return shareApp('detail', {
         title: s ? ('贝之然 · ' + s.name + ' · ' + s.tagline) : '贝之然纯无机涂料 · 系列详情与技术参数',
         path: s ? ('/pages/detail/detail?id=' + s.id) : '/pages/detail/detail',
+        // 具体系列页用该系列的 1:1 产品图（5:4 裁切后主体仍在中间）
+        imageUrl: s ? seriesCover(s.id) : undefined,
       })
     },
 
@@ -35,6 +37,7 @@ Component({
       return shareTimeline('detail', {
         title: s ? ('贝之然 · ' + s.name) : '贝之然纯无机涂料 · 系列详情与技术参数',
         query: s ? ('id=' + s.id) : '',
+        imageUrl: s ? seriesCover(s.id) : undefined,
       })
     },
 
